@@ -9,4 +9,6 @@ categories: ['Pinned']
 
 Welcome to Yui's blog. This is the first post.
 
+Please read [comment policy](https://blog.yuiofastora.com/post/comment-policy/) before posting a comment.
+
 For more information about this theme, check the documentation: https://stack.jimmycai.com/

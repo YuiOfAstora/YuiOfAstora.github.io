@@ -7,6 +7,7 @@ categories: ['Guide']
 comments: true
 toc: true
 readingTime: true
+description: "Enforing server security with disabling root login, adding ssh key authentication, setup 2FA. "
 ---
 Enforing server security with disabling root login, adding ssh key authentication, setup 2FA.  
 

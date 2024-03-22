@@ -6,6 +6,7 @@ tags: ['about']
 categories: ['Pinned']
 image: cover.png
 weight: 1
+description: "Please read comment policy before post a comment"
 ---
 Comment policy
 <!--more-->
