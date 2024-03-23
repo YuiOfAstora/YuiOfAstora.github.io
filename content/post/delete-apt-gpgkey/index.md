@@ -4,7 +4,7 @@ date: 2023-01-26T18:50:00+08:00
 draft: false
 tags: ['linux', 'ubuntu']
 categories: ['Notes']
-comments: true
+comments: false
 toc: true
 readingTime: true
 description: "Delete GPG keys with apt-key"

@@ -4,7 +4,7 @@ date: 2023-01-26T18:58:00+08:00
 draft: false
 tags: ['python']
 categories: ['Notes']
-comments: true
+comments: false
 toc: true
 readingTime: true
 description: "Install and manage mutliple python environments using pyenv"
