@@ -2,7 +2,7 @@
 title: "Run x86 windows in Termux"
 date: 2022-03-24 17:00:00+0800
 image: cover.png
-draft: false
+draft: true
 description: Mobox is a project designed to run windows x86 applications in Termux using Box64 and Wine.
 tags: ['Termux','Linux','Android']
 categories: ['Guide','Notes'] 
