@@ -5,6 +5,7 @@ draft: false
 tags: ['intersting stuff']
 categories: ['Guide']
 comments: true
+image: cover.png
 toc: true
 readingTime: true
 description: "Using a hardware security key to protect account credentials"
@@ -15,19 +16,21 @@ Using a hardware security key to protect account credentials
 
 [Get a Yubikey](https://www.yubico.com/why-yubico/) 
 
-![yubikeys](https://pinry.yuiofastora.com/media/2/5/25d2a6cdb507a55baf1a6b31bebfb77c/yubikeys.png)
-
 ## Setup a Yubikey 5 NFC
 
-Insert Yubikey into PC(Windows 10, 11), go to `System Settings>Accounts>Sign-in options>Security key`,
+Insert Yubikey into PC(Windows 10, 11)
 
-reset the key first then create a new pin.
+Install [Yubikey manager](https://www.yubico.com/support/download/yubikey-manager/) to configure FIDO2, OTP and PIV functionality. (Run as administrator to config FIDO2)
 
-![resetPIN](https://pinry.yuiofastora.com/media/4/a/4ac68a458ba51dd1b9cac0f8032a9b86/resetPIN.png)
+![pivSetup](PIVsetup.png)
 
-Using [Yubikey manager](https://www.yubico.com/support/download/yubikey-manager/) to configure FIDO2, OTP and PIV functionality. (Run as administrator to config FIDO2)
+Configure a PIN(6~8 characters) to protect certificates, it would be locked after 3 failure tries.  We also need to set up a PUK to unlock device after 3 failure tries. Then generate a management key and choose protecting it with PIN.
 
-![yubikey manager](https://pinry.yuiofastora.com/media/8/b/8b7304517aa02de38faa69515b01267c/yubikeymanager.png)
+![puk](PUK.png)
+
+A FIDO2 PIN(8 characters) is needed.
+
+![FIDO2PIN](FIDO2PIN.png)
 
 ## Using yubikey for 2-Step Verification
 
@@ -37,21 +40,33 @@ Go to https://myaccount.google.com/security,
 
 add a security key under 2 step verification
 
-![google](https://pinry.yuiofastora.com/media/b/6/b63c53ffcaa2279cf6075621042c9238/google.png)
-
 ### Github:
 
-![github](https://pinry.yuiofastora.com/media/0/f/0f0c3f9472f48848aaf18bb84b6729a7/github.png)
+[Add a key](https://github.com/settings/security)
 
-### Twitter:
+Enter FIDO2 PIN after prompted
 
-![twitter](https://pinry.yuiofastora.com/media/e/7/e7a83ed51c3f949c788bfaf8460f0f88/twitter.png)
+![github](github.png)
+
+### X ( Previously Twitter):
+
+[Enroll](https://twitter.com/i/flow/two-factor-security-key-enrollment
+
+![x](x.png)
+
+### Facebook
+
+https://accountscenter.facebook.com/password_and_security/two_factor
+
+![Facebook](Facebook.png)
+
+### Microsoft
+
+![microsoft](microsoft.png)
 
 ## Securing 2FA OTP
 
 Using [Yubikey authenticator](https://www.yubico.com/products/yubico-authenticator/) to secure 2FA OTP credentials.
-
-![YubikeyAuthenticator](https://pinry.yuiofastora.com/media/0/0/00ffabbbd4f0c08006c8c8dc4aa4b58c/yubikeyauthenticator.png)
 
 ## Securing Windows Login
 
@@ -102,17 +117,11 @@ Install [Yubico Login for Windows software](https://www.yubico.com/products/comp
 
 - Check ur user name:  powershell `whoami` command
 
-  ![whoami](https://pinry.yuiofastora.com/media/2/b/2bc1cc9ac7b613d9740efb6e221a6510/whoami.png)
-
   In this case, the username is yui
 
 Start Login Configuration of Yubico Login for windows
 
-![login config](https://pinry.yuiofastora.com/media/3/5/35537438e44b2b8d1e734f8e53c78532/loginConfig.png)
-
 Choose a slot and select `Manually input secret`, select create backup device for each user if u have at least 2 keys(recommended). Generating recovery code is recommended **if u only have one key**.
-
-![](https://pinry.yuiofastora.com/media/a/6/a640ba30ed7c2758d53804f2ab2e3612/config.png)
 
 We're using slot 2 here since slot 2 is for long touch, we can set slot 1 for windows password later(Optional).
 
@@ -124,8 +133,6 @@ https://www.browserling.com/tools/random-hex
 
 Input the generated secret
 
-![](https://pinry.yuiofastora.com/media/d/1/d1bdd4084d2a09531dca66af84ffe9bc/secret.png)
-
 Follow the instructions and secure the recovery code(if there is one)
 
 Restart and login, now ur PC is secured with Yubikey
@@ -133,8 +140,6 @@ Restart and login, now ur PC is secured with Yubikey
 > Optional:
 >
 > If u're tired of entering password every time, u can set a strong password, then store as static password into ur yubikey slot 1(we've used slot 2 before)
->
-> ![](https://pinry.yuiofastora.com/media/9/5/95de2c9708a82809e59c5fb31b94c8a6/slot1.png)
 >
 > Start the yubikey manager, go to Applications>OTP, configure slot 1(short touch) for static password. Choose allow any character and input ur windows password. Now u can touch the key to enter the password automatically when login.
 
