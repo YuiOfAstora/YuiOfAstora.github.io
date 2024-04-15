@@ -142,5 +142,20 @@ Restart and login, now ur PC is secured with Yubikey
 > If u're tired of entering password every time, u can set a strong password, then store as static password into ur yubikey slot 1(we've used slot 2 before)
 >
 > Start the yubikey manager, go to Applications>OTP, configure slot 1(short touch) for static password. Choose allow any character and input ur windows password. Now u can touch the key to enter the password automatically when login.
+>
+> **As such, a maximum configurable value of 14 for the minimum password length in Windows may be too short**.
+>
+> We need use Group Policy Editor to enforce password length greater than 14 characters. 
+>
+> Press Windows + R and enter gpedit.msc. Navigate to Computer Configuration ->  Windows Settings -> Security Settings -> Account Policies -> Password Policy.
+>
+> 1. Change “Relax minimum password length limits” to Enabled
+> 2. Change “Minimum password length audit” to the number of characters you want the minimum password length to be.
+> 3. Change “Minimum password length” to to the number of characters you want the minimum password length to be.
+> 4. Enable Password must meet complexity requirements
+>
+> Then u're ready to change password with longer characers.
+>
+> ![GPedit](GPedit.png)
 
 If everything works, remove ur windows hello PIN. After that u can only use security key to access ur PC.
