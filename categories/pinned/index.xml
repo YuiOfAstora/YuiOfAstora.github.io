@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Pinned on Yui's Blog</title><link>https://yuiofastora.github.io/categories/pinned/</link><description>Recent content in Pinned on Yui's Blog</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Fri, 27 Jan 2023 08:46:47 +0800</lastBuildDate><atom:link href="https://yuiofastora.github.io/categories/pinned/index.xml" rel="self" type="application/rss+xml"/><item><title>Comment policy</title><link>https://yuiofastora.github.io/p/comment-policy/</link><pubDate>Fri, 27 Jan 2023 08:46:47 +0800</pubDate><guid>https://yuiofastora.github.io/p/comment-policy/</guid><description>&lt;img src="https://yuiofastora.github.io/p/comment-policy/cover.png" alt="Featured image of post Comment policy" />&lt;p>Comment policy&lt;/p>
+&lt;h2 id="how-comment-works">
+&lt;a href="#how-comment-works">#&lt;/a>
+How comment works
+&lt;/h2>&lt;p>Comment powered by gittalk.&lt;/p>
+&lt;blockquote>
+&lt;p>Gitalk is a modern comment component based on GitHub Issue and Preact.&lt;/p>
+&lt;p>&lt;a class="link" href="https://github.com/gitalk/gitalk" target="_blank" rel="noopener"
+>https://github.com/gitalk/gitalk&lt;/a>&lt;/p>
+&lt;/blockquote>
+&lt;p>Comment repo:&lt;/p>
+&lt;p>All comments are stored in repo issues&lt;/p>
+&lt;p>&lt;a class="link" href="https://github.com/YuiOfAstora/hugoblog-comments.git" target="_blank" rel="noopener"
+>https://github.com/YuiOfAstora/hugoblog-comments.git&lt;/a>&lt;/p>
+&lt;h2 id="comment-policy">
+&lt;a href="#comment-policy">#&lt;/a>
+Comment policy
+&lt;/h2>&lt;p>Before you add your contribution in the comment section of posts of the blog, please take a moment to look over the helpful guidelines below.&lt;/p>
+&lt;ul>
+&lt;li>&lt;strong>Show respect:&lt;/strong> Add smart, relevant ideas that expand on an post’s premise — &lt;strong>read the post before you comment&lt;/strong>. Offer useful, constructive (not stupid or ugly) criticism.&lt;/li>
+&lt;li>&lt;strong>All rights reserved:&lt;/strong> For any comment, we reserve the right to edit, delete, move, or mark it as spam.&lt;/li>
+&lt;li>&lt;strong>Keep on topic:&lt;/strong> Drop funny references or jokes that &lt;strong>carry the conversation forward&lt;/strong>.&lt;/li>
+&lt;li>&lt;strong>Links:&lt;/strong> If you must include a link in your comment, please be aware that your comment may not be approved for posting. Be patient. Obvious attempts to promote your business, gain backlinks, traffic, or other types of self-promotion are not allowed.&lt;/li>
+&lt;li>&lt;strong>Liability:&lt;/strong> By posting a comment, you agree that your contribution is your own and that you take responsibility for it. You agree to hold post authors and other commenters harmless.&lt;/li>
+&lt;li>&lt;strong>Spam: Don’t do it.&lt;/strong>&lt;/li>
+&lt;li>&lt;strong>Privacy:&lt;/strong> Do not post phone numbers, email addresses, or any other private or personal information to protect the affected party. This is not the place to exchange contact information with other visitors.&lt;/li>
+&lt;/ul></description></item><item><title>Initiate Site</title><link>https://yuiofastora.github.io/p/initiate-site/</link><pubDate>Fri, 06 Jan 2023 08:00:00 +0800</pubDate><guid>https://yuiofastora.github.io/p/initiate-site/</guid><description>&lt;img src="https://yuiofastora.github.io/p/initiate-site/cover.png" alt="Featured image of post Initiate Site" />&lt;p>Welcome to Yui&amp;rsquo;s blog. This is the first post.&lt;/p>
+&lt;p>Please read &lt;a class="link" href="https://blog.yuiofastora.com/post/comment-policy/" target="_blank" rel="noopener"
+>comment policy&lt;/a> before posting a comment.&lt;/p>
+&lt;p>For more information about this theme, check the documentation: &lt;a class="link" href="https://stack.jimmycai.com/" target="_blank" rel="noopener"
+>https://stack.jimmycai.com/&lt;/a>&lt;/p></description></item></channel></rss>

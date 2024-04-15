@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Python on Yui's Blog</title><link>https://yuiofastora.github.io/tags/python/</link><description>Recent content in Python on Yui's Blog</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Thu, 26 Jan 2023 18:58:00 +0800</lastBuildDate><atom:link href="https://yuiofastora.github.io/tags/python/index.xml" rel="self" type="application/rss+xml"/><item><title>Multiple Python Env Setups</title><link>https://yuiofastora.github.io/p/multiple-python-env-setups/</link><pubDate>Thu, 26 Jan 2023 18:58:00 +0800</pubDate><guid>https://yuiofastora.github.io/p/multiple-python-env-setups/</guid><description>&lt;p>Install and manage mutliple python environments using pyenv&lt;/p>
+&lt;h2 id="install-pyenv">
+&lt;a href="#install-pyenv">#&lt;/a>
+Install pyenv
+&lt;/h2>&lt;p>&lt;a class="link" href="https://k0nze.dev/posts/install-pyenv-venv-vscode/" target="_blank" rel="noopener"
+>https://k0nze.dev/posts/install-pyenv-venv-vscode/&lt;/a>&lt;/p>
+&lt;h2 id="use-pyenv">
+&lt;a href="#use-pyenv">#&lt;/a>
+Use pyenv
+&lt;/h2>&lt;p>List all installable python versions&lt;/p>
+&lt;p>&lt;code>pyenv install -l&lt;/code>&lt;/p>
+&lt;p>Install specified versions of python&lt;/p>
+&lt;p>&lt;code>pyenv install x.x.x&lt;/code>&lt;/p>
+&lt;p>List current installed python versions&lt;/p>
+&lt;p>&lt;code>pyenv versions&lt;/code>&lt;/p>
+&lt;p>Set specified versions for current shell session&lt;/p>
+&lt;p>&lt;code>pyenv shell x.x.x&lt;/code>&lt;/p>
+&lt;p>Set python version for global usage&lt;/p>
+&lt;p>&lt;code>pyenv global x.x.x&lt;/code>&lt;/p>
+&lt;p>Set python version for current path&lt;/p>
+&lt;p>&lt;code>pyenv local x.x.x&lt;/code>&lt;/p>
+&lt;p>Create virtual environment in .venv and activate it&lt;/p>
+&lt;p>&lt;code>python -m venv .venv&lt;/code>&lt;/p>
+&lt;p>&lt;code>.\.venv\Scripts\activate&lt;/code>&lt;/p>
+&lt;p>&lt;code>get-command pip&lt;/code>&lt;/p>
+&lt;p>Unset global and use only system Python
+&lt;code>pyenv global --unset&lt;/code>&lt;/p></description></item></channel></rss>

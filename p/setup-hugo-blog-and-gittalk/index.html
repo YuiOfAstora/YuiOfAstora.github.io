@@ -1,0 +1,192 @@
+<!doctype html><html lang=en-us dir=ltr><head><meta charset=utf-8><meta name=viewport content='width=device-width,initial-scale=1'><meta name=description content="Setup blog using hugo and Github Pages"><title>Setup Hugo Blog and gittalk</title>
+<link rel=canonical href=https://yuiofastora.github.io/p/setup-hugo-blog-and-gittalk/><link rel=stylesheet href=/scss/style.min.8e60baf4cd3fc55968717a6e39762f4d28ed7ef6007566b6c7970ad0fe907198.css><meta property='og:title' content="Setup Hugo Blog and gittalk"><meta property='og:description' content="Setup blog using hugo and Github Pages"><meta property='og:url' content='https://yuiofastora.github.io/p/setup-hugo-blog-and-gittalk/'><meta property='og:site_name' content="Yui's Blog"><meta property='og:type' content='article'><meta property='article:section' content='Post'><meta property='article:tag' content='self host'><meta property='article:published_time' content='2023-01-27T08:20:00+08:00'><meta property='article:modified_time' content='2023-01-27T08:20:00+08:00'><meta name=twitter:title content="Setup Hugo Blog and gittalk"><meta name=twitter:description content="Setup blog using hugo and Github Pages"><link rel="shortcut icon" href=/favicon.png></head><body class=article-page><script>(function(){const e="StackColorScheme";localStorage.getItem(e)||localStorage.setItem(e,"auto")})()</script><script>(function(){const t="StackColorScheme",e=localStorage.getItem(t),n=window.matchMedia("(prefers-color-scheme: dark)").matches===!0;e=="dark"||e==="auto"&&n?document.documentElement.dataset.scheme="dark":document.documentElement.dataset.scheme="light"})()</script><div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky"><button class="hamburger hamburger--spin" type=button id=toggle-menu aria-label="Toggle Menu">
+<span class=hamburger-box><span class=hamburger-inner></span></span></button><header><figure class=site-avatar><a href=/><img src=/img/avatar_hud80d60de99bfe81531b379b0441f05d9_43948_300x0_resize_q75_box.jpg width=300 height=300 class=site-logo loading=lazy alt=Avatar>
+</a><span class=emoji>🍡</span></figure><div class=site-meta><h1 class=site-name><a href=/>Yui's Blog</a></h1><h2 class=site-description>@YuiOfAstora The way forward</h2></div></header><ol class=menu-social><li><a href=mailto:yuiofastora@outlook.com target=_blank title=Email rel=me><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-brand-gmail"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M16 20h3a1 1 0 001-1V5a1 1 0 00-1-1h-3v16z"/><path d="M5 20h3V4H5A1 1 0 004 5v14a1 1 0 001 1z"/><path d="M16 4l-4 4-4-4"/><path d="M4 6.5l8 7.5 8-7.5"/></svg></a></li><li><a href=https://t.me/YuiOfAstora target=_blank title=Telegram rel=me><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-brand-telegram"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M15 10l-4 4 6 6 4-16-18 7 4 2 2 6 3-4"/></svg></a></li><li><a href=https://x.com/YuiOfAstora target=_blank title=X rel=me><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-brand-x"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M4 4l11.733 16H20L8.267 4z"/><path d="M4 20l6.768-6.768m2.46-2.46L20 4"/></svg></a></li></ol><ol class=menu id=main-menu><li><a href=/><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><polyline points="5 12 3 12 12 3 21 12 19 12"/><path d="M5 12v7a2 2 0 002 2h10a2 2 0 002-2v-7"/><path d="M9 21v-6a2 2 0 012-2h2a2 2 0 012 2v6"/></svg>
+<span>Home</span></a></li><li><a href=/archives/><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><rect x="3" y="4" width="18" height="4" rx="2"/><path d="M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8"/><line x1="10" y1="12" x2="14" y2="12"/></svg>
+<span>Archives</span></a></li><li><a href=/search/><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="10" cy="10" r="7"/><line x1="21" y1="21" x2="15" y2="15"/></svg>
+<span>Search</span></a></li><li><a href=/links/><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-link" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><path d="M10 14a3.5 3.5.0 005 0l4-4a3.5 3.5.0 00-5-5l-.5.5"/><path d="M14 10a3.5 3.5.0 00-5 0l-4 4a3.5 3.5.0 005 5l.5-.5"/></svg>
+<span>Links</span></a></li><li class=menu-bottom-section><ol class=menu><li id=dark-mode-toggle><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="8" cy="12" r="2"/><rect x="2" y="6" width="20" height="12" rx="6"/></svg>
+<svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="16" cy="12" r="2"/><rect x="2" y="6" width="20" height="12" rx="6"/></svg>
+<span>Dark Mode</span></li></ol></li></ol></aside><aside class="sidebar right-sidebar sticky"><section class="widget archives"><div class=widget-icon><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><line x1="5" y1="9" x2="19" y2="9"/><line x1="5" y1="15" x2="19" y2="15"/><line x1="11" y1="4" x2="7" y2="20"/><line x1="17" y1="4" x2="13" y2="20"/></svg></div><h2 class="widget-title section-title">Table of contents</h2><div class=widget--toc><nav id=TableOfContents><ol><li><a href=#install-hugo>Install Hugo</a><ol><li><a href=#debian>Debian</a></li></ol></li><li><a href=#configuration>Configuration</a></li><li><a href=#config-gittalk>Config gittalk</a></li></ol></nav></div></section></aside><main class="main full-width"><article class=main-article><header class=article-header><div class=article-details><header class=article-category><a href=/categories/guide/>Guide</a></header><div class=article-title-wrapper><h2 class=article-title><a href=/p/setup-hugo-blog-and-gittalk/>Setup Hugo Blog and gittalk</a></h2><h3 class=article-subtitle>Setup blog using hugo and Github Pages</h3></div><footer class=article-time><div><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><path d="M11.795 21H5a2 2 0 01-2-2V7a2 2 0 012-2h12a2 2 0 012 2v4"/><circle cx="18" cy="18" r="4"/><path d="M15 3v4"/><path d="M7 3v4"/><path d="M3 11h16"/><path d="M18 16.496V18l1 1"/></svg>
+<time class=article-time--published>Jan 27, 2023</time></div><div><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15 15"/></svg>
+<time class=article-time--reading>2 minute read</time></div></footer></div></header><section class=article-content><p>Setup Hugo blog and add comment function with gittalk.</p><p>Using github-style theme by Meik</p><h2 id=install-hugo><a href=#install-hugo>#</a>
+Install Hugo</h2><h3 id=debian><a href=#debian>#</a>
+Debian</h3><p><code>sudo apt install hugo</code></p><h2 id=configuration><a href=#configuration>#</a>
+Configuration</h2><p>Init site</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>$ hugo new site site-name
+</span></span><span class=line><span class=cl>$ cd site-name
+</span></span></code></pre></td></tr></table></div></div><p>Use github-style theme</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>$ cd themes
+</span></span><span class=line><span class=cl>$ git clone https://github.com/MeiK2333/github-style.git
+</span></span></code></pre></td></tr></table></div></div><p>Setup readme</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>hugo new readme.md
+</span></span><span class=line><span class=cl>echo &#39;`Hello World!`&#39; &gt; content/readme.md
+</span></span><span class=line><span class=cl>#Set &#39;draft:true&#39; to &#39;draft:false&#39;
+</span></span></code></pre></td></tr></table></div></div><p>Add new post</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>hugo new post/title.md
+</span></span></code></pre></td></tr></table></div></div><p>Post template</p><p>Use <code>&lt;!--more--></code> to seperate content that will display in the posts page as abstraction and the rest of the content. This is different from summary, as summary will not appear in the post.</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>---
+</span></span><span class=line><span class=cl>title: &#34;template&#34;
+</span></span><span class=line><span class=cl>date: 2019-10-22T18:46:47+08:00
+</span></span><span class=line><span class=cl>draft: false
+</span></span><span class=line><span class=cl>tags: [&#39;value_1&#39;, &#39;value_2&#39;]
+</span></span><span class=line><span class=cl>---
+</span></span><span class=line><span class=cl>abstraction show in the post page
+</span></span><span class=line><span class=cl>&lt;!--more--&gt;
+</span></span><span class=line><span class=cl>other content
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>or
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>---
+</span></span><span class=line><span class=cl>title: &#34;template&#34;
+</span></span><span class=line><span class=cl>date: 2019-10-22T18:46:47+08:00
+</span></span><span class=line><span class=cl>draft: false
+</span></span><span class=line><span class=cl>tags: [&#39;value_1&#39;, &#39;value_2&#39;]
+</span></span><span class=line><span class=cl>summary: &#34;The summary content&#34;
+</span></span><span class=line><span class=cl>---
+</span></span></code></pre></td></tr></table></div></div><p>Modify config.toml</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span><span class=lnt>26
+</span><span class=lnt>27
+</span><span class=lnt>28
+</span><span class=lnt>29
+</span><span class=lnt>30
+</span><span class=lnt>31
+</span><span class=lnt>32
+</span><span class=lnt>33
+</span><span class=lnt>34
+</span><span class=lnt>35
+</span><span class=lnt>36
+</span><span class=lnt>37
+</span><span class=lnt>38
+</span><span class=lnt>39
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>baseURL = &#34;https://blogdomain.com&#34;
+</span></span><span class=line><span class=cl>languageCode = &#34;zh-cn&#34;
+</span></span><span class=line><span class=cl>title = &#34;XXX&#39;s blog&#34;
+</span></span><span class=line><span class=cl>theme = &#34;github-style&#34;
+</span></span><span class=line><span class=cl>pygmentsCodeFences = true
+</span></span><span class=line><span class=cl>pygmentsUseClasses = true
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>[taxonomies]
+</span></span><span class=line><span class=cl>  category = &#39;categories&#39;
+</span></span><span class=line><span class=cl>  tag = &#39;tags&#39;
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>[params]
+</span></span><span class=line><span class=cl>  author = &#34;XXX&#34;
+</span></span><span class=line><span class=cl>  description = &#34;In solitude, where we are least alone.&#34;
+</span></span><span class=line><span class=cl>  github = &#34;username&#34;
+</span></span><span class=line><span class=cl>  facebook = &#34;username&#34;
+</span></span><span class=line><span class=cl>  twitter = &#34;username&#34;
+</span></span><span class=line><span class=cl>  linkedin = &#34;username&#34;
+</span></span><span class=line><span class=cl>  instagram = &#34;username&#34;
+</span></span><span class=line><span class=cl>  tumblr = &#34;username&#34;
+</span></span><span class=line><span class=cl>  email = &#34;email address&#34;
+</span></span><span class=line><span class=cl>  url = &#34;https://domain.com&#34;
+</span></span><span class=line><span class=cl>  keywords = &#34;blog&#34;
+</span></span><span class=line><span class=cl>  rss = true
+</span></span><span class=line><span class=cl>  lastmod = true
+</span></span><span class=line><span class=cl>  userStatusEmoji = &#34;😀&#34;
+</span></span><span class=line><span class=cl>  favicon = &#34;/images/github.png&#34;
+</span></span><span class=line><span class=cl>  location = &#34;Somewhere&#34;
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>  [[params.links]]
+</span></span><span class=line><span class=cl>    title = &#34;Link&#34;
+</span></span><span class=line><span class=cl>    href = &#34;https://domain.com&#34;
+</span></span><span class=line><span class=cl>  [[params.links]]
+</span></span><span class=line><span class=cl>    title = &#34;Link2&#34;
+</span></span><span class=line><span class=cl>    href = &#34;link&#34;
+</span></span><span class=line><span class=cl>    icon = &#34;https://domain.com/images/avatar.png&#34;
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>[frontmatter]
+</span></span><span class=line><span class=cl>  lastmod = [&#34;lastmod&#34;, &#34;:fileModTime&#34;, &#34;:default&#34;]
+</span></span></code></pre></td></tr></table></div></div><p>Start server to preview</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl># start on port 1313 with github-style theme
+</span></span><span class=line><span class=cl>$ hugo server -t github-style -D
+</span></span><span class=line><span class=cl># generate site in public directory
+</span></span><span class=line><span class=cl>$ sudo hugo --gc --minify --cleanDestinationDir
+</span></span></code></pre></td></tr></table></div></div><h2 id=config-gittalk><a href=#config-gittalk>#</a>
+Config gittalk</h2><p>Init a new repo for storing comments(enable issues)</p><p>Add new OAuth app in Settings>Developer settings>OAuth Apps</p><p>Add</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>[params]  
+</span></span><span class=line><span class=cl>enableGitalk = true
+</span></span><span class=line><span class=cl>[params.gitalk]
+</span></span><span class=line><span class=cl>    clientID = &#34;Your client ID&#34; 
+</span></span><span class=line><span class=cl>    clientSecret = &#34;Your client secret&#34; 
+</span></span><span class=line><span class=cl>    repo = &#34;repo name&#34;
+</span></span><span class=line><span class=cl>    owner = &#34;repo&#39;s owner github username&#34;
+</span></span><span class=line><span class=cl>    admin = &#34;github username&#34;
+</span></span><span class=line><span class=cl>    id = &#34;location.pathname&#34;
+</span></span><span class=line><span class=cl>    labels = &#34;gitalk&#34;
+</span></span><span class=line><span class=cl>    perPage = 15
+</span></span><span class=line><span class=cl>    pagerDirection = &#34;last&#34;
+</span></span><span class=line><span class=cl>    createIssueManually = false
+</span></span><span class=line><span class=cl>    distractionFreeMode = false
+</span></span></code></pre></td></tr></table></div></div><p>to config.toml</p></section><footer class=article-footer><section class=article-tags><a href=/tags/self-host/>Self Host</a></section><section class=article-copyright><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="12" cy="12" r="9"/><path d="M14.5 9a3.5 4 0 100 6"/></svg>
+<span>Licensed under CC BY-NC-SA 4.0</span></section></footer></article><aside class=related-content--wrapper><h2 class=section-title>Related content</h2><div class=related-content><div class="flex article-list--tile"><article><a href=/p/setup-docker-and-portainer/><div class=article-details><h2 class=article-title>Setup Docker and Portainer</h2></div></a></article><article><a href=/p/self-hosting-a-kms-server/><div class=article-details><h2 class=article-title>Self Hosting A KMS Server</h2></div></a></article><article><a href=/p/self-hosting-an-email-server-with-iredmail/><div class=article-details><h2 class=article-title>Self Hosting An Email Server With iRedMail</h2></div></a></article><article><a href=/p/insurgency-sandstorm-%E5%BC%80%E6%9C%8D%E6%8C%87%E5%8D%97/><div class=article-details><h2 class=article-title>Insurgency Sandstorm 开服指南</h2></div></a></article><article><a href=/p/basic-server-security-enforcing/><div class=article-details><h2 class=article-title>Basic Server Security Enforcing</h2></div></a></article></div></div></aside><div id=gitalk-container></div><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/gitalk@1.7.2/dist/gitalk.css><script src=https://cdn.jsdelivr.net/npm/gitalk@1.7.2/dist/gitalk.min.js></script><script src=https://cdn.jsdelivr.net/npm/blueimp-md5@2.18.0/js/md5.min.js></script><script>const gitalk=new Gitalk({clientID:"a306dd938a54f8c2438c",clientSecret:"a65dc93963a3274daf6286f64dc96977549a77e3",repo:"YuiOfAstora.github.io",owner:"YuiOfAstora",admin:["YuiOfAstora"],distractionFreeMode:!1,id:md5(location.pathname)});(function(){if(["localhost","127.0.0.1"].indexOf(window.location.hostname)!=-1){document.getElementById("gitalk-container").innerHTML="Gitalk comments not available by default when the website is previewed locally.";return}gitalk.render("gitalk-container")})()</script><footer class=site-footer><section class=copyright>&copy;
+2023 -
+2024 Yui's Blog</section><section class=powerby>@YuiOfAstora<br>Built with <a href=https://gohugo.io/ target=_blank rel=noopener>Hugo</a><br>Theme <b><a href=https://github.com/CaiJimmy/hugo-theme-stack target=_blank rel=noopener data-version=3.25.0>Stack</a></b> designed by <a href=https://jimmycai.com target=_blank rel=noopener>Jimmy</a></section></footer><div class=pswp tabindex=-1 role=dialog aria-hidden=true><div class=pswp__bg></div><div class=pswp__scroll-wrap><div class=pswp__container><div class=pswp__item></div><div class=pswp__item></div><div class=pswp__item></div></div><div class="pswp__ui pswp__ui--hidden"><div class=pswp__top-bar><div class=pswp__counter></div><button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+<button class="pswp__button pswp__button--share" title=Share></button>
+<button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+<button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button><div class=pswp__preloader><div class=pswp__preloader__icn><div class=pswp__preloader__cut><div class=pswp__preloader__donut></div></div></div></div></div><div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap"><div class=pswp__share-tooltip></div></div><button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+</button>
+<button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)"></button><div class=pswp__caption><div class=pswp__caption__center></div></div></div></div></div><script src=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo=" crossorigin=anonymous defer></script><script src=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU=" crossorigin=anonymous defer></script><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css crossorigin=anonymous><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css crossorigin=anonymous></main></div><script src=https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z+KMkF24hUW8WePSA9HM=" crossorigin=anonymous></script><script type=text/javascript src=/ts/main.js defer></script><script>(function(){const e=document.createElement("link");e.href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap",e.type="text/css",e.rel="stylesheet",document.head.appendChild(e)})()</script></body></html>

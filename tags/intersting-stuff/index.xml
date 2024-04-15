@@ -1,0 +1,216 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Intersting Stuff on Yui's Blog</title><link>https://yuiofastora.github.io/tags/intersting-stuff/</link><description>Recent content in Intersting Stuff on Yui's Blog</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Thu, 02 Mar 2023 14:46:47 +0800</lastBuildDate><atom:link href="https://yuiofastora.github.io/tags/intersting-stuff/index.xml" rel="self" type="application/rss+xml"/><item><title>Using Yubikey to secure credentials</title><link>https://yuiofastora.github.io/p/using-yubikey-to-secure-credentials/</link><pubDate>Thu, 02 Mar 2023 14:46:47 +0800</pubDate><guid>https://yuiofastora.github.io/p/using-yubikey-to-secure-credentials/</guid><description>&lt;img src="https://yuiofastora.github.io/p/using-yubikey-to-secure-credentials/cover.png" alt="Featured image of post Using Yubikey to secure credentials" />&lt;p>Using a hardware security key to protect account credentials&lt;/p>
+&lt;p>&lt;a class="link" href="https://www.yubico.com/why-yubico/" target="_blank" rel="noopener"
+>Get a Yubikey&lt;/a>&lt;/p>
+&lt;h2 id="setup-a-yubikey-5-nfc">
+&lt;a href="#setup-a-yubikey-5-nfc">#&lt;/a>
+Setup a Yubikey 5 NFC
+&lt;/h2>&lt;p>Insert Yubikey into PC(Windows 10, 11)&lt;/p>
+&lt;p>Install &lt;a class="link" href="https://www.yubico.com/support/download/yubikey-manager/" target="_blank" rel="noopener"
+>Yubikey manager&lt;/a> to configure FIDO2, OTP and PIV functionality. (Run as administrator to config FIDO2)&lt;/p>
+&lt;p>&lt;img src="https://yuiofastora.github.io/p/using-yubikey-to-secure-credentials/PIVsetup.png"
+width="752"
+height="522"
+srcset="https://yuiofastora.github.io/p/using-yubikey-to-secure-credentials/PIVsetup_hu1ff2c2c8f98aee5e9b72f684349a8be1_1180158_480x0_resize_box_3.png 480w, https://yuiofastora.github.io/p/using-yubikey-to-secure-credentials/PIVsetup_hu1ff2c2c8f98aee5e9b72f684349a8be1_1180158_1024x0_resize_box_3.png 1024w"
+loading="lazy"
+alt="pivSetup"
+class="gallery-image"
+data-flex-grow="144"
+data-flex-basis="345px"
+>&lt;/p>
+&lt;p>Configure a PIN(6~8 characters) to protect certificates, it would be locked after 3 failure tries. We also need to set up a PUK to unlock device after 3 failure tries. Then generate a management key and choose protecting it with PIN.&lt;/p>
+&lt;p>&lt;img src="https://yuiofastora.github.io/p/using-yubikey-to-secure-credentials/PUK.png"
+width="752"
+height="522"
+srcset="https://yuiofastora.github.io/p/using-yubikey-to-secure-credentials/PUK_hu1ff2c2c8f98aee5e9b72f684349a8be1_1180158_480x0_resize_box_3.png 480w, https://yuiofastora.github.io/p/using-yubikey-to-secure-credentials/PUK_hu1ff2c2c8f98aee5e9b72f684349a8be1_1180158_1024x0_resize_box_3.png 1024w"
+loading="lazy"
+alt="puk"
+class="gallery-image"
+data-flex-grow="144"
+data-flex-basis="345px"
+>&lt;/p>
+&lt;p>A FIDO2 PIN(8 characters) is needed.&lt;/p>
+&lt;p>&lt;img src="https://yuiofastora.github.io/p/using-yubikey-to-secure-credentials/FIDO2PIN.png"
+width="647"
+height="274"
+srcset="https://yuiofastora.github.io/p/using-yubikey-to-secure-credentials/FIDO2PIN_hu81b4377f9c54eb4b2885a0399770bea2_533074_480x0_resize_box_3.png 480w, https://yuiofastora.github.io/p/using-yubikey-to-secure-credentials/FIDO2PIN_hu81b4377f9c54eb4b2885a0399770bea2_533074_1024x0_resize_box_3.png 1024w"
+loading="lazy"
+alt="FIDO2PIN"
+class="gallery-image"
+data-flex-grow="236"
+data-flex-basis="566px"
+>&lt;/p>
+&lt;h2 id="using-yubikey-for-2-step-verification">
+&lt;a href="#using-yubikey-for-2-step-verification">#&lt;/a>
+Using yubikey for 2-Step Verification
+&lt;/h2>&lt;h3 id="google">
+&lt;a href="#google">#&lt;/a>
+Google:
+&lt;/h3>&lt;p>Go to &lt;a class="link" href="https://myaccount.google.com/security" target="_blank" rel="noopener"
+>https://myaccount.google.com/security&lt;/a>,&lt;/p>
+&lt;p>add a security key under 2 step verification&lt;/p>
+&lt;h3 id="github">
+&lt;a href="#github">#&lt;/a>
+Github:
+&lt;/h3>&lt;p>&lt;a class="link" href="https://github.com/settings/security" target="_blank" rel="noopener"
+>Add a key&lt;/a>&lt;/p>
+&lt;p>Enter FIDO2 PIN after prompted&lt;/p>
+&lt;p>&lt;img src="https://yuiofastora.github.io/p/using-yubikey-to-secure-credentials/github.png"
+width="921"
+height="233"
+srcset="https://yuiofastora.github.io/p/using-yubikey-to-secure-credentials/github_hu6cf413351d4f96bfeba167031c5e98bb_645161_480x0_resize_box_3.png 480w, https://yuiofastora.github.io/p/using-yubikey-to-secure-credentials/github_hu6cf413351d4f96bfeba167031c5e98bb_645161_1024x0_resize_box_3.png 1024w"
+loading="lazy"
+alt="github"
+class="gallery-image"
+data-flex-grow="395"
+data-flex-basis="948px"
+>&lt;/p>
+&lt;h3 id="x--previously-twitter">
+&lt;a href="#x--previously-twitter">#&lt;/a>
+X ( Previously Twitter):
+&lt;/h3>&lt;p>[Enroll](&lt;a class="link" href="https://twitter.com/i/flow/two-factor-security-key-enrollment" target="_blank" rel="noopener"
+>https://twitter.com/i/flow/two-factor-security-key-enrollment&lt;/a>&lt;/p>
+&lt;p>&lt;img src="https://yuiofastora.github.io/p/using-yubikey-to-secure-credentials/x.png"
+width="595"
+height="638"
+srcset="https://yuiofastora.github.io/p/using-yubikey-to-secure-credentials/x_huaa5dc5892ab6b45b2b16fe94adcbb794_1141419_480x0_resize_box_3.png 480w, https://yuiofastora.github.io/p/using-yubikey-to-secure-credentials/x_huaa5dc5892ab6b45b2b16fe94adcbb794_1141419_1024x0_resize_box_3.png 1024w"
+loading="lazy"
+alt="x"
+class="gallery-image"
+data-flex-grow="93"
+data-flex-basis="223px"
+>&lt;/p>
+&lt;h3 id="facebook">
+&lt;a href="#facebook">#&lt;/a>
+Facebook
+&lt;/h3>&lt;p>&lt;a class="link" href="https://accountscenter.facebook.com/password_and_security/two_factor" target="_blank" rel="noopener"
+>https://accountscenter.facebook.com/password_and_security/two_factor&lt;/a>&lt;/p>
+&lt;p>&lt;img src="https://yuiofastora.github.io/p/using-yubikey-to-secure-credentials/Facebook.png"
+width="542"
+height="630"
+srcset="https://yuiofastora.github.io/p/using-yubikey-to-secure-credentials/Facebook_hu98c8f78d901c3d4ef155b44672c6aa8a_1026778_480x0_resize_box_3.png 480w, https://yuiofastora.github.io/p/using-yubikey-to-secure-credentials/Facebook_hu98c8f78d901c3d4ef155b44672c6aa8a_1026778_1024x0_resize_box_3.png 1024w"
+loading="lazy"
+alt="Facebook"
+class="gallery-image"
+data-flex-grow="86"
+data-flex-basis="206px"
+>&lt;/p>
+&lt;h3 id="microsoft">
+&lt;a href="#microsoft">#&lt;/a>
+Microsoft
+&lt;/h3>&lt;p>&lt;img src="https://yuiofastora.github.io/p/using-yubikey-to-secure-credentials/microsoft.png"
+width="835"
+height="511"
+srcset="https://yuiofastora.github.io/p/using-yubikey-to-secure-credentials/microsoft_huff08862f1fb060b812213bf2d7e74b37_1282746_480x0_resize_box_3.png 480w, https://yuiofastora.github.io/p/using-yubikey-to-secure-credentials/microsoft_huff08862f1fb060b812213bf2d7e74b37_1282746_1024x0_resize_box_3.png 1024w"
+loading="lazy"
+alt="microsoft"
+class="gallery-image"
+data-flex-grow="163"
+data-flex-basis="392px"
+>&lt;/p>
+&lt;h2 id="securing-2fa-otp">
+&lt;a href="#securing-2fa-otp">#&lt;/a>
+Securing 2FA OTP
+&lt;/h2>&lt;p>Using &lt;a class="link" href="https://www.yubico.com/products/yubico-authenticator/" target="_blank" rel="noopener"
+>Yubikey authenticator&lt;/a> to secure 2FA OTP credentials.&lt;/p>
+&lt;h2 id="securing-windows-login">
+&lt;a href="#securing-windows-login">#&lt;/a>
+Securing Windows Login
+&lt;/h2>&lt;h3 id="passwordless-login">
+&lt;a href="#passwordless-login">#&lt;/a>
+Passwordless Login
+&lt;/h3>&lt;h4 id="login-with-azure-ad">
+&lt;a href="#login-with-azure-ad">#&lt;/a>
+Login with Azure AD
+&lt;/h4>&lt;p>Requirements:&lt;/p>
+&lt;ol>
+&lt;li>Azure Active Directory web applications&lt;/li>
+&lt;li>Azure Active Directory joined Windows 10 devices (Windows 10 1909 and later)&lt;/li>
+&lt;li>Hybrid Azure Active Directory joined Windows 10 devices (Windows 10 2004 and later)&lt;/li>
+&lt;/ol>
+&lt;p>&lt;a class="link" href="https://support.yubico.com/hc/en-us/articles/360016913619-YubiKeys-for-Microsoft-Azure-AD-Passwordless-Sign-In-Guide" target="_blank" rel="noopener"
+>Compatible devices&lt;/a>&lt;/p>
+&lt;p>Guides: &lt;a class="link" href="https://alven.tech/passwordless-with-windows-10-and-yubikey/" target="_blank" rel="noopener"
+>https://alven.tech/passwordless-with-windows-10-and-yubikey/&lt;/a>&lt;/p>
+&lt;h4 id="using-yubikey-for-windows-helloyubikey-5-series-incompatible">
+&lt;a href="#using-yubikey-for-windows-helloyubikey-5-series-incompatible">#&lt;/a>
+Using Yubikey for windows Hello(yubikey 5 series incompatible)
+&lt;/h4>&lt;p>Get the UWP app(No longer available)&lt;/p>
+&lt;p>&lt;a class="link" href="https://apps.microsoft.com/store/detail/yubikey-for-windows-hello/9NBLGGH511M5" target="_blank" rel="noopener"
+>https://apps.microsoft.com/store/detail/yubikey-for-windows-hello/9NBLGGH511M5&lt;/a>&lt;/p>
+&lt;p>Get the offline package from &lt;a class="link" href="https://limbenjamin.com/articles/yubikey-passwordless-windows-local-account-login.html" target="_blank" rel="noopener"
+>limbenjamin&lt;/a>&lt;/p>
+&lt;h3 id="local-account-securing">
+&lt;a href="#local-account-securing">#&lt;/a>
+Local account securing
+&lt;/h3>&lt;blockquote>
+&lt;p>If your user account is local and not managed by Azure Active Directory (AAD) or Active Directory (AD), you can add a layer of protection beyond passwords with the YubiKey.&lt;/p>
+&lt;p>Before installing the Yubico Login for Windows software, please make a note of your Windows username and password. If you do not have your UN/PW, you will not be able to log in once Yubico Login for Windows has been installed&lt;/p>
+&lt;ul>
+&lt;li>Once Yubico Login for Windows has been configured, there is:
+&lt;ul>
+&lt;li>No Windows Password Hint&lt;/li>
+&lt;li>No way to reset passwords&lt;/li>
+&lt;li>No Remember Previous User/Login function.&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul>
+&lt;/blockquote>
+&lt;p>Install &lt;a class="link" href="https://www.yubico.com/products/computer-login-tools/" target="_blank" rel="noopener"
+>Yubico Login for Windows software&lt;/a>&lt;/p>
+&lt;ul>
+&lt;li>
+&lt;p>If u&amp;rsquo;re signed in with a Microsoft account, switch to a local account instead. &lt;code>System settings&amp;gt;Accounts&amp;gt;Your info&lt;/code>&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>Windows&amp;rsquo; automatic login is not compatible&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>Set a password if there isn&amp;rsquo;t one&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>Set a windows hello PIN in case of any thing goes wrong when configuring&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>Better to have at least 2 security keys in case of a key lost&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>Check ur user name: powershell &lt;code>whoami&lt;/code> command&lt;/p>
+&lt;p>In this case, the username is yui&lt;/p>
+&lt;/li>
+&lt;/ul>
+&lt;p>Start Login Configuration of Yubico Login for windows&lt;/p>
+&lt;p>Choose a slot and select &lt;code>Manually input secret&lt;/code>, select create backup device for each user if u have at least 2 keys(recommended). Generating recovery code is recommended &lt;strong>if u only have one key&lt;/strong>.&lt;/p>
+&lt;p>We&amp;rsquo;re using slot 2 here since slot 2 is for long touch, we can set slot 1 for windows password later(Optional).&lt;/p>
+&lt;p>Generate a random hex string for secret,&lt;/p>
+&lt;p>&lt;a class="link" href="https://www.browserling.com/tools/random-hex" target="_blank" rel="noopener"
+>https://www.browserling.com/tools/random-hex&lt;/a>&lt;/p>
+&lt;p>40 digits is enough here.&lt;/p>
+&lt;p>Input the generated secret&lt;/p>
+&lt;p>Follow the instructions and secure the recovery code(if there is one)&lt;/p>
+&lt;p>Restart and login, now ur PC is secured with Yubikey&lt;/p>
+&lt;blockquote>
+&lt;p>Optional:&lt;/p>
+&lt;p>If u&amp;rsquo;re tired of entering password every time, u can set a strong password, then store as static password into ur yubikey slot 1(we&amp;rsquo;ve used slot 2 before)&lt;/p>
+&lt;p>Start the yubikey manager, go to Applications&amp;gt;OTP, configure slot 1(short touch) for static password. Choose allow any character and input ur windows password. Now u can touch the key to enter the password automatically when login.&lt;/p>
+&lt;p>&lt;strong>As such, a maximum configurable value of 14 for the minimum password length in Windows may be too short&lt;/strong>.&lt;/p>
+&lt;p>We need use Group Policy Editor to enforce password length greater than 14 characters.&lt;/p>
+&lt;p>Press Windows + R and enter gpedit.msc. Navigate to Computer Configuration -&amp;gt; Windows Settings -&amp;gt; Security Settings -&amp;gt; Account Policies -&amp;gt; Password Policy.&lt;/p>
+&lt;ol>
+&lt;li>Change “Relax minimum password length limits” to Enabled&lt;/li>
+&lt;li>Change “Minimum password length audit” to the number of characters you want the minimum password length to be.&lt;/li>
+&lt;li>Change “Minimum password length” to to the number of characters you want the minimum password length to be.&lt;/li>
+&lt;li>Enable Password must meet complexity requirements&lt;/li>
+&lt;/ol>
+&lt;p>Then u&amp;rsquo;re ready to change password with longer characers.&lt;/p>
+&lt;p>&lt;img src="https://yuiofastora.github.io/p/using-yubikey-to-secure-credentials/GPedit.png"
+width="1295"
+height="705"
+srcset="https://yuiofastora.github.io/p/using-yubikey-to-secure-credentials/GPedit_hu64cd3b07ac92676076af3019414b26b9_2744166_480x0_resize_box_3.png 480w, https://yuiofastora.github.io/p/using-yubikey-to-secure-credentials/GPedit_hu64cd3b07ac92676076af3019414b26b9_2744166_1024x0_resize_box_3.png 1024w"
+loading="lazy"
+alt="GPedit"
+class="gallery-image"
+data-flex-grow="183"
+data-flex-basis="440px"
+>&lt;/p>
+&lt;/blockquote>
+&lt;p>If everything works, remove ur windows hello PIN. After that u can only use security key to access ur PC.&lt;/p></description></item></channel></rss>

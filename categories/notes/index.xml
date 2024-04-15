@@ -1,0 +1,1049 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Notes on Yui's Blog</title><link>https://yuiofastora.github.io/categories/notes/</link><description>Recent content in Notes on Yui's Blog</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Tue, 21 Feb 2023 18:00:00 +0800</lastBuildDate><atom:link href="https://yuiofastora.github.io/categories/notes/index.xml" rel="self" type="application/rss+xml"/><item><title>Self Hosting Owncloud</title><link>https://yuiofastora.github.io/p/self-hosting-owncloud/</link><pubDate>Tue, 21 Feb 2023 18:00:00 +0800</pubDate><guid>https://yuiofastora.github.io/p/self-hosting-owncloud/</guid><description>&lt;p>Self host a cloud storage with docker.&lt;/p>
+&lt;p>Deploy with Docker compose&lt;/p>
+&lt;p>&lt;code>docker-compose.yml&lt;/code>&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;span class="lnt">11
+&lt;/span>&lt;span class="lnt">12
+&lt;/span>&lt;span class="lnt">13
+&lt;/span>&lt;span class="lnt">14
+&lt;/span>&lt;span class="lnt">15
+&lt;/span>&lt;span class="lnt">16
+&lt;/span>&lt;span class="lnt">17
+&lt;/span>&lt;span class="lnt">18
+&lt;/span>&lt;span class="lnt">19
+&lt;/span>&lt;span class="lnt">20
+&lt;/span>&lt;span class="lnt">21
+&lt;/span>&lt;span class="lnt">22
+&lt;/span>&lt;span class="lnt">23
+&lt;/span>&lt;span class="lnt">24
+&lt;/span>&lt;span class="lnt">25
+&lt;/span>&lt;span class="lnt">26
+&lt;/span>&lt;span class="lnt">27
+&lt;/span>&lt;span class="lnt">28
+&lt;/span>&lt;span class="lnt">29
+&lt;/span>&lt;span class="lnt">30
+&lt;/span>&lt;span class="lnt">31
+&lt;/span>&lt;span class="lnt">32
+&lt;/span>&lt;span class="lnt">33
+&lt;/span>&lt;span class="lnt">34
+&lt;/span>&lt;span class="lnt">35
+&lt;/span>&lt;span class="lnt">36
+&lt;/span>&lt;span class="lnt">37
+&lt;/span>&lt;span class="lnt">38
+&lt;/span>&lt;span class="lnt">39
+&lt;/span>&lt;span class="lnt">40
+&lt;/span>&lt;span class="lnt">41
+&lt;/span>&lt;span class="lnt">42
+&lt;/span>&lt;span class="lnt">43
+&lt;/span>&lt;span class="lnt">44
+&lt;/span>&lt;span class="lnt">45
+&lt;/span>&lt;span class="lnt">46
+&lt;/span>&lt;span class="lnt">47
+&lt;/span>&lt;span class="lnt">48
+&lt;/span>&lt;span class="lnt">49
+&lt;/span>&lt;span class="lnt">50
+&lt;/span>&lt;span class="lnt">51
+&lt;/span>&lt;span class="lnt">52
+&lt;/span>&lt;span class="lnt">53
+&lt;/span>&lt;span class="lnt">54
+&lt;/span>&lt;span class="lnt">55
+&lt;/span>&lt;span class="lnt">56
+&lt;/span>&lt;span class="lnt">57
+&lt;/span>&lt;span class="lnt">58
+&lt;/span>&lt;span class="lnt">59
+&lt;/span>&lt;span class="lnt">60
+&lt;/span>&lt;span class="lnt">61
+&lt;/span>&lt;span class="lnt">62
+&lt;/span>&lt;span class="lnt">63
+&lt;/span>&lt;span class="lnt">64
+&lt;/span>&lt;span class="lnt">65
+&lt;/span>&lt;span class="lnt">66
+&lt;/span>&lt;span class="lnt">67
+&lt;/span>&lt;span class="lnt">68
+&lt;/span>&lt;span class="lnt">69
+&lt;/span>&lt;span class="lnt">70
+&lt;/span>&lt;span class="lnt">71
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-gdscript3" data-lang="gdscript3">&lt;span class="line">&lt;span class="cl">&lt;span class="n">version&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="s2">&amp;#34;3&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">volumes&lt;/span>&lt;span class="p">:&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">files&lt;/span>&lt;span class="p">:&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">driver&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="n">local&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">mysql&lt;/span>&lt;span class="p">:&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">driver&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="n">local&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">redis&lt;/span>&lt;span class="p">:&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">driver&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="n">local&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">services&lt;/span>&lt;span class="p">:&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">owncloud&lt;/span>&lt;span class="p">:&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">image&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="n">owncloud&lt;/span>&lt;span class="o">/&lt;/span>&lt;span class="n">server&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="o">$&lt;/span>&lt;span class="p">{&lt;/span>&lt;span class="n">OWNCLOUD_VERSION&lt;/span>&lt;span class="p">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">container_name&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="n">owncloud_server&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">restart&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="n">always&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">ports&lt;/span>&lt;span class="p">:&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="o">-&lt;/span> &lt;span class="o">$&lt;/span>&lt;span class="p">{&lt;/span>&lt;span class="n">HTTP_PORT&lt;/span>&lt;span class="p">}:&lt;/span>&lt;span class="mi">8080&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">depends_on&lt;/span>&lt;span class="p">:&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="o">-&lt;/span> &lt;span class="n">mariadb&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="o">-&lt;/span> &lt;span class="n">redis&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">environment&lt;/span>&lt;span class="p">:&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="o">-&lt;/span> &lt;span class="n">OWNCLOUD_DOMAIN&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="n">localhost&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="mi">8080&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="o">-&lt;/span> &lt;span class="n">OWNCLOUD_TRUSTED_DOMAINS&lt;/span>&lt;span class="o">=$&lt;/span>&lt;span class="p">{&lt;/span>&lt;span class="n">OWNCLOUD_TRUSTED_DOMAINS&lt;/span>&lt;span class="p">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="o">-&lt;/span> &lt;span class="n">OWNCLOUD_DB_TYPE&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="n">mysql&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="o">-&lt;/span> &lt;span class="n">OWNCLOUD_DB_NAME&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="n">owncloud&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="o">-&lt;/span> &lt;span class="n">OWNCLOUD_DB_USERNAME&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="n">owncloud&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="o">-&lt;/span> &lt;span class="n">OWNCLOUD_DB_PASSWORD&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="n">owncloud&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="o">-&lt;/span> &lt;span class="n">OWNCLOUD_DB_HOST&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="n">mariadb&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="o">-&lt;/span> &lt;span class="n">OWNCLOUD_ADMIN_USERNAME&lt;/span>&lt;span class="o">=$&lt;/span>&lt;span class="p">{&lt;/span>&lt;span class="n">ADMIN_USERNAME&lt;/span>&lt;span class="p">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="o">-&lt;/span> &lt;span class="n">OWNCLOUD_ADMIN_PASSWORD&lt;/span>&lt;span class="o">=$&lt;/span>&lt;span class="p">{&lt;/span>&lt;span class="n">ADMIN_PASSWORD&lt;/span>&lt;span class="p">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="o">-&lt;/span> &lt;span class="n">OWNCLOUD_MYSQL_UTF8MB4&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="bp">true&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="o">-&lt;/span> &lt;span class="n">OWNCLOUD_REDIS_ENABLED&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="bp">true&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="o">-&lt;/span> &lt;span class="n">OWNCLOUD_REDIS_HOST&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="n">redis&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">healthcheck&lt;/span>&lt;span class="p">:&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">test&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="p">[&lt;/span>&lt;span class="s2">&amp;#34;CMD&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="s2">&amp;#34;/usr/bin/healthcheck&amp;#34;&lt;/span>&lt;span class="p">]&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">interval&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="mi">30&lt;/span>&lt;span class="n">s&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">timeout&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="mi">10&lt;/span>&lt;span class="n">s&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">retries&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="mi">5&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">volumes&lt;/span>&lt;span class="p">:&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="o">-&lt;/span> &lt;span class="n">files&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="o">/&lt;/span>&lt;span class="n">mnt&lt;/span>&lt;span class="o">/&lt;/span>&lt;span class="n">data&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">mariadb&lt;/span>&lt;span class="p">:&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">image&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="n">mariadb&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="mf">10.6&lt;/span> &lt;span class="c1"># minimum required ownCloud version is 10.9&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">container_name&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="n">owncloud_mariadb&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">restart&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="n">always&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">environment&lt;/span>&lt;span class="p">:&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="o">-&lt;/span> &lt;span class="n">MYSQL_ROOT_PASSWORD&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="n">owncloud&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="o">-&lt;/span> &lt;span class="n">MYSQL_USER&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="n">owncloud&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="o">-&lt;/span> &lt;span class="n">MYSQL_PASSWORD&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="n">owncloud&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="o">-&lt;/span> &lt;span class="n">MYSQL_DATABASE&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="n">owncloud&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">command&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="p">[&lt;/span>&lt;span class="s2">&amp;#34;--max-allowed-packet=128M&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="s2">&amp;#34;--innodb-log-file-size=64M&amp;#34;&lt;/span>&lt;span class="p">]&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">healthcheck&lt;/span>&lt;span class="p">:&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">test&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="p">[&lt;/span>&lt;span class="s2">&amp;#34;CMD&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="s2">&amp;#34;mysqladmin&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="s2">&amp;#34;ping&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="s2">&amp;#34;-u&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="s2">&amp;#34;root&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="s2">&amp;#34;--password=owncloud&amp;#34;&lt;/span>&lt;span class="p">]&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">interval&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="mi">10&lt;/span>&lt;span class="n">s&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">timeout&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="mi">5&lt;/span>&lt;span class="n">s&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">retries&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="mi">5&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">volumes&lt;/span>&lt;span class="p">:&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="o">-&lt;/span> &lt;span class="n">mysql&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="o">/&lt;/span>&lt;span class="k">var&lt;/span>&lt;span class="o">/&lt;/span>&lt;span class="n">lib&lt;/span>&lt;span class="o">/&lt;/span>&lt;span class="n">mysql&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">redis&lt;/span>&lt;span class="p">:&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">image&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="n">redis&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="mi">6&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">container_name&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="n">owncloud_redis&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">restart&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="n">always&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">command&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="p">[&lt;/span>&lt;span class="s2">&amp;#34;--databases&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="s2">&amp;#34;1&amp;#34;&lt;/span>&lt;span class="p">]&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">healthcheck&lt;/span>&lt;span class="p">:&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">test&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="p">[&lt;/span>&lt;span class="s2">&amp;#34;CMD&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="s2">&amp;#34;redis-cli&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="s2">&amp;#34;ping&amp;#34;&lt;/span>&lt;span class="p">]&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">interval&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="mi">10&lt;/span>&lt;span class="n">s&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">timeout&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="mi">5&lt;/span>&lt;span class="n">s&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">retries&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="mi">5&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">volumes&lt;/span>&lt;span class="p">:&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="o">-&lt;/span> &lt;span class="n">redis&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="o">/&lt;/span>&lt;span class="n">data&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div></description></item><item><title>Self Hosting A Bookmark Manager</title><link>https://yuiofastora.github.io/p/self-hosting-a-bookmark-manager/</link><pubDate>Thu, 26 Jan 2023 19:00:47 +0800</pubDate><guid>https://yuiofastora.github.io/p/self-hosting-a-bookmark-manager/</guid><description>&lt;p>Self host a bookmark manager with docker.&lt;/p>
+&lt;blockquote>
+&lt;p>&lt;a class="link" href="https://github.com/sissbruecker/linkding" target="_blank" rel="noopener"
+>https://github.com/sissbruecker/linkding&lt;/a>&lt;/p>
+&lt;/blockquote>
+&lt;h2 id="setup-with-docker">
+&lt;a href="#setup-with-docker">#&lt;/a>
+Setup with Docker
+&lt;/h2>&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;span class="lnt">5
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">docker run -d \
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> --name linkding \
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> -p 9090:9090 \
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> -v {host-data-folder}:/etc/linkding/data \
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> sissbruecker/linkding:latest
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>Setup user&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">docker exec -it linkding python manage.py createsuperuser --username=joe --email=joe@example.com
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>Setup Reverse Proxy with Nginx
+Add&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;span class="lnt">5
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">location /linkding {
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> ...
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> proxy_set_header Host $host;
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> proxy_set_header X-Forwarded-Proto $scheme;
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">}
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>to config&lt;/p></description></item><item><title>Self Hosting A Password Manager</title><link>https://yuiofastora.github.io/p/self-hosting-a-password-manager/</link><pubDate>Thu, 26 Jan 2023 19:00:47 +0800</pubDate><guid>https://yuiofastora.github.io/p/self-hosting-a-password-manager/</guid><description>&lt;p>Self host password manager with docker.&lt;/p>
+&lt;blockquote>
+&lt;p>&lt;a class="link" href="https://github.com/dani-garcia/vaultwarden" target="_blank" rel="noopener"
+>https://github.com/dani-garcia/vaultwarden&lt;/a>&lt;/p>
+&lt;/blockquote>
+&lt;h2 id="setup-with-docker">
+&lt;a href="#setup-with-docker">#&lt;/a>
+Setup With Docker
+&lt;/h2>&lt;p>Generate admin token&lt;/p>
+&lt;p>&lt;code>openssl rand -base64 48&lt;/code>&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;span class="lnt">5
+&lt;/span>&lt;span class="lnt">6
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">docker run -d \
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> --name bitwarden \
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> -p 9090:80 \
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> -v {host-data-folder}:/data \
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> -e ADMIN_TOKEN=Token_here \
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> vaultwarden/server
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>Accessing admin panel from &lt;code>&amp;quot;yourdomain.com/admin&amp;quot;&lt;/code>
+Setup Reverse Proxy with Nginx&lt;/p></description></item><item><title>Self Hosting A Recipe Manager-Tandoor Recipes</title><link>https://yuiofastora.github.io/p/self-hosting-a-recipe-manager-tandoor-recipes/</link><pubDate>Thu, 26 Jan 2023 19:00:47 +0800</pubDate><guid>https://yuiofastora.github.io/p/self-hosting-a-recipe-manager-tandoor-recipes/</guid><description>&lt;p>Self host recipe manager with docker&lt;/p>
+&lt;blockquote>
+&lt;p>Django application to manage, tag and search recipes using either
+built-in models or external storage providers hosting PDFs, Images or
+other files.
+&lt;a class="link" href="https://github.com/TandoorRecipes/recipes" target="_blank" rel="noopener"
+>https://github.com/TandoorRecipes/recipes&lt;/a>
+&lt;a class="link" href="https://docs.tandoor.dev" target="_blank" rel="noopener"
+>https://docs.tandoor.dev&lt;/a>&lt;/p>
+&lt;/blockquote>
+&lt;h2 id="install-and-setup-postgresql-as-database-source">
+&lt;a href="#install-and-setup-postgresql-as-database-source">#&lt;/a>
+Install And Setup Postgresql As Database Source
+&lt;/h2>&lt;p>Create database and user for Tandoor(Alter Superuser needed).&lt;/p>
+&lt;p>&lt;code>pg_trgm&lt;/code> and &lt;code>unaccent&lt;/code> extension required, install &lt;code>postgresql-contrib&lt;/code>.&lt;/p>
+&lt;p>Modify config file to allow specific IP accessing the database.&lt;/p>
+&lt;p>Edit &lt;code>postgresql.conf&lt;/code> :&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">listen_addresses = &amp;#39;*&amp;#39;
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>Edit &lt;code>pg_hba.conf&lt;/code>&lt;/p>
+&lt;p>example config:&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">#TYPE DATABASE USER ADDRESS METHOD
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">host all all 0.0.0.0/0 trust #allow all access from any ip even without correct password
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">host all all 192.168.1.1/32 md5 #allow access from 192.168.1.1 using password with md5 encoding
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">host all all 192.168.1.1/32 md5 #allow access from 192.168.1.1 using password with plain text
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;h2 id="setting-up-with-docker">
+&lt;a href="#setting-up-with-docker">#&lt;/a>
+Setting Up With Docker
+&lt;/h2>&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;span class="lnt">11
+&lt;/span>&lt;span class="lnt">12
+&lt;/span>&lt;span class="lnt">13
+&lt;/span>&lt;span class="lnt">14
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">docker run -d \
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> -v &amp;#34;$(pwd)&amp;#34;/staticfiles:/opt/recipes/staticfiles \
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> -v &amp;#34;$(pwd)&amp;#34;/mediafiles:/opt/recipes/mediafiles \
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> -p 8435:8080 \
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> -e SECRET_KEY=YUOR_BASE64_SECRET_KEY \
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> -e DB_ENGINE=django.db.backends.postgresql \
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> -e POSTGRES_HOST=YOUR_DATABASE_HOST \
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> -e POSTGRES_PORT=5432 \
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> -e POSTGRES_USER=DB_USER \
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> -e POSTGRES_PASSWORD=DB_PASSWORD \
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> -e POSTGRES_DB=DB_NAME \
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> -e TIMEZONE=Asia/Shanghai \
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> --name tandoor \
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> vabene1111/recipes
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>Running with port 8435 exposed.&lt;/p>
+&lt;p>Check time zones: &lt;a class="link" href="https://timezonedb.com/time-zones" target="_blank" rel="noopener"
+>https://timezonedb.com/time-zones&lt;/a>&lt;/p>
+&lt;h2 id="setting-reverse-proxy-with-nginx">
+&lt;a href="#setting-reverse-proxy-with-nginx">#&lt;/a>
+Setting Reverse Proxy with Nginx
+&lt;/h2>&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;span class="lnt">5
+&lt;/span>&lt;span class="lnt">6
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">location / {
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> proxy_set_header X-Forwarded-Proto $scheme; #required, otherwise there will be CSRF error
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> proxy_set_header Host $http_host; #try $host instead if this doesn&amp;#39;t work
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> proxy_pass http://127.0.0.1:8080;
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> proxy_redirect http://127.0.0.1:8080 https://recipes.domain.com; #replace port and domain
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">}
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div></description></item><item><title>Self Hosting A Status Monitoring Page</title><link>https://yuiofastora.github.io/p/self-hosting-a-status-monitoring-page/</link><pubDate>Thu, 26 Jan 2023 19:00:47 +0800</pubDate><guid>https://yuiofastora.github.io/p/self-hosting-a-status-monitoring-page/</guid><description>&lt;p>Self host status page with docker&lt;/p>
+&lt;h2 id="uptime-kuma">
+&lt;a href="#uptime-kuma">#&lt;/a>
+Uptime Kuma
+&lt;/h2>&lt;blockquote>
+&lt;p>Self-hosted monitoring tool&lt;/p>
+&lt;p>&lt;a class="link" href="https://github.com/louislam/uptime-kuma" target="_blank" rel="noopener"
+>https://github.com/louislam/uptime-kuma&lt;/a>&lt;/p>
+&lt;/blockquote>
+&lt;h3 id="install-with-docker">
+&lt;a href="#install-with-docker">#&lt;/a>
+Install With Docker
+&lt;/h3>&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;span class="lnt">5
+&lt;/span>&lt;span class="lnt">6
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">docker run -d \
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> --restart=always \
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> -p 3001:3001 \
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> -v uptime-kuma:/app/data \
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> --name uptime-kuma \
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> louislam/uptime-kuma:1
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>Setup Reverse Proxy with Nginx&lt;/p>
+&lt;h2 id="statping-ng">
+&lt;a href="#statping-ng">#&lt;/a>
+Statping-ng
+&lt;/h2>&lt;blockquote>
+&lt;p>Status Page &amp;amp; Monitoring Server&lt;/p>
+&lt;p>&lt;a class="link" href="https://github.com/statping-ng/statping-ng" target="_blank" rel="noopener"
+>https://github.com/statping-ng/statping-ng&lt;/a>&lt;/p>
+&lt;/blockquote>
+&lt;h3 id="install-with-docker-1">
+&lt;a href="#install-with-docker-1">#&lt;/a>
+Install With Docker
+&lt;/h3>&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;span class="lnt">5
+&lt;/span>&lt;span class="lnt">6
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">docker run -d \
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> -p 8080:8080 \
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> -v /mydir/statping:/app \
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> --restart always \
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> --name statping \
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> adamboutcher/statping-ng
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>Setup Reverse Proxy with Nginx&lt;/p>
+&lt;h2 id="dash">
+&lt;a href="#dash">#&lt;/a>
+dash.
+&lt;/h2>&lt;blockquote>
+&lt;p>&lt;a class="link" href="https://github.com/MauriceNino/dashdot" target="_blank" rel="noopener"
+>https://github.com/MauriceNino/dashdot&lt;/a>&lt;/p>
+&lt;p>&lt;strong>dash.&lt;/strong> (or &lt;strong>dashdot&lt;/strong>) is a modern server dashboard, running on the latest tech, designed with glassmorphism in mind. It is intended to be used for smaller VPS and private servers.&lt;/p>
+&lt;/blockquote>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;span class="lnt">5
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">docker container run -d -it \
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> -p 80:3001 \
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> -v /:/mnt/host:ro \
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> --privileged \
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> mauricenino/dashdot
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div></description></item><item><title>Self Hosting A URL Shortener</title><link>https://yuiofastora.github.io/p/self-hosting-a-url-shortener/</link><pubDate>Thu, 26 Jan 2023 19:00:47 +0800</pubDate><guid>https://yuiofastora.github.io/p/self-hosting-a-url-shortener/</guid><description>&lt;p>Self host URL shortener with docker&lt;/p>
+&lt;blockquote>
+&lt;p>A PHP-based self-hosted URL shortener that can be used to serve shortened URLs under your own domain.&lt;/p>
+&lt;p>&lt;a class="link" href="https://github.com/shlinkio/shlink" target="_blank" rel="noopener"
+>https://github.com/shlinkio/shlink&lt;/a>&lt;/p>
+&lt;/blockquote>
+&lt;h2 id="setup-with-docker">
+&lt;a href="#setup-with-docker">#&lt;/a>
+Setup with Docker
+&lt;/h2>&lt;p>&lt;code>docker pull shlinkio/shlink:stable&lt;/code>&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;span class="lnt">5
+&lt;/span>&lt;span class="lnt">6
+&lt;/span>&lt;span class="lnt">7
+&lt;/span>&lt;span class="lnt">8
+&lt;/span>&lt;span class="lnt">9
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">docker run -d\
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> --name my_shlink \
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> -p 8080:8080 \
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> -e DEFAULT_DOMAIN=doma.in \
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> -e IS_HTTPS_ENABLED=true \
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> -e GEOLITE_LICENSE_KEY=kjh23ljkbndskj345 \
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> shlinkio/shlink:stable
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">If you don&amp;#39;t provide a GeoLite2 license key, Shlink will simply not geolocate visits.
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;h2 id="generate-a-geolite2-license-key">
+&lt;a href="#generate-a-geolite2-license-key">#&lt;/a>
+Generate a GeoLite2 license key
+&lt;/h2>&lt;ul>
+&lt;li>
+&lt;p>Create a MaxMind &lt;a class="link" href="https://www.maxmind.com/en/geolite2/signup" target="_blank" rel="noopener"
+>account for GeoLite2&lt;/a>.&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>Generate a &lt;a class="link" href="https://www.maxmind.com/en/accounts/current/license-key" target="_blank" rel="noopener"
+>license key&lt;/a>. Its &lt;strong>important&lt;/strong> that you save the value, as you will not be able to recover it afterwards.&lt;/p>
+&lt;/li>
+&lt;/ul>
+&lt;p>Via environment variable: use &lt;code>GEOLITE_LICENSE_KEY&lt;/code> to set your license key.&lt;/p>
+&lt;p>generate a new API&lt;/p>
+&lt;p>&lt;code>docker exec -it my_shlink shlink api-key:generate&lt;/code>&lt;/p>
+&lt;h2 id="setup-shlink-client">
+&lt;a href="#setup-shlink-client">#&lt;/a>
+Setup shlink client
+&lt;/h2>&lt;p>&lt;code>docker pull shlinkio/shlink-web-client&lt;/code>&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;span class="lnt">5
+&lt;/span>&lt;span class="lnt">6
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">docker run -d\
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> --name shlink-web-client \
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> -p 8000:80 \
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> -e SHLINK_SERVER_URL=https://doma.in \
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> -e SHLINK_SERVER_API_KEY=6aeb82c6-e275-4538-a747-31f9abfba63c \
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> shlinkio/shlink-web-client
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div></description></item><item><title>Self Hosting Bookstack</title><link>https://yuiofastora.github.io/p/self-hosting-bookstack/</link><pubDate>Thu, 26 Jan 2023 19:00:47 +0800</pubDate><guid>https://yuiofastora.github.io/p/self-hosting-bookstack/</guid><description>&lt;p>Self host bookstack&lt;/p>
+&lt;blockquote>
+&lt;p>BookStack is a simple, self-hosted, easy-to-use platform for organising and storing information.&lt;/p>
+&lt;p>&lt;a class="link" href="https://www.bookstackapp.com/" target="_blank" rel="noopener"
+>https://www.bookstackapp.com/&lt;/a>&lt;/p>
+&lt;p>&lt;a class="link" href="https://github.com/linuxserver/docker-bookstack" target="_blank" rel="noopener"
+>https://github.com/linuxserver/docker-bookstack&lt;/a>&lt;/p>
+&lt;/blockquote>
+&lt;h2 id="setup-with-docker">
+&lt;a href="#setup-with-docker">#&lt;/a>
+Setup with Docker
+&lt;/h2>&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;span class="lnt">11
+&lt;/span>&lt;span class="lnt">12
+&lt;/span>&lt;span class="lnt">13
+&lt;/span>&lt;span class="lnt">14
+&lt;/span>&lt;span class="lnt">15
+&lt;/span>&lt;span class="lnt">16
+&lt;/span>&lt;span class="lnt">17
+&lt;/span>&lt;span class="lnt">18
+&lt;/span>&lt;span class="lnt">19
+&lt;/span>&lt;span class="lnt">20
+&lt;/span>&lt;span class="lnt">21
+&lt;/span>&lt;span class="lnt">22
+&lt;/span>&lt;span class="lnt">23
+&lt;/span>&lt;span class="lnt">24
+&lt;/span>&lt;span class="lnt">25
+&lt;/span>&lt;span class="lnt">26
+&lt;/span>&lt;span class="lnt">27
+&lt;/span>&lt;span class="lnt">28
+&lt;/span>&lt;span class="lnt">29
+&lt;/span>&lt;span class="lnt">30
+&lt;/span>&lt;span class="lnt">31
+&lt;/span>&lt;span class="lnt">32
+&lt;/span>&lt;span class="lnt">33
+&lt;/span>&lt;span class="lnt">34
+&lt;/span>&lt;span class="lnt">35
+&lt;/span>&lt;span class="lnt">36
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">---
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">version: &amp;#34;2&amp;#34;
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">services:
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> bookstack:
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> image: lscr.io/linuxserver/bookstack
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> container_name: bookstack
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> environment:
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> - PUID=1000
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> - PGID=1000
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> - APP_URL=
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> - DB_HOST=bookstack_db
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> - DB_PORT=3306
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> - DB_USER=bookstack
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> - DB_PASS=&amp;lt;yourdbpass&amp;gt;
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> - DB_DATABASE=bookstackapp
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> volumes:
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> - /path/to/data:/config
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> ports:
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> - 6875:80
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> restart: unless-stopped
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> depends_on:
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> - bookstack_db
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> bookstack_db:
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> image: lscr.io/linuxserver/mariadb
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> container_name: bookstack_db
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> environment:
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> - PUID=1000
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> - PGID=1000
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> - MYSQL_ROOT_PASSWORD=&amp;lt;yourdbpass&amp;gt;
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> - TZ=Europe/London
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> - MYSQL_DATABASE=bookstackapp
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> - MYSQL_USER=bookstack
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> - MYSQL_PASSWORD=&amp;lt;yourdbpass&amp;gt;
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> volumes:
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> - /path/to/data:/config
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> restart: unless-stopped
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>The default username is &lt;a class="link" href="mailto:admin@admin.com" >admin@admin.com&lt;/a> with the password of &lt;strong>password&lt;/strong>, access the container at &lt;a class="link" href="http://dockerhost:6875/" target="_blank" rel="noopener"
+>http://dockerhost:6875&lt;/a>.&lt;/p></description></item><item><title>Self Hosting Filegator</title><link>https://yuiofastora.github.io/p/self-hosting-filegator/</link><pubDate>Thu, 26 Jan 2023 19:00:47 +0800</pubDate><guid>https://yuiofastora.github.io/p/self-hosting-filegator/</guid><description>&lt;blockquote>
+&lt;p>FileGator is a free, open-source, self-hosted web application for managing files and folders.&lt;/p>
+&lt;p>&lt;a class="link" href="https://filegator.io/" target="_blank" rel="noopener"
+>https://filegator.io/&lt;/a>&lt;/p>
+&lt;/blockquote>
+&lt;h2 id="setup-with-docker">
+&lt;a href="#setup-with-docker">#&lt;/a>
+Setup with Docker
+&lt;/h2>&lt;p>&lt;code>docker pull filegator/filegator&lt;/code>&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">docker run -p 8000:80 -d filegator/filegator
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">visit: http://127.0.0.1:8000 login as admin/admin123
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div></description></item><item><title>Self Hosting Flame</title><link>https://yuiofastora.github.io/p/self-hosting-flame/</link><pubDate>Thu, 26 Jan 2023 19:00:47 +0800</pubDate><guid>https://yuiofastora.github.io/p/self-hosting-flame/</guid><description>&lt;blockquote>
+&lt;p>Flame is self-hosted startpage for your server. Its design is inspired (heavily) by &lt;a class="link" href="https://github.com/jeroenpardon/sui" target="_blank" rel="noopener"
+>SUI&lt;/a>. Flame is very easy to setup and use. With built-in editors, it allows you to setup your very own application hub in no time - no file editing necessary.&lt;/p>
+&lt;p>&lt;a class="link" href="https://github.com/pawelmalak/flame" target="_blank" rel="noopener"
+>https://github.com/pawelmalak/flame&lt;/a>&lt;/p>
+&lt;/blockquote>
+&lt;h2 id="setup-with-docker">
+&lt;a href="#setup-with-docker">#&lt;/a>
+Setup with Docker
+&lt;/h2>&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">docker pull pawelmalak/flame
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl"># run container
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">docker run -d -p 5005:5005 -v /path/to/data:/app/data -e PASSWORD=flame_password pawelmalak/flame
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div></description></item><item><title>Self Hosting Gokapi</title><link>https://yuiofastora.github.io/p/self-hosting-gokapi/</link><pubDate>Thu, 26 Jan 2023 19:00:47 +0800</pubDate><guid>https://yuiofastora.github.io/p/self-hosting-gokapi/</guid><description>&lt;blockquote>
+&lt;p>Gokapi is a lightweight server to share files, which expire after a set amount of downloads or days.&lt;/p>
+&lt;p>&lt;a class="link" href="https://github.com/Forceu/gokapi" target="_blank" rel="noopener"
+>https://github.com/Forceu/gokapi&lt;/a>&lt;/p>
+&lt;/blockquote>
+&lt;h2 id="setup-with-docker">
+&lt;a href="#setup-with-docker">#&lt;/a>
+Setup with docker
+&lt;/h2>&lt;p>&lt;code>docker pull f0rc3/gokapi:latest&lt;/code>&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">docker run -d --name gokapi -v {host-gokapi-data}:/app/data -v {host-gokapi-config}:/app/config -p 53842:53842 f0rc3/gokapi:latest
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>Open http://localhost:53842/setup for initial setup&lt;/p>
+&lt;blockquote>
+&lt;p>Setup variables&lt;/p>
+&lt;p>&lt;a class="link" href="https://gokapi.readthedocs.io/en/latest/setup.html" target="_blank" rel="noopener"
+>https://gokapi.readthedocs.io/en/latest/setup.html&lt;/a>&lt;/p>
+&lt;/blockquote>
+&lt;p>yourdomain.com/admin for admin panel&lt;/p></description></item><item><title>Self Hosting Littlelink Custom</title><link>https://yuiofastora.github.io/p/self-hosting-littlelink-custom/</link><pubDate>Thu, 26 Jan 2023 19:00:47 +0800</pubDate><guid>https://yuiofastora.github.io/p/self-hosting-littlelink-custom/</guid><description>&lt;blockquote>
+&lt;p>LittleLink Custom is a modification of LittleLink, an open source project with the purpose of enabling people to host their own alternatives to services like Linktree and many.link.&lt;/p>
+&lt;p>&lt;a class="link" href="https://littlelink-custom.com/docker" target="_blank" rel="noopener"
+>https://littlelink-custom.com/docker&lt;/a>&lt;/p>
+&lt;/blockquote>
+&lt;h2 id="setup-with-docker">
+&lt;a href="#setup-with-docker">#&lt;/a>
+Setup with Docker
+&lt;/h2>&lt;p>&lt;code>docker pull julianprieber/littlelink-custom&lt;/code>&lt;/p>
+&lt;p>Create persistent storage for llc&lt;/p>
+&lt;p>&lt;code>docker volume create llc&lt;/code>&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;span class="lnt">11
+&lt;/span>&lt;span class="lnt">12
+&lt;/span>&lt;span class="lnt">13
+&lt;/span>&lt;span class="lnt">14
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">docker run --detach \
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> --name littlelink-custom \
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> --hostname littlelink-custom \
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> --env HTTP_SERVER_NAME=&amp;#34;www.example.xyz&amp;#34; \
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> --env HTTPS_SERVER_NAME=&amp;#34;www.example.xyz&amp;#34; \
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> --env SERVER_ADMIN=&amp;#34;admin@example.xyz&amp;#34; \
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> --env TZ=&amp;#34;Europe/Berlin&amp;#34; \
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> --env PHP_MEMORY_LIMIT=&amp;#34;512M&amp;#34; \
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> --env UPLOAD_MAX_FILESIZE=&amp;#34;16M&amp;#34; \
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> --publish 80:80 \
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> --publish 443:443 \
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> --restart unless-stopped \
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> --mount source=llc,target=/htdocs \
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> julianprieber/littlelink-custom
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>Login to the admin panel with default credentials&lt;/p>
+&lt;ul>
+&lt;li>&lt;strong>email:&lt;/strong> &lt;code>admin@admin.com&lt;/code>&lt;/li>
+&lt;li>&lt;strong>password:&lt;/strong> &lt;code>12345678&lt;/code>&lt;/li>
+&lt;/ul>
+&lt;p>Access user panel from mydomain.com/home&lt;/p>
+&lt;h2 id="reverse-proxy">
+&lt;a href="#reverse-proxy">#&lt;/a>
+Reverse Proxy
+&lt;/h2>&lt;p>Target URL should be https://localhost:port&lt;/p>
+&lt;p>Using port 443(HTTPS_SERVER) instead of 80&lt;/p></description></item><item><title>Self Hosting Pinry</title><link>https://yuiofastora.github.io/p/self-hosting-pinry/</link><pubDate>Thu, 26 Jan 2023 19:00:47 +0800</pubDate><guid>https://yuiofastora.github.io/p/self-hosting-pinry/</guid><description>&lt;blockquote>
+&lt;p>The open-source core of Pinry, a tiling image board system for people who want to save, tag, and share images, videos and webpages in an easy to skim through format.&lt;/p>
+&lt;p>&lt;a class="link" href="https://github.com/pinry/pinry" target="_blank" rel="noopener"
+>https://github.com/pinry/pinry&lt;/a>&lt;/p>
+&lt;/blockquote>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">docker pull getpinry/pinry
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;span class="lnt">5
+&lt;/span>&lt;span class="lnt">6
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-gdscript3" data-lang="gdscript3">&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># this should be an abs-path not relative path like &amp;#34;.&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="k">export&lt;/span> &lt;span class="n">DATA_PATH&lt;/span>&lt;span class="o">=/&lt;/span>&lt;span class="nb">abs&lt;/span>&lt;span class="o">/&lt;/span>&lt;span class="n">path&lt;/span>&lt;span class="o">/&lt;/span>&lt;span class="n">to&lt;/span>&lt;span class="o">/&lt;/span>&lt;span class="n">your&lt;/span>&lt;span class="o">/&lt;/span>&lt;span class="n">data&lt;/span>&lt;span class="o">/&lt;/span>&lt;span class="n">directory&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">sudo&lt;/span> &lt;span class="n">docker&lt;/span> &lt;span class="n">run&lt;/span> &lt;span class="o">-&lt;/span>&lt;span class="n">d&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="bp">true&lt;/span> &lt;span class="o">-&lt;/span>&lt;span class="n">p&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="mi">80&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="mi">80&lt;/span> \
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="o">-&lt;/span>&lt;span class="n">v&lt;/span>&lt;span class="o">=$&lt;/span>&lt;span class="p">{&lt;/span>&lt;span class="n">DATA_PATH&lt;/span>&lt;span class="p">}:&lt;/span>&lt;span class="o">/&lt;/span>&lt;span class="n">data&lt;/span> \
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">getpinry&lt;/span>&lt;span class="o">/&lt;/span>&lt;span class="n">pinry&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>Create superuser&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">docker exec -it clever_hermann python manage.py createsuperuser --settings=pinry.settings.docker
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div></description></item><item><title>WSL2 Setup</title><link>https://yuiofastora.github.io/p/wsl2-setup/</link><pubDate>Thu, 26 Jan 2023 19:00:47 +0800</pubDate><guid>https://yuiofastora.github.io/p/wsl2-setup/</guid><description>&lt;h2 id="update-windows-11">
+&lt;a href="#update-windows-11">#&lt;/a>
+Update windows 11
+&lt;/h2>&lt;h2 id="update-gpu-driver">
+&lt;a href="#update-gpu-driver">#&lt;/a>
+Update GPU Driver
+&lt;/h2>&lt;h2 id="fresh-install">
+&lt;a href="#fresh-install">#&lt;/a>
+Fresh Install
+&lt;/h2>&lt;p>Run powershell as Administrator&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-powershell" data-lang="powershell">&lt;span class="line">&lt;span class="cl">&lt;span class="n">wsl&lt;/span> &lt;span class="p">-&lt;/span>&lt;span class="n">-install&lt;/span> &lt;span class="n">-d&lt;/span> &lt;span class="n">Ubuntu&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>Get other distros from MS store&lt;/p>
+&lt;h2 id="install-apps">
+&lt;a href="#install-apps">#&lt;/a>
+Install apps
+&lt;/h2>&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;span class="lnt">5
+&lt;/span>&lt;span class="lnt">6
+&lt;/span>&lt;span class="lnt">7
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">sudo apt install gedit -y
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">sudo apt install gimp -y
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"># File Browser
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">sudo apt install nautilus -y
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">sudo apt install x11-apps -y
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>To install the Google Chrome for Linux:&lt;/p>
+&lt;ol>
+&lt;li>Change directories into the temp folder: &lt;code>cd /tmp&lt;/code>&lt;/li>
+&lt;li>Use wget to download it: &lt;code>sudo wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb&lt;/code>&lt;/li>
+&lt;li>Get the current stable version: &lt;code>sudo dpkg -i google-chrome-stable_current_amd64.deb&lt;/code>&lt;/li>
+&lt;li>Fix the package: &lt;code>sudo apt install --fix-broken -y&lt;/code>&lt;/li>
+&lt;li>Configure the package: &lt;code>sudo dpkg -i google-chrome-stable_current_amd64.deb&lt;/code>&lt;/li>
+&lt;/ol>
+&lt;p>To launch, enter: &lt;code>google-chrome&lt;/code>&lt;/p>
+&lt;h2 id="set-proxy">
+&lt;a href="#set-proxy">#&lt;/a>
+Set Proxy
+&lt;/h2>&lt;p>Use &lt;a class="link" href="https://www.telerik.com/fiddler/fiddler-classic" target="_blank" rel="noopener"
+>Fiddler Classic&lt;/a> winconfig to remove Appcontainer network traffic block&lt;/p>
+&lt;p>Check IP Address with:&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">cat /etc/resolv.conf
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>run proxy software on windows (set &amp;lsquo;Allow LAN&amp;rsquo;)&lt;/p>
+&lt;p>&lt;a class="link" href="https://help.ubuntu.com/community/AptGet/Howto#Setting_up_apt-get_to_use_a_http-proxy" target="_blank" rel="noopener"
+>https://help.ubuntu.com/community/AptGet/Howto#Setting_up_apt-get_to_use_a_http-proxy&lt;/a>&lt;/p>
+&lt;p>execute in WSL&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">&lt;span class="nb">export&lt;/span> &lt;span class="nv">http_proxy&lt;/span>&lt;span class="o">=&lt;/span>http://IPaddress:proxyport
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>or use proxychains&lt;/p>
+&lt;h2 id="beautify-windows-terminal">
+&lt;a href="#beautify-windows-terminal">#&lt;/a>
+Beautify Windows Terminal
+&lt;/h2>&lt;p>&lt;a class="link" href="https://youtu.be/VT2L1SXFq9U" target="_blank" rel="noopener"
+>https://youtu.be/VT2L1SXFq9U&lt;/a>&lt;/p>
+&lt;h2 id="fix-process-exited-with-code-4294967295">
+&lt;a href="#fix-process-exited-with-code-4294967295">#&lt;/a>
+Fix [process exited with code 4294967295]
+&lt;/h2>&lt;p>Network issues (VPN)&lt;/p>
+&lt;p>run command to reset windows network&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-powershell" data-lang="powershell">&lt;span class="line">&lt;span class="cl">&lt;span class="n">netsh&lt;/span> &lt;span class="n">winsock&lt;/span> &lt;span class="n">reset&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>Restart windows&lt;/p>
+&lt;h2 id="fix-display-not-open--gui-not-workinghttpsgithubcommicrosoftwslissues4106issuecomment-876470388">
+&lt;a href="#fix-display-not-open--gui-not-workinghttpsgithubcommicrosoftwslissues4106issuecomment-876470388">#&lt;/a>
+&lt;a class="link" href="https://github.com/microsoft/WSL/issues/4106#issuecomment-876470388" target="_blank" rel="noopener"
+>Fix Display not open / GUI not working&lt;/a>
+&lt;/h2>&lt;h3 id="setting-the-display-variable-for-wsl2">
+&lt;a href="#setting-the-display-variable-for-wsl2">#&lt;/a>
+Setting the DISPLAY variable for WSL2
+&lt;/h3>&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">&lt;span class="nb">export&lt;/span> &lt;span class="nv">DISPLAY&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="k">$(&lt;/span>route.exe print &lt;span class="p">|&lt;/span> grep 0.0.0.0 &lt;span class="p">|&lt;/span> head -1 &lt;span class="p">|&lt;/span> awk &lt;span class="s1">&amp;#39;{print $4}&amp;#39;&lt;/span>&lt;span class="k">)&lt;/span>:0.0
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>also put in &lt;code>~/.bashrc&lt;/code>&lt;/p>
+&lt;h3 id="install-vcxsrvhttpssourceforgenetprojectsvcxsrv-on-windows">
+&lt;a href="#install-vcxsrvhttpssourceforgenetprojectsvcxsrv-on-windows">#&lt;/a>
+Install &lt;a class="link" href="https://sourceforge.net/projects/vcxsrv/" target="_blank" rel="noopener"
+>vcxsrv&lt;/a> on Windows
+&lt;/h3>&lt;h3 id="start-xlaunch-on-windows">
+&lt;a href="#start-xlaunch-on-windows">#&lt;/a>
+Start XLaunch on Windows
+&lt;/h3>&lt;p>find shortcut, right lick and select properties&lt;/p>
+&lt;p>Append &lt;code>-ac&lt;/code> after target path&lt;/p>
+&lt;p>launch via edited shortcut&lt;/p>
+&lt;ul>
+&lt;li>Select Multiple Windows (default)&lt;/li>
+&lt;li>Select Start no client (default)&lt;/li>
+&lt;li>&lt;strong>Check✅ Disable access control&lt;/strong>&lt;/li>
+&lt;li>&lt;strong>Uncheck ☐ Native opengl&lt;/strong>&lt;/li>
+&lt;li>Save configuration on startup folder, location &lt;code>C:\Users\&amp;quot;YOUR_USERNAME&amp;quot;\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Startup&lt;/code>&lt;/li>
+&lt;/ul>
+&lt;p>All set&lt;/p>
+&lt;p>Launch GUI apps on WSL.&lt;/p></description></item><item><title>Multiple Python Env Setups</title><link>https://yuiofastora.github.io/p/multiple-python-env-setups/</link><pubDate>Thu, 26 Jan 2023 18:58:00 +0800</pubDate><guid>https://yuiofastora.github.io/p/multiple-python-env-setups/</guid><description>&lt;p>Install and manage mutliple python environments using pyenv&lt;/p>
+&lt;h2 id="install-pyenv">
+&lt;a href="#install-pyenv">#&lt;/a>
+Install pyenv
+&lt;/h2>&lt;p>&lt;a class="link" href="https://k0nze.dev/posts/install-pyenv-venv-vscode/" target="_blank" rel="noopener"
+>https://k0nze.dev/posts/install-pyenv-venv-vscode/&lt;/a>&lt;/p>
+&lt;h2 id="use-pyenv">
+&lt;a href="#use-pyenv">#&lt;/a>
+Use pyenv
+&lt;/h2>&lt;p>List all installable python versions&lt;/p>
+&lt;p>&lt;code>pyenv install -l&lt;/code>&lt;/p>
+&lt;p>Install specified versions of python&lt;/p>
+&lt;p>&lt;code>pyenv install x.x.x&lt;/code>&lt;/p>
+&lt;p>List current installed python versions&lt;/p>
+&lt;p>&lt;code>pyenv versions&lt;/code>&lt;/p>
+&lt;p>Set specified versions for current shell session&lt;/p>
+&lt;p>&lt;code>pyenv shell x.x.x&lt;/code>&lt;/p>
+&lt;p>Set python version for global usage&lt;/p>
+&lt;p>&lt;code>pyenv global x.x.x&lt;/code>&lt;/p>
+&lt;p>Set python version for current path&lt;/p>
+&lt;p>&lt;code>pyenv local x.x.x&lt;/code>&lt;/p>
+&lt;p>Create virtual environment in .venv and activate it&lt;/p>
+&lt;p>&lt;code>python -m venv .venv&lt;/code>&lt;/p>
+&lt;p>&lt;code>.\.venv\Scripts\activate&lt;/code>&lt;/p>
+&lt;p>&lt;code>get-command pip&lt;/code>&lt;/p>
+&lt;p>Unset global and use only system Python
+&lt;code>pyenv global --unset&lt;/code>&lt;/p></description></item><item><title>Install ZSH</title><link>https://yuiofastora.github.io/p/install-zsh/</link><pubDate>Thu, 26 Jan 2023 18:52:00 +0800</pubDate><guid>https://yuiofastora.github.io/p/install-zsh/</guid><description>&lt;p>Install ZSH and customzie theme&lt;/p>
+&lt;p>Tested env: Kubuntu 20.04&lt;/p>
+&lt;h2 id="install-zsh">
+&lt;a href="#install-zsh">#&lt;/a>
+Install ZSH
+&lt;/h2>&lt;p>&lt;code>$ sudo apt-get install zsh&lt;/code>&lt;/p>
+&lt;p>change default shell to zsh&lt;/p>
+&lt;p>&lt;code>$ chsh -s $(which zsh)&lt;/code>&lt;/p>
+&lt;p>log out the current user and log back in to take effect&lt;/p>
+&lt;h2 id="install-oh-my-zsh">
+&lt;a href="#install-oh-my-zsh">#&lt;/a>
+Install oh-my-zsh
+&lt;/h2>&lt;p>&lt;code>$ wget https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh&lt;/code>&lt;/p>
+&lt;p>&lt;code>sh install.sh&lt;/code>&lt;/p>
+&lt;h2 id="install-powerlevel10k-theme">
+&lt;a href="#install-powerlevel10k-theme">#&lt;/a>
+Install powerlevel10k theme
+&lt;/h2>&lt;p>Install Meslo Nerd Font&lt;/p>
+&lt;p>Clone file from github and add to zshrc&lt;/p>
+&lt;p>&lt;code>$ git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k&lt;/code>&lt;/p>
+&lt;p>Set &lt;code>ZSH_THEME=&amp;quot;powerlevel10k/powerlevel10k&amp;quot;&lt;/code> in &lt;code>~/.zshrc&lt;/code>.&lt;/p>
+&lt;p>&lt;code>$ source .zshrc&lt;/code>&lt;/p>
+&lt;h2 id="plugins-for-oh-my-zsh">
+&lt;a href="#plugins-for-oh-my-zsh">#&lt;/a>
+Plugins for oh-my-zsh
+&lt;/h2>&lt;p>&lt;code>extract&lt;/code> Uncompress tool&lt;/p>
+&lt;p>&lt;code>z&lt;/code> jump to frequently used directories&lt;/p>
+&lt;p>&lt;code>colored-man-pages&lt;/code> Colorful man pages&lt;/p>
+&lt;p>&lt;code>sudo&lt;/code> Press ESC twice to add sudo for last command&lt;/p>
+&lt;p>&lt;code>zsh-syntax-highlighting&lt;/code>&lt;/p>
+&lt;p>&lt;code>git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting&lt;/code>&lt;/p>
+&lt;p>Set &lt;code>plugins=(zsh-syntax-highlighting)&lt;/code> in &lt;code>~/.zshrc&lt;/code>&lt;/p>
+&lt;p>&lt;code>zsh-autosuggestions&lt;/code>&lt;/p>
+&lt;p>&lt;code>git clone https://github.com/zsh-users/zsh-autosuggestions.git $ZSH_CUSTOM/plugins/zsh-autosuggestions&lt;/code>&lt;/p>
+&lt;p>Set &lt;code>plugins=(zsh-autosuggestions)&lt;/code> in &lt;code>~/.zshrc&lt;/code>&lt;/p></description></item><item><title>Delete apt GPG key</title><link>https://yuiofastora.github.io/p/delete-apt-gpg-key/</link><pubDate>Thu, 26 Jan 2023 18:50:00 +0800</pubDate><guid>https://yuiofastora.github.io/p/delete-apt-gpg-key/</guid><description>&lt;p>Delete GPG keys with &lt;code>apt-key&lt;/code>&lt;/p>
+&lt;p>Tested env: Ubuntu 20.04&lt;/p>
+&lt;h2 id="list-all-gpg-keys">
+&lt;a href="#list-all-gpg-keys">#&lt;/a>
+List all GPG keys
+&lt;/h2>&lt;p>&lt;code>$ sudo apt-key list&lt;/code>&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;span class="lnt">11
+&lt;/span>&lt;span class="lnt">12
+&lt;/span>&lt;span class="lnt">13
+&lt;/span>&lt;span class="lnt">14
+&lt;/span>&lt;span class="lnt">15
+&lt;/span>&lt;span class="lnt">16
+&lt;/span>&lt;span class="lnt">17
+&lt;/span>&lt;span class="lnt">18
+&lt;/span>&lt;span class="lnt">19
+&lt;/span>&lt;span class="lnt">20
+&lt;/span>&lt;span class="lnt">21
+&lt;/span>&lt;span class="lnt">22
+&lt;/span>&lt;span class="lnt">23
+&lt;/span>&lt;span class="lnt">24
+&lt;/span>&lt;span class="lnt">25
+&lt;/span>&lt;span class="lnt">26
+&lt;/span>&lt;span class="lnt">27
+&lt;/span>&lt;span class="lnt">28
+&lt;/span>&lt;span class="lnt">29
+&lt;/span>&lt;span class="lnt">30
+&lt;/span>&lt;span class="lnt">31
+&lt;/span>&lt;span class="lnt">32
+&lt;/span>&lt;span class="lnt">33
+&lt;/span>&lt;span class="lnt">34
+&lt;/span>&lt;span class="lnt">35
+&lt;/span>&lt;span class="lnt">36
+&lt;/span>&lt;span class="lnt">37
+&lt;/span>&lt;span class="lnt">38
+&lt;/span>&lt;span class="lnt">39
+&lt;/span>&lt;span class="lnt">40
+&lt;/span>&lt;span class="lnt">41
+&lt;/span>&lt;span class="lnt">42
+&lt;/span>&lt;span class="lnt">43
+&lt;/span>&lt;span class="lnt">44
+&lt;/span>&lt;span class="lnt">45
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">yui@yui-kubuntu:~$ sudo apt-key list
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Warning: apt-key is deprecated. Manage keyring files in trusted.gpg.d instead (see apt-key(8)).
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">/etc/apt/trusted.gpg
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">--------------------
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">pub rsa2048 2016-09-25 [SC]
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> 4AC4 41BE 68B4 ADAB 7439 FBF9 BA30 0B77 55AF CFAE
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">uid [ unknown] Abner Lee &amp;lt;abner@typora.io&amp;gt;
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">/etc/apt/trusted.gpg.d/danielrichter2007-ubuntu-grub-customizer.gpg
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">-------------------------------------------------------------------
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">pub rsa1024 2010-10-08 [SC]
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> 59DA D276 B942 642B 1BBD 0EAC A8AA 1FAA 3F05 5C03
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">uid [ unknown] Launchpad PPA for Daniel Richter
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">/etc/apt/trusted.gpg.d/google-chrome.gpg
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">----------------------------------------
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">pub rsa4096 2016-04-12 [SC]
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> EB4C 1BFD 4F04 2F6D DDCC EC91 7721 F63B D38B 4796
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">uid [ unknown] Google Inc. (Linux Packages Signing Authority) &amp;lt;linux-packages-keymaster@google.com&amp;gt;
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">sub rsa4096 2021-10-26 [S] [expires: 2024-10-25]
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">/etc/apt/trusted.gpg.d/microsoft.gpg
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">------------------------------------
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">pub rsa2048 2015-10-28 [SC]
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> BC52 8686 B50D 79E3 39D3 721C EB3E 94AD BE12 29CF
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">uid [ unknown] Microsoft (Release signing) &amp;lt;gpgsecurity@microsoft.com&amp;gt;
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">/etc/apt/trusted.gpg.d/steam.gpg
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">--------------------------------
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">pub rsa2048 2012-12-07 [SC]
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> BA18 16EF 8E75 005F CF5E 27A1 F24A EA9F B054 98B7
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">uid [ unknown] Valve Corporation &amp;lt;linux@steampowered.com&amp;gt;
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">sub rsa2048 2012-12-07 [E]
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">/etc/apt/trusted.gpg.d/ubuntu-keyring-2012-cdimage.gpg
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">------------------------------------------------------
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">pub rsa4096 2012-05-11 [SC]
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> 8439 38DF 228D 22F7 B374 2BC0 D94A A3F0 EFE2 1092
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">uid [ unknown] Ubuntu CD Image Automatic Signing Key (2012) &amp;lt;cdimage@ubuntu.com&amp;gt;
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">/etc/apt/trusted.gpg.d/ubuntu-keyring-2018-archive.gpg
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">------------------------------------------------------
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">pub rsa4096 2018-09-17 [SC]
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> F6EC B376 2474 EDA9 D21B 7022 8719 20D1 991B C93C
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">uid [ unknown] Ubuntu Archive Automatic Signing Key (2018) &amp;lt;ftpmaster@ubuntu.com&amp;gt;
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;h2 id="delete-entry">
+&lt;a href="#delete-entry">#&lt;/a>
+Delete entry
+&lt;/h2>&lt;p>Delete entry in /etc/apt/sources.list.d/&lt;/p>
+&lt;h2 id="delete-keys">
+&lt;a href="#delete-keys">#&lt;/a>
+Delete keys
+&lt;/h2>&lt;p>remove typora.io&lt;/p>
+&lt;p>&lt;code>$ sudo apt-key del &amp;quot;4AC4 41BE 68B4 ADAB 7439 FBF9 BA30 0B77 55AF CFAE&amp;quot;&lt;/code>&lt;/p>
+&lt;p>or use the last 8 chars&lt;/p>
+&lt;p>&lt;code>$ sudo apt-key del 55AFCFAE&lt;/code>&lt;/p>
+&lt;p>&lt;code>$ sudo apt update&lt;/code>&lt;/p></description></item></channel></rss>

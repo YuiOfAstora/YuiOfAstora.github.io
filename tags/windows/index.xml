@@ -1,0 +1,250 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Windows on Yui's Blog</title><link>https://yuiofastora.github.io/tags/windows/</link><description>Recent content in Windows on Yui's Blog</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Thu, 26 Jan 2023 19:00:47 +0800</lastBuildDate><atom:link href="https://yuiofastora.github.io/tags/windows/index.xml" rel="self" type="application/rss+xml"/><item><title>Self Hosting A KMS Server</title><link>https://yuiofastora.github.io/p/self-hosting-a-kms-server/</link><pubDate>Thu, 26 Jan 2023 19:00:47 +0800</pubDate><guid>https://yuiofastora.github.io/p/self-hosting-a-kms-server/</guid><description>&lt;p>Self host kms service with docker.&lt;/p>
+&lt;blockquote>
+&lt;p>&lt;a class="link" href="https://github.com/Py-KMS-Organization/py-kms" target="_blank" rel="noopener"
+>https://github.com/Py-KMS-Organization/py-kms&lt;/a>&lt;/p>
+&lt;/blockquote>
+&lt;h2 id="setup-with-docker">
+&lt;a href="#setup-with-docker">#&lt;/a>
+Setup With Docker
+&lt;/h2>&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;span class="lnt">5
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">docker run -d \
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> --name kms \
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> -p 1688:1688 \
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> -v /data/py-kms:/data \
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> pykmsorg/py-kms
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;h2 id="office-activation">
+&lt;a href="#office-activation">#&lt;/a>
+Office Activation
+&lt;/h2>&lt;p>Go to the installation folder(Normallu C:\Program Files (x86)\Microsoft Office\Office16)&lt;/p>
+&lt;p>&lt;code>cscript ospp.vbs /dstatus&lt;/code> Check the last 5 characters of installed product key: XXXXX. If multiple keys existed, uninstalling all keys needed.&lt;/p>
+&lt;p>&lt;code>cscript ospp.vbs /unpkey:XXXXX&lt;/code> Uninstall key&lt;/p>
+&lt;p>&lt;code>cscript ospp.vbs /inpkey:XXXX&lt;/code> Setup key&lt;/p>
+&lt;p>&lt;code>cscript ospp.vbs /sethst:kms.server.com&lt;/code> Setup kms server&lt;/p>
+&lt;p>&lt;code>cscript ospp.vbs /act&lt;/code> Activate&lt;/p>
+&lt;h2 id="support-list">
+&lt;a href="#support-list">#&lt;/a>
+Support List
+&lt;/h2>&lt;ul>
+&lt;li>Windows Vista&lt;/li>
+&lt;li>Windows 7&lt;/li>
+&lt;li>Windows 8&lt;/li>
+&lt;li>Windows 8.1&lt;/li>
+&lt;li>Windows 10 ( 1511 / 1607 / 1703 / 1709 / 1803 / 1809 )&lt;/li>
+&lt;li>Windows 10 ( 1903 / 1909 / 20H1, 20H2, 21H1, 21H2 )&lt;/li>
+&lt;li>Windows 11 ( 21H2 )&lt;/li>
+&lt;li>Windows Server 2008&lt;/li>
+&lt;li>Windows Server 2008 R2&lt;/li>
+&lt;li>Windows Server 2012&lt;/li>
+&lt;li>Windows Server 2012 R2&lt;/li>
+&lt;li>Windows Server 2016&lt;/li>
+&lt;li>Windows Server 2019&lt;/li>
+&lt;li>Windows Server 2022&lt;/li>
+&lt;li>Microsoft Office 2010 ( Volume License )&lt;/li>
+&lt;li>Microsoft Office 2013 ( Volume License )&lt;/li>
+&lt;li>Microsoft Office 2016 ( Volume License )&lt;/li>
+&lt;li>Microsoft Office 2019 ( Volume License )&lt;/li>
+&lt;li>Microsoft Office 2021 ( Volume License )&lt;/li>
+&lt;/ul>
+&lt;p>&lt;a class="link" href="https://py-kms.readthedocs.io/en/latest/Keys.html" target="_blank" rel="noopener"
+>https://py-kms.readthedocs.io/en/latest/Keys.html&lt;/a>&lt;/p>
+&lt;h2 id="windows">
+&lt;a href="#windows">#&lt;/a>
+Windows
+&lt;/h2>&lt;ol>
+&lt;li>
+&lt;p>Press&lt;code>Win + R&lt;/code> to open &lt;code>Run&lt;/code> ，Enter &lt;code>powershell&lt;/code> then Press &lt;code>Ctrl + Shift + Enter&lt;/code> to run as administrator.&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>Type &lt;code>slmgr.vbs /upk&lt;/code>then press&lt;code>Enter&lt;/code> to uninstall current key.&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>Type&lt;code>slmgr /ipk XXXXXX&lt;/code> &lt;code>XXXXXX&lt;/code> is the key to be installed.&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>Type&lt;code>slmgr /skms kms.yuiofastora.com&lt;/code> to set KMS server&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>Type&lt;code>slmgr /ato&lt;/code> to start activation.&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>Check activation information&lt;/p>
+&lt;p>Type &lt;code>slmgr.vbs -dlv&lt;/code>&lt;/p>
+&lt;p>or&lt;code>wmic path softwarelicensingservice get OA3xOriginalProductKey&lt;/code>&lt;/p>
+&lt;/li>
+&lt;/ol>
+&lt;h2 id="office">
+&lt;a href="#office">#&lt;/a>
+Office
+&lt;/h2>&lt;ol>
+&lt;li>
+&lt;p>Install VOL edition Office，recommend deploying with Office Tool&lt;/p>
+&lt;p>May need sepecific version of .NetFramework support&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>Start &lt;code>Office Tool Plus&lt;/code>,click &lt;code>deploy&lt;/code>. Uninstall current office products first.&lt;/p>
+&lt;p>Add products &lt;code>Office 专业增强版 2019 - 批量许可证&lt;/code>&lt;/p>
+&lt;p>在下方的应用程序设置里勾选要安装的Office应用，这里就只选择了&lt;code>Word, Excel, PowerPoint&lt;/code>&lt;/p>
+&lt;p>添加所需语言&lt;/p>
+&lt;p>右侧的部署设置里体系结构选择&lt;code>64位&lt;/code>(除非是很老很老的电脑才选择32位)，通道选择 &lt;code>Office 2019 企业长期版&lt;/code>，部署模式选择&lt;code>安装&lt;/code>，部署完成后选择&lt;code>无&lt;/code>即可，安装模块选择&lt;code>Office部署工具&lt;/code>&lt;/p>
+&lt;p>其他设置都无需改动，保持默认&lt;/p>
+&lt;p>点击&lt;code>开始部署&lt;/code>进行安装，安装时间视网络情况可能较长，耐心等待安装完成&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>安装完成后点击菜单栏的激活选项，展开许可证管理，选择产品为&lt;code>Office专业增强版 2019 - 批量许可证[ProPlus2019volume]&lt;/code> 。激活前建议先清除干净本机的激活状态。，点击安装许可证旁的菜单按钮，选择清除激活状态。点击安装许可证，等待安装完成，如无意外，右侧会显示产品密钥安装成功。&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>Set KMS server&lt;/p>
+&lt;p>Fill in the values below&lt;/p>
+&lt;p>KMS host: &lt;code>kms.yuiofastora.com&lt;/code>&lt;/p>
+&lt;p>KMS port: &lt;code>1688&lt;/code>&lt;/p>
+&lt;p>save config&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>Check actication information&lt;/p>
+&lt;p>Open and create any Word, Excel or PPT file，click Files &amp;gt; Account，Check Office actication information.&lt;/p>
+&lt;/li>
+&lt;/ol>
+&lt;p>Get keys from&lt;a class="link" href="https://py-kms.readthedocs.io/en/latest/Keys.html" target="_blank" rel="noopener"
+>Py-kms&lt;/a> or &lt;a class="link" href="https://learn.microsoft.com/zh-cn/windows-server/get-started/kms-client-activation-keys" target="_blank" rel="noopener"
+>Microsoft&lt;/a>&lt;/p></description></item><item><title>WSL2 Setup</title><link>https://yuiofastora.github.io/p/wsl2-setup/</link><pubDate>Thu, 26 Jan 2023 19:00:47 +0800</pubDate><guid>https://yuiofastora.github.io/p/wsl2-setup/</guid><description>&lt;h2 id="update-windows-11">
+&lt;a href="#update-windows-11">#&lt;/a>
+Update windows 11
+&lt;/h2>&lt;h2 id="update-gpu-driver">
+&lt;a href="#update-gpu-driver">#&lt;/a>
+Update GPU Driver
+&lt;/h2>&lt;h2 id="fresh-install">
+&lt;a href="#fresh-install">#&lt;/a>
+Fresh Install
+&lt;/h2>&lt;p>Run powershell as Administrator&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-powershell" data-lang="powershell">&lt;span class="line">&lt;span class="cl">&lt;span class="n">wsl&lt;/span> &lt;span class="p">-&lt;/span>&lt;span class="n">-install&lt;/span> &lt;span class="n">-d&lt;/span> &lt;span class="n">Ubuntu&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>Get other distros from MS store&lt;/p>
+&lt;h2 id="install-apps">
+&lt;a href="#install-apps">#&lt;/a>
+Install apps
+&lt;/h2>&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;span class="lnt">5
+&lt;/span>&lt;span class="lnt">6
+&lt;/span>&lt;span class="lnt">7
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">sudo apt install gedit -y
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">sudo apt install gimp -y
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"># File Browser
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">sudo apt install nautilus -y
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">sudo apt install x11-apps -y
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>To install the Google Chrome for Linux:&lt;/p>
+&lt;ol>
+&lt;li>Change directories into the temp folder: &lt;code>cd /tmp&lt;/code>&lt;/li>
+&lt;li>Use wget to download it: &lt;code>sudo wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb&lt;/code>&lt;/li>
+&lt;li>Get the current stable version: &lt;code>sudo dpkg -i google-chrome-stable_current_amd64.deb&lt;/code>&lt;/li>
+&lt;li>Fix the package: &lt;code>sudo apt install --fix-broken -y&lt;/code>&lt;/li>
+&lt;li>Configure the package: &lt;code>sudo dpkg -i google-chrome-stable_current_amd64.deb&lt;/code>&lt;/li>
+&lt;/ol>
+&lt;p>To launch, enter: &lt;code>google-chrome&lt;/code>&lt;/p>
+&lt;h2 id="set-proxy">
+&lt;a href="#set-proxy">#&lt;/a>
+Set Proxy
+&lt;/h2>&lt;p>Use &lt;a class="link" href="https://www.telerik.com/fiddler/fiddler-classic" target="_blank" rel="noopener"
+>Fiddler Classic&lt;/a> winconfig to remove Appcontainer network traffic block&lt;/p>
+&lt;p>Check IP Address with:&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">cat /etc/resolv.conf
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>run proxy software on windows (set &amp;lsquo;Allow LAN&amp;rsquo;)&lt;/p>
+&lt;p>&lt;a class="link" href="https://help.ubuntu.com/community/AptGet/Howto#Setting_up_apt-get_to_use_a_http-proxy" target="_blank" rel="noopener"
+>https://help.ubuntu.com/community/AptGet/Howto#Setting_up_apt-get_to_use_a_http-proxy&lt;/a>&lt;/p>
+&lt;p>execute in WSL&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">&lt;span class="nb">export&lt;/span> &lt;span class="nv">http_proxy&lt;/span>&lt;span class="o">=&lt;/span>http://IPaddress:proxyport
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>or use proxychains&lt;/p>
+&lt;h2 id="beautify-windows-terminal">
+&lt;a href="#beautify-windows-terminal">#&lt;/a>
+Beautify Windows Terminal
+&lt;/h2>&lt;p>&lt;a class="link" href="https://youtu.be/VT2L1SXFq9U" target="_blank" rel="noopener"
+>https://youtu.be/VT2L1SXFq9U&lt;/a>&lt;/p>
+&lt;h2 id="fix-process-exited-with-code-4294967295">
+&lt;a href="#fix-process-exited-with-code-4294967295">#&lt;/a>
+Fix [process exited with code 4294967295]
+&lt;/h2>&lt;p>Network issues (VPN)&lt;/p>
+&lt;p>run command to reset windows network&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-powershell" data-lang="powershell">&lt;span class="line">&lt;span class="cl">&lt;span class="n">netsh&lt;/span> &lt;span class="n">winsock&lt;/span> &lt;span class="n">reset&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>Restart windows&lt;/p>
+&lt;h2 id="fix-display-not-open--gui-not-workinghttpsgithubcommicrosoftwslissues4106issuecomment-876470388">
+&lt;a href="#fix-display-not-open--gui-not-workinghttpsgithubcommicrosoftwslissues4106issuecomment-876470388">#&lt;/a>
+&lt;a class="link" href="https://github.com/microsoft/WSL/issues/4106#issuecomment-876470388" target="_blank" rel="noopener"
+>Fix Display not open / GUI not working&lt;/a>
+&lt;/h2>&lt;h3 id="setting-the-display-variable-for-wsl2">
+&lt;a href="#setting-the-display-variable-for-wsl2">#&lt;/a>
+Setting the DISPLAY variable for WSL2
+&lt;/h3>&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">&lt;span class="nb">export&lt;/span> &lt;span class="nv">DISPLAY&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="k">$(&lt;/span>route.exe print &lt;span class="p">|&lt;/span> grep 0.0.0.0 &lt;span class="p">|&lt;/span> head -1 &lt;span class="p">|&lt;/span> awk &lt;span class="s1">&amp;#39;{print $4}&amp;#39;&lt;/span>&lt;span class="k">)&lt;/span>:0.0
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>also put in &lt;code>~/.bashrc&lt;/code>&lt;/p>
+&lt;h3 id="install-vcxsrvhttpssourceforgenetprojectsvcxsrv-on-windows">
+&lt;a href="#install-vcxsrvhttpssourceforgenetprojectsvcxsrv-on-windows">#&lt;/a>
+Install &lt;a class="link" href="https://sourceforge.net/projects/vcxsrv/" target="_blank" rel="noopener"
+>vcxsrv&lt;/a> on Windows
+&lt;/h3>&lt;h3 id="start-xlaunch-on-windows">
+&lt;a href="#start-xlaunch-on-windows">#&lt;/a>
+Start XLaunch on Windows
+&lt;/h3>&lt;p>find shortcut, right lick and select properties&lt;/p>
+&lt;p>Append &lt;code>-ac&lt;/code> after target path&lt;/p>
+&lt;p>launch via edited shortcut&lt;/p>
+&lt;ul>
+&lt;li>Select Multiple Windows (default)&lt;/li>
+&lt;li>Select Start no client (default)&lt;/li>
+&lt;li>&lt;strong>Check✅ Disable access control&lt;/strong>&lt;/li>
+&lt;li>&lt;strong>Uncheck ☐ Native opengl&lt;/strong>&lt;/li>
+&lt;li>Save configuration on startup folder, location &lt;code>C:\Users\&amp;quot;YOUR_USERNAME&amp;quot;\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Startup&lt;/code>&lt;/li>
+&lt;/ul>
+&lt;p>All set&lt;/p>
+&lt;p>Launch GUI apps on WSL.&lt;/p></description></item></channel></rss>

@@ -1,0 +1,1258 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Docker on Yui's Blog</title><link>https://yuiofastora.github.io/tags/docker/</link><description>Recent content in Docker on Yui's Blog</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Mon, 20 Feb 2023 19:00:00 +0800</lastBuildDate><atom:link href="https://yuiofastora.github.io/tags/docker/index.xml" rel="self" type="application/rss+xml"/><item><title>Setup Docker and Portainer</title><link>https://yuiofastora.github.io/p/setup-docker-and-portainer/</link><pubDate>Mon, 20 Feb 2023 19:00:00 +0800</pubDate><guid>https://yuiofastora.github.io/p/setup-docker-and-portainer/</guid><description>&lt;p>Setup docker and portainer&lt;/p>
+&lt;h2 id="installing-docker">
+&lt;a href="#installing-docker">#&lt;/a>
+Installing Docker
+&lt;/h2>&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;span class="lnt">11
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-gdscript3" data-lang="gdscript3">&lt;span class="line">&lt;span class="cl">&lt;span class="c1">#Install a few prerequisite packages which let apt use packages over HTTPS:&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">$&lt;/span> &lt;span class="n">sudo&lt;/span> &lt;span class="n">apt&lt;/span> &lt;span class="n">install&lt;/span> &lt;span class="n">apt&lt;/span>&lt;span class="o">-&lt;/span>&lt;span class="n">transport&lt;/span>&lt;span class="o">-&lt;/span>&lt;span class="n">https&lt;/span> &lt;span class="n">ca&lt;/span>&lt;span class="o">-&lt;/span>&lt;span class="n">certificates&lt;/span> &lt;span class="n">curl&lt;/span> &lt;span class="n">software&lt;/span>&lt;span class="o">-&lt;/span>&lt;span class="n">properties&lt;/span>&lt;span class="o">-&lt;/span>&lt;span class="n">common&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1">#Add the GPG key for the official Docker repository&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">$&lt;/span> &lt;span class="n">curl&lt;/span> &lt;span class="o">-&lt;/span>&lt;span class="n">fsSL&lt;/span> &lt;span class="n">https&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="o">//&lt;/span>&lt;span class="n">download&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">docker&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">com&lt;/span>&lt;span class="o">/&lt;/span>&lt;span class="n">linux&lt;/span>&lt;span class="o">/&lt;/span>&lt;span class="n">ubuntu&lt;/span>&lt;span class="o">/&lt;/span>&lt;span class="n">gpg&lt;/span> &lt;span class="o">|&lt;/span> &lt;span class="n">sudo&lt;/span> &lt;span class="n">apt&lt;/span>&lt;span class="o">-&lt;/span>&lt;span class="n">key&lt;/span> &lt;span class="n">add&lt;/span> &lt;span class="o">-&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1">#Add the Docker repository to APT sources&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">$&lt;/span> &lt;span class="n">sudo&lt;/span> &lt;span class="n">add&lt;/span>&lt;span class="o">-&lt;/span>&lt;span class="n">apt&lt;/span>&lt;span class="o">-&lt;/span>&lt;span class="n">repository&lt;/span> &lt;span class="s2">&amp;#34;deb [arch=amd64] https://download.docker.com/linux/ubuntu focal stable&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">$&lt;/span> &lt;span class="n">sudo&lt;/span> &lt;span class="n">apt&lt;/span> &lt;span class="n">install&lt;/span> &lt;span class="n">docker&lt;/span>&lt;span class="o">-&lt;/span>&lt;span class="n">ce&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">$&lt;/span> &lt;span class="n">sudo&lt;/span> &lt;span class="n">systemctl&lt;/span> &lt;span class="n">status&lt;/span> &lt;span class="n">docker&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;h2 id="install-docker-compose">
+&lt;a href="#install-docker-compose">#&lt;/a>
+Install Docker Compose
+&lt;/h2>&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;span class="lnt">5
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-gdscript3" data-lang="gdscript3">&lt;span class="line">&lt;span class="cl">&lt;span class="o">$&lt;/span> &lt;span class="n">sudo&lt;/span> &lt;span class="n">curl&lt;/span> &lt;span class="o">-&lt;/span>&lt;span class="n">L&lt;/span> &lt;span class="s2">&amp;#34;https://github.com/docker/compose/releases/download/1.29.2/docker-compose-$(uname -s)-$(uname -m)&amp;#34;&lt;/span> &lt;span class="o">-&lt;/span>&lt;span class="n">o&lt;/span> &lt;span class="o">/&lt;/span>&lt;span class="n">usr&lt;/span>&lt;span class="o">/&lt;/span>&lt;span class="n">local&lt;/span>&lt;span class="o">/&lt;/span>&lt;span class="n">bin&lt;/span>&lt;span class="o">/&lt;/span>&lt;span class="n">docker&lt;/span>&lt;span class="o">-&lt;/span>&lt;span class="n">compose&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1">#replace 1.29.2 with latest version from https://github.com/docker/compose/releases&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">$&lt;/span> &lt;span class="n">sudo&lt;/span> &lt;span class="n">chmod&lt;/span> &lt;span class="o">+&lt;/span>&lt;span class="n">x&lt;/span> &lt;span class="o">/&lt;/span>&lt;span class="n">usr&lt;/span>&lt;span class="o">/&lt;/span>&lt;span class="n">local&lt;/span>&lt;span class="o">/&lt;/span>&lt;span class="n">bin&lt;/span>&lt;span class="o">/&lt;/span>&lt;span class="n">docker&lt;/span>&lt;span class="o">-&lt;/span>&lt;span class="n">compose&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">$&lt;/span> &lt;span class="n">docker&lt;/span>&lt;span class="o">-&lt;/span>&lt;span class="n">compose&lt;/span> &lt;span class="o">--&lt;/span>&lt;span class="n">version&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;h2 id="install-portainer">
+&lt;a href="#install-portainer">#&lt;/a>
+Install Portainer
+&lt;/h2>&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;span class="lnt">5
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-gdscript3" data-lang="gdscript3">&lt;span class="line">&lt;span class="cl">&lt;span class="o">$&lt;/span> &lt;span class="n">cd&lt;/span> &lt;span class="o">~/&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">$&lt;/span> &lt;span class="n">docker&lt;/span> &lt;span class="n">volume&lt;/span> &lt;span class="n">create&lt;/span> &lt;span class="n">portainer_data&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">$&lt;/span> &lt;span class="n">docker&lt;/span> &lt;span class="n">run&lt;/span> &lt;span class="o">-&lt;/span>&lt;span class="n">d&lt;/span> &lt;span class="o">-&lt;/span>&lt;span class="n">p&lt;/span> &lt;span class="mi">8000&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="mi">8000&lt;/span> &lt;span class="o">-&lt;/span>&lt;span class="n">p&lt;/span> &lt;span class="mi">9000&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="mi">9000&lt;/span> &lt;span class="o">--&lt;/span>&lt;span class="n">name&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="n">portainer&lt;/span> &lt;span class="o">--&lt;/span>&lt;span class="n">restart&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="n">always&lt;/span> &lt;span class="o">-&lt;/span>&lt;span class="n">v&lt;/span> &lt;span class="o">/&lt;/span>&lt;span class="k">var&lt;/span>&lt;span class="o">/&lt;/span>&lt;span class="n">run&lt;/span>&lt;span class="o">/&lt;/span>&lt;span class="n">docker&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">sock&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="o">/&lt;/span>&lt;span class="k">var&lt;/span>&lt;span class="o">/&lt;/span>&lt;span class="n">run&lt;/span>&lt;span class="o">/&lt;/span>&lt;span class="n">docker&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">sock&lt;/span> &lt;span class="o">-&lt;/span>&lt;span class="n">v&lt;/span> &lt;span class="n">portainer_data&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="o">/&lt;/span>&lt;span class="n">data&lt;/span> &lt;span class="n">portainer&lt;/span>&lt;span class="o">/&lt;/span>&lt;span class="n">portainer&lt;/span>&lt;span class="o">-&lt;/span>&lt;span class="n">ce&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="n">latest&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>&lt;code>$ iptables -L DOCKER&lt;/code>&lt;/p>
+&lt;p>Check Docker port&lt;/p>
+&lt;p>By default, docker will create iptables rules which would bypass firewall settings&lt;/p>
+&lt;p>To fix this,&lt;/p>
+&lt;p>&lt;a class="link" href="https://github.com/chaifeng/ufw-docker" target="_blank" rel="noopener"
+>https://github.com/chaifeng/ufw-docker&lt;/a>&lt;/p>
+&lt;blockquote>
+&lt;p>Add following line to /etc/ufw/after.rules,&lt;/p>
+&lt;p>before line &lt;code>COMMIT&lt;/code>&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;span class="lnt">11
+&lt;/span>&lt;span class="lnt">12
+&lt;/span>&lt;span class="lnt">13
+&lt;/span>&lt;span class="lnt">14
+&lt;/span>&lt;span class="lnt">15
+&lt;/span>&lt;span class="lnt">16
+&lt;/span>&lt;span class="lnt">17
+&lt;/span>&lt;span class="lnt">18
+&lt;/span>&lt;span class="lnt">19
+&lt;/span>&lt;span class="lnt">20
+&lt;/span>&lt;span class="lnt">21
+&lt;/span>&lt;span class="lnt">22
+&lt;/span>&lt;span class="lnt">23
+&lt;/span>&lt;span class="lnt">24
+&lt;/span>&lt;span class="lnt">25
+&lt;/span>&lt;span class="lnt">26
+&lt;/span>&lt;span class="lnt">27
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl"># BEGIN UFW AND DOCKER
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">*filter
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">:ufw-user-forward - [0:0]
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">:ufw-docker-logging-deny - [0:0]
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">:DOCKER-USER - [0:0]
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">-A DOCKER-USER -j ufw-user-forward
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">-A DOCKER-USER -j RETURN -s 10.0.0.0/8
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">-A DOCKER-USER -j RETURN -s 172.16.0.0/12
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">-A DOCKER-USER -j RETURN -s 192.168.0.0/16
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">-A DOCKER-USER -p udp -m udp --sport 53 --dport 1024:65535 -j RETURN
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">-A DOCKER-USER -j ufw-docker-logging-deny -p tcp -m tcp --tcp-flags FIN,SYN,RST,ACK SYN -d 192.168.0.0/16
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">-A DOCKER-USER -j ufw-docker-logging-deny -p tcp -m tcp --tcp-flags FIN,SYN,RST,ACK SYN -d 10.0.0.0/8
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">-A DOCKER-USER -j ufw-docker-logging-deny -p tcp -m tcp --tcp-flags FIN,SYN,RST,ACK SYN -d 172.16.0.0/12
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">-A DOCKER-USER -j ufw-docker-logging-deny -p udp -m udp --dport 0:32767 -d 192.168.0.0/16
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">-A DOCKER-USER -j ufw-docker-logging-deny -p udp -m udp --dport 0:32767 -d 10.0.0.0/8
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">-A DOCKER-USER -j ufw-docker-logging-deny -p udp -m udp --dport 0:32767 -d 172.16.0.0/12
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">-A DOCKER-USER -j RETURN
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">-A ufw-docker-logging-deny -m limit --limit 3/min --limit-burst 10 -j LOG --log-prefix &amp;#34;[UFW DOCKER BLOCK] &amp;#34;
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">-A ufw-docker-logging-deny -j DROP
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">COMMIT
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"># END UFW AND DOCKER
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;/blockquote></description></item><item><title>Self Hosting A Bookmark Manager</title><link>https://yuiofastora.github.io/p/self-hosting-a-bookmark-manager/</link><pubDate>Thu, 26 Jan 2023 19:00:47 +0800</pubDate><guid>https://yuiofastora.github.io/p/self-hosting-a-bookmark-manager/</guid><description>&lt;p>Self host a bookmark manager with docker.&lt;/p>
+&lt;blockquote>
+&lt;p>&lt;a class="link" href="https://github.com/sissbruecker/linkding" target="_blank" rel="noopener"
+>https://github.com/sissbruecker/linkding&lt;/a>&lt;/p>
+&lt;/blockquote>
+&lt;h2 id="setup-with-docker">
+&lt;a href="#setup-with-docker">#&lt;/a>
+Setup with Docker
+&lt;/h2>&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;span class="lnt">5
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">docker run -d \
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> --name linkding \
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> -p 9090:9090 \
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> -v {host-data-folder}:/etc/linkding/data \
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> sissbruecker/linkding:latest
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>Setup user&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">docker exec -it linkding python manage.py createsuperuser --username=joe --email=joe@example.com
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>Setup Reverse Proxy with Nginx
+Add&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;span class="lnt">5
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">location /linkding {
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> ...
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> proxy_set_header Host $host;
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> proxy_set_header X-Forwarded-Proto $scheme;
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">}
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>to config&lt;/p></description></item><item><title>Self Hosting A KMS Server</title><link>https://yuiofastora.github.io/p/self-hosting-a-kms-server/</link><pubDate>Thu, 26 Jan 2023 19:00:47 +0800</pubDate><guid>https://yuiofastora.github.io/p/self-hosting-a-kms-server/</guid><description>&lt;p>Self host kms service with docker.&lt;/p>
+&lt;blockquote>
+&lt;p>&lt;a class="link" href="https://github.com/Py-KMS-Organization/py-kms" target="_blank" rel="noopener"
+>https://github.com/Py-KMS-Organization/py-kms&lt;/a>&lt;/p>
+&lt;/blockquote>
+&lt;h2 id="setup-with-docker">
+&lt;a href="#setup-with-docker">#&lt;/a>
+Setup With Docker
+&lt;/h2>&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;span class="lnt">5
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">docker run -d \
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> --name kms \
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> -p 1688:1688 \
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> -v /data/py-kms:/data \
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> pykmsorg/py-kms
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;h2 id="office-activation">
+&lt;a href="#office-activation">#&lt;/a>
+Office Activation
+&lt;/h2>&lt;p>Go to the installation folder(Normallu C:\Program Files (x86)\Microsoft Office\Office16)&lt;/p>
+&lt;p>&lt;code>cscript ospp.vbs /dstatus&lt;/code> Check the last 5 characters of installed product key: XXXXX. If multiple keys existed, uninstalling all keys needed.&lt;/p>
+&lt;p>&lt;code>cscript ospp.vbs /unpkey:XXXXX&lt;/code> Uninstall key&lt;/p>
+&lt;p>&lt;code>cscript ospp.vbs /inpkey:XXXX&lt;/code> Setup key&lt;/p>
+&lt;p>&lt;code>cscript ospp.vbs /sethst:kms.server.com&lt;/code> Setup kms server&lt;/p>
+&lt;p>&lt;code>cscript ospp.vbs /act&lt;/code> Activate&lt;/p>
+&lt;h2 id="support-list">
+&lt;a href="#support-list">#&lt;/a>
+Support List
+&lt;/h2>&lt;ul>
+&lt;li>Windows Vista&lt;/li>
+&lt;li>Windows 7&lt;/li>
+&lt;li>Windows 8&lt;/li>
+&lt;li>Windows 8.1&lt;/li>
+&lt;li>Windows 10 ( 1511 / 1607 / 1703 / 1709 / 1803 / 1809 )&lt;/li>
+&lt;li>Windows 10 ( 1903 / 1909 / 20H1, 20H2, 21H1, 21H2 )&lt;/li>
+&lt;li>Windows 11 ( 21H2 )&lt;/li>
+&lt;li>Windows Server 2008&lt;/li>
+&lt;li>Windows Server 2008 R2&lt;/li>
+&lt;li>Windows Server 2012&lt;/li>
+&lt;li>Windows Server 2012 R2&lt;/li>
+&lt;li>Windows Server 2016&lt;/li>
+&lt;li>Windows Server 2019&lt;/li>
+&lt;li>Windows Server 2022&lt;/li>
+&lt;li>Microsoft Office 2010 ( Volume License )&lt;/li>
+&lt;li>Microsoft Office 2013 ( Volume License )&lt;/li>
+&lt;li>Microsoft Office 2016 ( Volume License )&lt;/li>
+&lt;li>Microsoft Office 2019 ( Volume License )&lt;/li>
+&lt;li>Microsoft Office 2021 ( Volume License )&lt;/li>
+&lt;/ul>
+&lt;p>&lt;a class="link" href="https://py-kms.readthedocs.io/en/latest/Keys.html" target="_blank" rel="noopener"
+>https://py-kms.readthedocs.io/en/latest/Keys.html&lt;/a>&lt;/p>
+&lt;h2 id="windows">
+&lt;a href="#windows">#&lt;/a>
+Windows
+&lt;/h2>&lt;ol>
+&lt;li>
+&lt;p>Press&lt;code>Win + R&lt;/code> to open &lt;code>Run&lt;/code> ，Enter &lt;code>powershell&lt;/code> then Press &lt;code>Ctrl + Shift + Enter&lt;/code> to run as administrator.&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>Type &lt;code>slmgr.vbs /upk&lt;/code>then press&lt;code>Enter&lt;/code> to uninstall current key.&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>Type&lt;code>slmgr /ipk XXXXXX&lt;/code> &lt;code>XXXXXX&lt;/code> is the key to be installed.&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>Type&lt;code>slmgr /skms kms.yuiofastora.com&lt;/code> to set KMS server&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>Type&lt;code>slmgr /ato&lt;/code> to start activation.&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>Check activation information&lt;/p>
+&lt;p>Type &lt;code>slmgr.vbs -dlv&lt;/code>&lt;/p>
+&lt;p>or&lt;code>wmic path softwarelicensingservice get OA3xOriginalProductKey&lt;/code>&lt;/p>
+&lt;/li>
+&lt;/ol>
+&lt;h2 id="office">
+&lt;a href="#office">#&lt;/a>
+Office
+&lt;/h2>&lt;ol>
+&lt;li>
+&lt;p>Install VOL edition Office，recommend deploying with Office Tool&lt;/p>
+&lt;p>May need sepecific version of .NetFramework support&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>Start &lt;code>Office Tool Plus&lt;/code>,click &lt;code>deploy&lt;/code>. Uninstall current office products first.&lt;/p>
+&lt;p>Add products &lt;code>Office 专业增强版 2019 - 批量许可证&lt;/code>&lt;/p>
+&lt;p>在下方的应用程序设置里勾选要安装的Office应用，这里就只选择了&lt;code>Word, Excel, PowerPoint&lt;/code>&lt;/p>
+&lt;p>添加所需语言&lt;/p>
+&lt;p>右侧的部署设置里体系结构选择&lt;code>64位&lt;/code>(除非是很老很老的电脑才选择32位)，通道选择 &lt;code>Office 2019 企业长期版&lt;/code>，部署模式选择&lt;code>安装&lt;/code>，部署完成后选择&lt;code>无&lt;/code>即可，安装模块选择&lt;code>Office部署工具&lt;/code>&lt;/p>
+&lt;p>其他设置都无需改动，保持默认&lt;/p>
+&lt;p>点击&lt;code>开始部署&lt;/code>进行安装，安装时间视网络情况可能较长，耐心等待安装完成&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>安装完成后点击菜单栏的激活选项，展开许可证管理，选择产品为&lt;code>Office专业增强版 2019 - 批量许可证[ProPlus2019volume]&lt;/code> 。激活前建议先清除干净本机的激活状态。，点击安装许可证旁的菜单按钮，选择清除激活状态。点击安装许可证，等待安装完成，如无意外，右侧会显示产品密钥安装成功。&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>Set KMS server&lt;/p>
+&lt;p>Fill in the values below&lt;/p>
+&lt;p>KMS host: &lt;code>kms.yuiofastora.com&lt;/code>&lt;/p>
+&lt;p>KMS port: &lt;code>1688&lt;/code>&lt;/p>
+&lt;p>save config&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>Check actication information&lt;/p>
+&lt;p>Open and create any Word, Excel or PPT file，click Files &amp;gt; Account，Check Office actication information.&lt;/p>
+&lt;/li>
+&lt;/ol>
+&lt;p>Get keys from&lt;a class="link" href="https://py-kms.readthedocs.io/en/latest/Keys.html" target="_blank" rel="noopener"
+>Py-kms&lt;/a> or &lt;a class="link" href="https://learn.microsoft.com/zh-cn/windows-server/get-started/kms-client-activation-keys" target="_blank" rel="noopener"
+>Microsoft&lt;/a>&lt;/p></description></item><item><title>Self Hosting A Password Manager</title><link>https://yuiofastora.github.io/p/self-hosting-a-password-manager/</link><pubDate>Thu, 26 Jan 2023 19:00:47 +0800</pubDate><guid>https://yuiofastora.github.io/p/self-hosting-a-password-manager/</guid><description>&lt;p>Self host password manager with docker.&lt;/p>
+&lt;blockquote>
+&lt;p>&lt;a class="link" href="https://github.com/dani-garcia/vaultwarden" target="_blank" rel="noopener"
+>https://github.com/dani-garcia/vaultwarden&lt;/a>&lt;/p>
+&lt;/blockquote>
+&lt;h2 id="setup-with-docker">
+&lt;a href="#setup-with-docker">#&lt;/a>
+Setup With Docker
+&lt;/h2>&lt;p>Generate admin token&lt;/p>
+&lt;p>&lt;code>openssl rand -base64 48&lt;/code>&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;span class="lnt">5
+&lt;/span>&lt;span class="lnt">6
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">docker run -d \
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> --name bitwarden \
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> -p 9090:80 \
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> -v {host-data-folder}:/data \
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> -e ADMIN_TOKEN=Token_here \
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> vaultwarden/server
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>Accessing admin panel from &lt;code>&amp;quot;yourdomain.com/admin&amp;quot;&lt;/code>
+Setup Reverse Proxy with Nginx&lt;/p></description></item><item><title>Self Hosting A Recipe Manager-Tandoor Recipes</title><link>https://yuiofastora.github.io/p/self-hosting-a-recipe-manager-tandoor-recipes/</link><pubDate>Thu, 26 Jan 2023 19:00:47 +0800</pubDate><guid>https://yuiofastora.github.io/p/self-hosting-a-recipe-manager-tandoor-recipes/</guid><description>&lt;p>Self host recipe manager with docker&lt;/p>
+&lt;blockquote>
+&lt;p>Django application to manage, tag and search recipes using either
+built-in models or external storage providers hosting PDFs, Images or
+other files.
+&lt;a class="link" href="https://github.com/TandoorRecipes/recipes" target="_blank" rel="noopener"
+>https://github.com/TandoorRecipes/recipes&lt;/a>
+&lt;a class="link" href="https://docs.tandoor.dev" target="_blank" rel="noopener"
+>https://docs.tandoor.dev&lt;/a>&lt;/p>
+&lt;/blockquote>
+&lt;h2 id="install-and-setup-postgresql-as-database-source">
+&lt;a href="#install-and-setup-postgresql-as-database-source">#&lt;/a>
+Install And Setup Postgresql As Database Source
+&lt;/h2>&lt;p>Create database and user for Tandoor(Alter Superuser needed).&lt;/p>
+&lt;p>&lt;code>pg_trgm&lt;/code> and &lt;code>unaccent&lt;/code> extension required, install &lt;code>postgresql-contrib&lt;/code>.&lt;/p>
+&lt;p>Modify config file to allow specific IP accessing the database.&lt;/p>
+&lt;p>Edit &lt;code>postgresql.conf&lt;/code> :&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">listen_addresses = &amp;#39;*&amp;#39;
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>Edit &lt;code>pg_hba.conf&lt;/code>&lt;/p>
+&lt;p>example config:&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">#TYPE DATABASE USER ADDRESS METHOD
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">host all all 0.0.0.0/0 trust #allow all access from any ip even without correct password
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">host all all 192.168.1.1/32 md5 #allow access from 192.168.1.1 using password with md5 encoding
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">host all all 192.168.1.1/32 md5 #allow access from 192.168.1.1 using password with plain text
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;h2 id="setting-up-with-docker">
+&lt;a href="#setting-up-with-docker">#&lt;/a>
+Setting Up With Docker
+&lt;/h2>&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;span class="lnt">11
+&lt;/span>&lt;span class="lnt">12
+&lt;/span>&lt;span class="lnt">13
+&lt;/span>&lt;span class="lnt">14
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">docker run -d \
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> -v &amp;#34;$(pwd)&amp;#34;/staticfiles:/opt/recipes/staticfiles \
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> -v &amp;#34;$(pwd)&amp;#34;/mediafiles:/opt/recipes/mediafiles \
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> -p 8435:8080 \
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> -e SECRET_KEY=YUOR_BASE64_SECRET_KEY \
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> -e DB_ENGINE=django.db.backends.postgresql \
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> -e POSTGRES_HOST=YOUR_DATABASE_HOST \
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> -e POSTGRES_PORT=5432 \
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> -e POSTGRES_USER=DB_USER \
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> -e POSTGRES_PASSWORD=DB_PASSWORD \
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> -e POSTGRES_DB=DB_NAME \
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> -e TIMEZONE=Asia/Shanghai \
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> --name tandoor \
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> vabene1111/recipes
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>Running with port 8435 exposed.&lt;/p>
+&lt;p>Check time zones: &lt;a class="link" href="https://timezonedb.com/time-zones" target="_blank" rel="noopener"
+>https://timezonedb.com/time-zones&lt;/a>&lt;/p>
+&lt;h2 id="setting-reverse-proxy-with-nginx">
+&lt;a href="#setting-reverse-proxy-with-nginx">#&lt;/a>
+Setting Reverse Proxy with Nginx
+&lt;/h2>&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;span class="lnt">5
+&lt;/span>&lt;span class="lnt">6
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">location / {
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> proxy_set_header X-Forwarded-Proto $scheme; #required, otherwise there will be CSRF error
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> proxy_set_header Host $http_host; #try $host instead if this doesn&amp;#39;t work
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> proxy_pass http://127.0.0.1:8080;
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> proxy_redirect http://127.0.0.1:8080 https://recipes.domain.com; #replace port and domain
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">}
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div></description></item><item><title>Self Hosting A Status Monitoring Page</title><link>https://yuiofastora.github.io/p/self-hosting-a-status-monitoring-page/</link><pubDate>Thu, 26 Jan 2023 19:00:47 +0800</pubDate><guid>https://yuiofastora.github.io/p/self-hosting-a-status-monitoring-page/</guid><description>&lt;p>Self host status page with docker&lt;/p>
+&lt;h2 id="uptime-kuma">
+&lt;a href="#uptime-kuma">#&lt;/a>
+Uptime Kuma
+&lt;/h2>&lt;blockquote>
+&lt;p>Self-hosted monitoring tool&lt;/p>
+&lt;p>&lt;a class="link" href="https://github.com/louislam/uptime-kuma" target="_blank" rel="noopener"
+>https://github.com/louislam/uptime-kuma&lt;/a>&lt;/p>
+&lt;/blockquote>
+&lt;h3 id="install-with-docker">
+&lt;a href="#install-with-docker">#&lt;/a>
+Install With Docker
+&lt;/h3>&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;span class="lnt">5
+&lt;/span>&lt;span class="lnt">6
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">docker run -d \
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> --restart=always \
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> -p 3001:3001 \
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> -v uptime-kuma:/app/data \
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> --name uptime-kuma \
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> louislam/uptime-kuma:1
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>Setup Reverse Proxy with Nginx&lt;/p>
+&lt;h2 id="statping-ng">
+&lt;a href="#statping-ng">#&lt;/a>
+Statping-ng
+&lt;/h2>&lt;blockquote>
+&lt;p>Status Page &amp;amp; Monitoring Server&lt;/p>
+&lt;p>&lt;a class="link" href="https://github.com/statping-ng/statping-ng" target="_blank" rel="noopener"
+>https://github.com/statping-ng/statping-ng&lt;/a>&lt;/p>
+&lt;/blockquote>
+&lt;h3 id="install-with-docker-1">
+&lt;a href="#install-with-docker-1">#&lt;/a>
+Install With Docker
+&lt;/h3>&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;span class="lnt">5
+&lt;/span>&lt;span class="lnt">6
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">docker run -d \
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> -p 8080:8080 \
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> -v /mydir/statping:/app \
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> --restart always \
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> --name statping \
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> adamboutcher/statping-ng
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>Setup Reverse Proxy with Nginx&lt;/p>
+&lt;h2 id="dash">
+&lt;a href="#dash">#&lt;/a>
+dash.
+&lt;/h2>&lt;blockquote>
+&lt;p>&lt;a class="link" href="https://github.com/MauriceNino/dashdot" target="_blank" rel="noopener"
+>https://github.com/MauriceNino/dashdot&lt;/a>&lt;/p>
+&lt;p>&lt;strong>dash.&lt;/strong> (or &lt;strong>dashdot&lt;/strong>) is a modern server dashboard, running on the latest tech, designed with glassmorphism in mind. It is intended to be used for smaller VPS and private servers.&lt;/p>
+&lt;/blockquote>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;span class="lnt">5
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">docker container run -d -it \
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> -p 80:3001 \
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> -v /:/mnt/host:ro \
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> --privileged \
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> mauricenino/dashdot
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div></description></item><item><title>Self Hosting A URL Shortener</title><link>https://yuiofastora.github.io/p/self-hosting-a-url-shortener/</link><pubDate>Thu, 26 Jan 2023 19:00:47 +0800</pubDate><guid>https://yuiofastora.github.io/p/self-hosting-a-url-shortener/</guid><description>&lt;p>Self host URL shortener with docker&lt;/p>
+&lt;blockquote>
+&lt;p>A PHP-based self-hosted URL shortener that can be used to serve shortened URLs under your own domain.&lt;/p>
+&lt;p>&lt;a class="link" href="https://github.com/shlinkio/shlink" target="_blank" rel="noopener"
+>https://github.com/shlinkio/shlink&lt;/a>&lt;/p>
+&lt;/blockquote>
+&lt;h2 id="setup-with-docker">
+&lt;a href="#setup-with-docker">#&lt;/a>
+Setup with Docker
+&lt;/h2>&lt;p>&lt;code>docker pull shlinkio/shlink:stable&lt;/code>&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;span class="lnt">5
+&lt;/span>&lt;span class="lnt">6
+&lt;/span>&lt;span class="lnt">7
+&lt;/span>&lt;span class="lnt">8
+&lt;/span>&lt;span class="lnt">9
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">docker run -d\
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> --name my_shlink \
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> -p 8080:8080 \
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> -e DEFAULT_DOMAIN=doma.in \
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> -e IS_HTTPS_ENABLED=true \
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> -e GEOLITE_LICENSE_KEY=kjh23ljkbndskj345 \
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> shlinkio/shlink:stable
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">If you don&amp;#39;t provide a GeoLite2 license key, Shlink will simply not geolocate visits.
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;h2 id="generate-a-geolite2-license-key">
+&lt;a href="#generate-a-geolite2-license-key">#&lt;/a>
+Generate a GeoLite2 license key
+&lt;/h2>&lt;ul>
+&lt;li>
+&lt;p>Create a MaxMind &lt;a class="link" href="https://www.maxmind.com/en/geolite2/signup" target="_blank" rel="noopener"
+>account for GeoLite2&lt;/a>.&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>Generate a &lt;a class="link" href="https://www.maxmind.com/en/accounts/current/license-key" target="_blank" rel="noopener"
+>license key&lt;/a>. Its &lt;strong>important&lt;/strong> that you save the value, as you will not be able to recover it afterwards.&lt;/p>
+&lt;/li>
+&lt;/ul>
+&lt;p>Via environment variable: use &lt;code>GEOLITE_LICENSE_KEY&lt;/code> to set your license key.&lt;/p>
+&lt;p>generate a new API&lt;/p>
+&lt;p>&lt;code>docker exec -it my_shlink shlink api-key:generate&lt;/code>&lt;/p>
+&lt;h2 id="setup-shlink-client">
+&lt;a href="#setup-shlink-client">#&lt;/a>
+Setup shlink client
+&lt;/h2>&lt;p>&lt;code>docker pull shlinkio/shlink-web-client&lt;/code>&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;span class="lnt">5
+&lt;/span>&lt;span class="lnt">6
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">docker run -d\
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> --name shlink-web-client \
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> -p 8000:80 \
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> -e SHLINK_SERVER_URL=https://doma.in \
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> -e SHLINK_SERVER_API_KEY=6aeb82c6-e275-4538-a747-31f9abfba63c \
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> shlinkio/shlink-web-client
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div></description></item><item><title>Self Hosting An Email Server With iRedMail</title><link>https://yuiofastora.github.io/p/self-hosting-an-email-server-with-iredmail/</link><pubDate>Thu, 26 Jan 2023 19:00:47 +0800</pubDate><guid>https://yuiofastora.github.io/p/self-hosting-an-email-server-with-iredmail/</guid><description>&lt;p>Self host email service&lt;/p>
+&lt;h2 id="requirements">
+&lt;a href="#requirements">#&lt;/a>
+Requirements
+&lt;/h2>&lt;p>Ports should be open:&lt;/p>
+&lt;p>&lt;a class="link" href="https://docs.iredmail.org/network.ports.html" target="_blank" rel="noopener"
+>https://docs.iredmail.org/network.ports.html&lt;/a>&lt;/p>
+&lt;p>&lt;strong>RAM &amp;gt;= 2 GB&lt;/strong>&lt;/p>
+&lt;p>&lt;strong>2vcpus&lt;/strong>&lt;/p>
+&lt;p>Using Ubuntu 20.04 LTS for this time&lt;/p>
+&lt;h2 id="enable-googles-tcp-bbr">
+&lt;a href="#enable-googles-tcp-bbr">#&lt;/a>
+Enable Google’s TCP BBR
+&lt;/h2>&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;span class="lnt">11
+&lt;/span>&lt;span class="lnt">12
+&lt;/span>&lt;span class="lnt">13
+&lt;/span>&lt;span class="lnt">14
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">echo &amp;#34;net.core.default_qdisc=fq&amp;#34; &amp;gt;&amp;gt; /etc/sysctl.conf
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">echo &amp;#34;net.ipv4.tcp_congestion_control=bbr&amp;#34; &amp;gt;&amp;gt; /etc/sysctl.conf
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">sysctl -p
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">#Check whether bbr is enabled
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">sysctl net.ipv4.tcp_available_congestion_control
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">#output should be
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">net.ipv4.tcp_congestion_control = bbr
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">#Check whether bbr is started
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">lsmod | grep bbr
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"># Output should be
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">tcp_bbr 20480 14
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;h2 id="setting-up-hostname">
+&lt;a href="#setting-up-hostname">#&lt;/a>
+Setting up hostname
+&lt;/h2>&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;span class="lnt">5
+&lt;/span>&lt;span class="lnt">6
+&lt;/span>&lt;span class="lnt">7
+&lt;/span>&lt;span class="lnt">8
+&lt;/span>&lt;span class="lnt">9
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">nano /etc/hosts
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">#add line
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">127.0.0.1 mail.mydomain.com mail
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">nano /etc/hostname
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">#Change to
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">mail
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">sudo reboot
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>Check hostname&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">hostname
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">#Output shoulde be mail
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">hostname -f
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">#Output should be mail.mydomain.com
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;h2 id="install">
+&lt;a href="#install">#&lt;/a>
+Install
+&lt;/h2>&lt;p>Download the latest version&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">wget https://github.com/iredmail/iRedMail/archive/refs/tags/1.6.2.tar.gz
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">tar -xf iRedMail.tar.gz
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">cd iRedMail-1.4.2
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">bash iRedMail.sh
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>Follow the setting instructions&lt;/p>
+&lt;p>Select database type to MariaDB&lt;/p>
+&lt;p>Set mail domain name &lt;code>mydomain.com&lt;/code>instead of &lt;code>mail.mydomain.com&lt;/code>&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;span class="lnt">11
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-gdscript3" data-lang="gdscript3">&lt;span class="line">&lt;span class="cl">&lt;span class="o">***********************************************************************************&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">*&lt;/span> &lt;span class="n">Storgae&lt;/span> &lt;span class="n">base&lt;/span> &lt;span class="n">directory&lt;/span>&lt;span class="p">:&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">*&lt;/span> &lt;span class="n">Mailboxes&lt;/span>&lt;span class="p">:&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">*&lt;/span> &lt;span class="n">Daily&lt;/span> &lt;span class="n">backup&lt;/span> &lt;span class="n">of&lt;/span> &lt;span class="n">SQL&lt;/span>&lt;span class="o">/&lt;/span>&lt;span class="n">LDAP&lt;/span> &lt;span class="n">databases&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="o">/&lt;/span>&lt;span class="k">var&lt;/span>&lt;span class="o">/&lt;/span>&lt;span class="n">mail&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">*&lt;/span> &lt;span class="n">Store&lt;/span> &lt;span class="n">mail&lt;/span> &lt;span class="n">accounts&lt;/span> &lt;span class="ow">in&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="n">MariaDB&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">*&lt;/span> &lt;span class="n">Web&lt;/span> &lt;span class="n">server&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="n">Ngnix&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">*&lt;/span> &lt;span class="n">First&lt;/span> &lt;span class="n">mail&lt;/span> &lt;span class="n">domain&lt;/span> &lt;span class="n">name&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="n">mydomain&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">com&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">*&lt;/span> &lt;span class="n">Mail&lt;/span> &lt;span class="n">domain&lt;/span> &lt;span class="n">admin&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="n">postmaster&lt;/span>&lt;span class="err">@&lt;/span>&lt;span class="n">mydomain&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">com&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">*&lt;/span> &lt;span class="n">Additional&lt;/span> &lt;span class="n">components&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="n">Rondcubenail&lt;/span> &lt;span class="n">netdata&lt;/span> &lt;span class="n">iRedAmin&lt;/span> &lt;span class="n">Fail2ban&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">&amp;lt;&lt;/span> &lt;span class="n">Question&lt;/span> &lt;span class="o">&amp;gt;&lt;/span> &lt;span class="n">Continue&lt;/span>&lt;span class="err">?&lt;/span> &lt;span class="p">[&lt;/span>&lt;span class="n">y&lt;/span>&lt;span class="o">|&lt;/span>&lt;span class="n">N&lt;/span>&lt;span class="p">]&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;h2 id="get-ssl-cert">
+&lt;a href="#get-ssl-cert">#&lt;/a>
+Get SSL cert
+&lt;/h2>&lt;p>Set DNS record&lt;/p>
+&lt;p>&lt;code>mail IN A&lt;/code>&lt;/p>
+&lt;table>
+&lt;thead>
+&lt;tr>
+&lt;th>Type&lt;/th>
+&lt;th>Host&lt;/th>
+&lt;th>Value&lt;/th>
+&lt;th>Priority&lt;/th>
+&lt;th>TTL&lt;/th>
+&lt;/tr>
+&lt;/thead>
+&lt;tbody>
+&lt;tr>
+&lt;td>A&lt;/td>
+&lt;td>mail&lt;/td>
+&lt;td>Host IP address&lt;/td>
+&lt;td>NA&lt;/td>
+&lt;td>Auotomatic&lt;/td>
+&lt;/tr>
+&lt;/tbody>
+&lt;/table>
+&lt;p>Check DNS recordhttps://www.boce.com/dns/https://dnschecker.org/&lt;/p>
+&lt;p>Use ACME scripts for SSL cert&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-gdscript3" data-lang="gdscript3">&lt;span class="line">&lt;span class="cl">&lt;span class="n">curl&lt;/span> &lt;span class="n">https&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="o">//&lt;/span>&lt;span class="n">get&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">acme&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">sh&lt;/span> &lt;span class="o">|&lt;/span> &lt;span class="n">sh&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1">#Could be personal mail, or just use default xxxx@xxxx.com&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">~/.&lt;/span>&lt;span class="n">acme&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">sh&lt;/span>&lt;span class="o">/&lt;/span>&lt;span class="n">acme&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">sh&lt;/span> &lt;span class="o">--&lt;/span>&lt;span class="n">register&lt;/span>&lt;span class="o">-&lt;/span>&lt;span class="n">account&lt;/span> &lt;span class="o">-&lt;/span>&lt;span class="n">m&lt;/span> &lt;span class="n">xxxx&lt;/span>&lt;span class="err">@&lt;/span>&lt;span class="n">xxxx&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">com&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">~/.&lt;/span>&lt;span class="n">acme&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">sh&lt;/span>&lt;span class="o">/&lt;/span>&lt;span class="n">acme&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">sh&lt;/span> &lt;span class="o">--&lt;/span>&lt;span class="n">issue&lt;/span> &lt;span class="o">-&lt;/span>&lt;span class="n">d&lt;/span> &lt;span class="n">mail&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">mydomain&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">com&lt;/span> &lt;span class="o">--&lt;/span>&lt;span class="n">webroot&lt;/span> &lt;span class="o">/&lt;/span>&lt;span class="k">var&lt;/span>&lt;span class="o">/&lt;/span>&lt;span class="n">www&lt;/span>&lt;span class="o">/&lt;/span>&lt;span class="n">html&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>If timeout when CA processes and checks the domain,&lt;/p>
+&lt;p>switch to letsencrypt&lt;/p>
+&lt;p>&lt;code>./acme.sh --set-default-ca --server letsencrypt&lt;/code>&lt;/p>
+&lt;p>Run&lt;/p>
+&lt;p>&lt;code>~/.acme.sh/acme.sh --issue -d mail.mydomain.com --webroot /var/www/html&lt;/code> again&lt;/p>
+&lt;p>Install the certification file to specific location&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;span class="lnt">5
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">#Works on Debian/Ubuntu, FreeBSD and OpenBSD
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">.acme.sh/acme.sh --installcert -d mail.mydomain.com --key-file /etc/ssl/private/iRedMail.key --fullchain-file /etc/ssl/certs/iRedMail.crt
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">#If RHEL/CentOS
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">./acme.sh --installcert -d mail.mydomain.com --key-file /etc/pki/tls/private/iRedMail.key --fullchain-file /etc/pki/tls/certs/iRedMail.crt
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>Reload services&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-gdscript3" data-lang="gdscript3">&lt;span class="line">&lt;span class="cl">&lt;span class="n">service&lt;/span> &lt;span class="n">nginx&lt;/span> &lt;span class="n">force&lt;/span>&lt;span class="o">-&lt;/span>&lt;span class="n">reload&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">service&lt;/span> &lt;span class="n">postfix&lt;/span> &lt;span class="n">reload&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">service&lt;/span> &lt;span class="n">dovecot&lt;/span> &lt;span class="n">reload&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>Remove greylist&lt;/p>
+&lt;p>edit &lt;code>/opt/iredapd/settings.py&lt;/code>&lt;/p>
+&lt;p>delet &lt;code>greylisting&lt;/code> from&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">plugins = [&amp;#34;reject_null_sender&amp;#34;, &amp;#34;wblist_rdns&amp;#34;, &amp;#34;reject_sender_login_mismatch&amp;#34;, &amp;#34;greylisting&amp;#34;, &amp;#34;throttle&amp;#34;, &amp;#34;amavisd_wblist&amp;#34;, &amp;#34;sql_alias_access_policy&amp;#34;]
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>then&lt;/p>
+&lt;p>&lt;code>service iredapd restart&lt;/code>&lt;/p>
+&lt;h2 id="setting-up-dns-records">
+&lt;a href="#setting-up-dns-records">#&lt;/a>
+Setting Up DNS Records
+&lt;/h2>&lt;h3 id="setting-ptr">
+&lt;a href="#setting-ptr">#&lt;/a>
+Setting PTR
+&lt;/h3>&lt;h3 id="setting-mx-record">
+&lt;a href="#setting-mx-record">#&lt;/a>
+Setting MX record
+&lt;/h3>&lt;p>&lt;code>IN MX mail.example.com&lt;/code>&lt;/p>
+&lt;table>
+&lt;thead>
+&lt;tr>
+&lt;th>Type&lt;/th>
+&lt;th>Host&lt;/th>
+&lt;th>Value&lt;/th>
+&lt;th>Priority&lt;/th>
+&lt;th>TTL&lt;/th>
+&lt;/tr>
+&lt;/thead>
+&lt;tbody>
+&lt;tr>
+&lt;td>MX&lt;/td>
+&lt;td>@&lt;/td>
+&lt;td>mail.example.com&lt;/td>
+&lt;td>10&lt;/td>
+&lt;td>3600&lt;/td>
+&lt;/tr>
+&lt;/tbody>
+&lt;/table>
+&lt;p>Get the config from &lt;code>iRedMail.tips&lt;/code> file(inside the iRedMail Installer directory)&lt;/p>
+&lt;h3 id="setting-spf-record">
+&lt;a href="#setting-spf-record">#&lt;/a>
+Setting SPF record
+&lt;/h3>&lt;blockquote>
+&lt;p>SPF or Sender Policy Framework is a DNS TXT record that is used to specify which IP addresses and/or servers are allowed to send email “from” that particular domain. It is designed to detect forging sender addresses during the delivery of the email.&lt;/p>
+&lt;/blockquote>
+&lt;p>add text record&lt;/p>
+&lt;p>&lt;code>v=spf1 a mx ip4:0.0.0.0 ~all&lt;/code>&lt;/p>
+&lt;blockquote>
+&lt;ul>
+&lt;li>v=spf1 – The version of SPF being used, this is the only version available&lt;/li>
+&lt;li>mx – This means all hosts listed in the MX records are allowed to send emails for your domain and all other hosts are disallowed.&lt;/li>
+&lt;li>ip4:0.0.0.0 – This is the IP address of the mail server or domain that is authorized to send email for that domain. Replace the IP in the example with your mail server’s public IP address.&lt;/li>
+&lt;li>~all – The “all” tag tells the receiving server how it should handle messages sent from a domain that is not listed in the SPF record. The tilde (~) with the ‘a’ is a soft fail, this would mark a server that is not listed in the SPF as spam, you can use -a for a flat out rejection.&lt;/li>
+&lt;/ul>
+&lt;/blockquote>
+&lt;h3 id="setting-dkim-records">
+&lt;a href="#setting-dkim-records">#&lt;/a>
+Setting DKIM Records
+&lt;/h3>&lt;blockquote>
+&lt;p>DKIM or Domain Keys Identified Mail is an email authentication method that allows mail services to check that an email was indeed sent and authorized by the owner of that domain. In order to achieve this, you give the email a digital signature. This DKIM signature is a header that is added to the message and is secured with encryption.&lt;/p>
+&lt;p>The difference between DKIM and SPF is that DKIM is used to verify that the contents of the message are trustworthy. This is used to check that the email hasn’t been tampered with since the moment it left the initial mail server.&lt;/p>
+&lt;/blockquote>
+&lt;h3 id="setting-dmarc-records">
+&lt;a href="#setting-dmarc-records">#&lt;/a>
+Setting DMARC Records
+&lt;/h3>&lt;blockquote>
+&lt;p>DMARC or Domain-based Message Authentication Reporting and Conformance extends DKIM and SPF to determine the authenticity of an email message.&lt;/p>
+&lt;p>Most major email providers perform DMARC check by default before accepting the email. By performing these checks, the email provider knows what authentication methods should be present (SPF, DKIM, etc.) and reject messages that fail the checks as specified by the domain’s DMARC record.&lt;/p>
+&lt;p>Unlike SPF and DKIM that doesn’t provide reports on sources sending mails, you can get aggregated reports when DMARC is implemented.&lt;/p>
+&lt;/blockquote>
+&lt;p>&lt;code>v=DMARC1; p=quarantine; pct=100; rua=mailto:dmarc-reports@mydomain.com &lt;/code>&lt;/p>
+&lt;p>The above record states that any email which fails the authentication with the “From” domain is put it in the spam folder 100% of the time and activity is reported to the &lt;a class="link" href="mailto:dmarc-reports@mydomain.com" >dmarc-reports@mydomain.com&lt;/a>. You can also flat out reject any email that fails the DMARC authentication by setting ‘p=reject’.&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">p=reject #reject mails
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">p=none #do nothing
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">p=quarantine #flag as spam
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;h3 id="check-status">
+&lt;a href="#check-status">#&lt;/a>
+Check Status
+&lt;/h3>&lt;p>Check DNS record&lt;/p>
+&lt;p>&lt;a class="link" href="https://dnschecker.org/" target="_blank" rel="noopener"
+>https://dnschecker.org/&lt;/a>&lt;/p>
+&lt;p>Check DNS blacklist&lt;/p>
+&lt;p>&lt;a class="link" href="https://www.boce.com/blacklist/" target="_blank" rel="noopener"
+>https://www.boce.com/blacklist/&lt;/a>&lt;/p>
+&lt;p>&lt;a class="link" href="https://www.dnsbl.info/" target="_blank" rel="noopener"
+>https://www.dnsbl.info/&lt;/a>&lt;/p>
+&lt;p>Check DKIM&lt;/p>
+&lt;p>&lt;a class="link" href="https://dmarcian.com/dkim-inspector/" target="_blank" rel="noopener"
+>https://dmarcian.com/dkim-inspector/&lt;/a>
+&lt;code>nslookup -type=txt dkim._domainkey.mydomain.com&lt;/code>&lt;/p>
+&lt;p>Check DMARC&lt;/p>
+&lt;p>&lt;a class="link" href="https://dmarcian.com/dmarc-inspector/" target="_blank" rel="noopener"
+>https://dmarcian.com/dmarc-inspector/&lt;/a>&lt;/p>
+&lt;p>Check SPF&lt;/p>
+&lt;p>&lt;a class="link" href="https://dmarcian.com/spf-survey/" target="_blank" rel="noopener"
+>https://dmarcian.com/spf-survey/&lt;/a>&lt;/p>
+&lt;h2 id="access-email">
+&lt;a href="#access-email">#&lt;/a>
+Access EMail
+&lt;/h2>&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">https://mail.mydomain.com/mail #mailbox entrance
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">https://mail.mydomain.com/netdata # Server status monitor
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">https://mail.mydomain.com/iredadmin # Admin panel
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>Add new email user&lt;/p>
+&lt;p>Use third-party email clients&lt;/p>
+&lt;table>
+&lt;thead>
+&lt;tr>
+&lt;th>Protocol&lt;/th>
+&lt;th>address&lt;/th>
+&lt;th>ports &amp;amp; secured ports&lt;/th>
+&lt;/tr>
+&lt;/thead>
+&lt;tbody>
+&lt;tr>
+&lt;td>IAMP&lt;/td>
+&lt;td>mail.mydomain.com&lt;/td>
+&lt;td>143,993(SSl/TLS)&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>POP3&lt;/td>
+&lt;td>mail.mydomain.com&lt;/td>
+&lt;td>110,995&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>SMTP&lt;/td>
+&lt;td>mail.mydomain.com&lt;/td>
+&lt;td>25,587(STARLS),465(SSl/TLS)&lt;/td>
+&lt;/tr>
+&lt;/tbody>
+&lt;/table>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;span class="lnt">5
+&lt;/span>&lt;span class="lnt">6
+&lt;/span>&lt;span class="lnt">7
+&lt;/span>&lt;span class="lnt">8
+&lt;/span>&lt;span class="lnt">9
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">* POP3 service: port 110 over STARTTLS (recommended), or port 995 with SSL.
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">* IMAP service: port 143 over STARTTLS (recommended), or port 993 with SSL.
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">* SMTP service: port 587 over STARTTLS.
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> If you need to support old mail clients with SMTP over SSL (port 465),
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> please check our tutorial: https://docs.iredmail.org/enable.smtps.html
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">* CalDAV and CardDAV server addresses: https://&amp;lt;server&amp;gt;/SOGo/dav/&amp;lt;full email address&amp;gt;
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">For more details, please check detailed documentations:
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">https://docs.iredmail.org/#mua
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;h2 id="test-spammyness-of-emails">
+&lt;a href="#test-spammyness-of-emails">#&lt;/a>
+Test Spammyness of Emails
+&lt;/h2>&lt;p>&lt;a class="link" href="https://www.mail-tester.com/" target="_blank" rel="noopener"
+>https://www.mail-tester.com/&lt;/a>&lt;/p>
+&lt;h2 id="fail2ban">
+&lt;a href="#fail2ban">#&lt;/a>
+Fail2ban
+&lt;/h2>&lt;p>Default max tries is 5 times for postfix&lt;/p>
+&lt;p>Unban ip with fail2ban&lt;/p>
+&lt;h2 id="credits">
+&lt;a href="#credits">#&lt;/a>
+Credits
+&lt;/h2>&lt;p>&lt;a class="link" href="https://v2rayssr.com/iredmail.html" target="_blank" rel="noopener"
+>https://v2rayssr.com/iredmail.html&lt;/a>&lt;/p>
+&lt;p>&lt;a class="link" href="https://upcloud.com/resources/tutorials/install-secure-private-email-server-modoboa" target="_blank" rel="noopener"
+>https://upcloud.com/resources/tutorials/install-secure-private-email-server-modoboa&lt;/a>&lt;/p></description></item><item><title>Self Hosting Bookstack</title><link>https://yuiofastora.github.io/p/self-hosting-bookstack/</link><pubDate>Thu, 26 Jan 2023 19:00:47 +0800</pubDate><guid>https://yuiofastora.github.io/p/self-hosting-bookstack/</guid><description>&lt;p>Self host bookstack&lt;/p>
+&lt;blockquote>
+&lt;p>BookStack is a simple, self-hosted, easy-to-use platform for organising and storing information.&lt;/p>
+&lt;p>&lt;a class="link" href="https://www.bookstackapp.com/" target="_blank" rel="noopener"
+>https://www.bookstackapp.com/&lt;/a>&lt;/p>
+&lt;p>&lt;a class="link" href="https://github.com/linuxserver/docker-bookstack" target="_blank" rel="noopener"
+>https://github.com/linuxserver/docker-bookstack&lt;/a>&lt;/p>
+&lt;/blockquote>
+&lt;h2 id="setup-with-docker">
+&lt;a href="#setup-with-docker">#&lt;/a>
+Setup with Docker
+&lt;/h2>&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;span class="lnt">11
+&lt;/span>&lt;span class="lnt">12
+&lt;/span>&lt;span class="lnt">13
+&lt;/span>&lt;span class="lnt">14
+&lt;/span>&lt;span class="lnt">15
+&lt;/span>&lt;span class="lnt">16
+&lt;/span>&lt;span class="lnt">17
+&lt;/span>&lt;span class="lnt">18
+&lt;/span>&lt;span class="lnt">19
+&lt;/span>&lt;span class="lnt">20
+&lt;/span>&lt;span class="lnt">21
+&lt;/span>&lt;span class="lnt">22
+&lt;/span>&lt;span class="lnt">23
+&lt;/span>&lt;span class="lnt">24
+&lt;/span>&lt;span class="lnt">25
+&lt;/span>&lt;span class="lnt">26
+&lt;/span>&lt;span class="lnt">27
+&lt;/span>&lt;span class="lnt">28
+&lt;/span>&lt;span class="lnt">29
+&lt;/span>&lt;span class="lnt">30
+&lt;/span>&lt;span class="lnt">31
+&lt;/span>&lt;span class="lnt">32
+&lt;/span>&lt;span class="lnt">33
+&lt;/span>&lt;span class="lnt">34
+&lt;/span>&lt;span class="lnt">35
+&lt;/span>&lt;span class="lnt">36
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">---
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">version: &amp;#34;2&amp;#34;
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">services:
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> bookstack:
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> image: lscr.io/linuxserver/bookstack
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> container_name: bookstack
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> environment:
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> - PUID=1000
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> - PGID=1000
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> - APP_URL=
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> - DB_HOST=bookstack_db
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> - DB_PORT=3306
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> - DB_USER=bookstack
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> - DB_PASS=&amp;lt;yourdbpass&amp;gt;
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> - DB_DATABASE=bookstackapp
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> volumes:
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> - /path/to/data:/config
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> ports:
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> - 6875:80
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> restart: unless-stopped
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> depends_on:
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> - bookstack_db
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> bookstack_db:
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> image: lscr.io/linuxserver/mariadb
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> container_name: bookstack_db
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> environment:
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> - PUID=1000
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> - PGID=1000
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> - MYSQL_ROOT_PASSWORD=&amp;lt;yourdbpass&amp;gt;
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> - TZ=Europe/London
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> - MYSQL_DATABASE=bookstackapp
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> - MYSQL_USER=bookstack
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> - MYSQL_PASSWORD=&amp;lt;yourdbpass&amp;gt;
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> volumes:
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> - /path/to/data:/config
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> restart: unless-stopped
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>The default username is &lt;a class="link" href="mailto:admin@admin.com" >admin@admin.com&lt;/a> with the password of &lt;strong>password&lt;/strong>, access the container at &lt;a class="link" href="http://dockerhost:6875/" target="_blank" rel="noopener"
+>http://dockerhost:6875&lt;/a>.&lt;/p></description></item><item><title>Self Hosting Filegator</title><link>https://yuiofastora.github.io/p/self-hosting-filegator/</link><pubDate>Thu, 26 Jan 2023 19:00:47 +0800</pubDate><guid>https://yuiofastora.github.io/p/self-hosting-filegator/</guid><description>&lt;blockquote>
+&lt;p>FileGator is a free, open-source, self-hosted web application for managing files and folders.&lt;/p>
+&lt;p>&lt;a class="link" href="https://filegator.io/" target="_blank" rel="noopener"
+>https://filegator.io/&lt;/a>&lt;/p>
+&lt;/blockquote>
+&lt;h2 id="setup-with-docker">
+&lt;a href="#setup-with-docker">#&lt;/a>
+Setup with Docker
+&lt;/h2>&lt;p>&lt;code>docker pull filegator/filegator&lt;/code>&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">docker run -p 8000:80 -d filegator/filegator
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">visit: http://127.0.0.1:8000 login as admin/admin123
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div></description></item><item><title>Self Hosting Flame</title><link>https://yuiofastora.github.io/p/self-hosting-flame/</link><pubDate>Thu, 26 Jan 2023 19:00:47 +0800</pubDate><guid>https://yuiofastora.github.io/p/self-hosting-flame/</guid><description>&lt;blockquote>
+&lt;p>Flame is self-hosted startpage for your server. Its design is inspired (heavily) by &lt;a class="link" href="https://github.com/jeroenpardon/sui" target="_blank" rel="noopener"
+>SUI&lt;/a>. Flame is very easy to setup and use. With built-in editors, it allows you to setup your very own application hub in no time - no file editing necessary.&lt;/p>
+&lt;p>&lt;a class="link" href="https://github.com/pawelmalak/flame" target="_blank" rel="noopener"
+>https://github.com/pawelmalak/flame&lt;/a>&lt;/p>
+&lt;/blockquote>
+&lt;h2 id="setup-with-docker">
+&lt;a href="#setup-with-docker">#&lt;/a>
+Setup with Docker
+&lt;/h2>&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">docker pull pawelmalak/flame
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl"># run container
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">docker run -d -p 5005:5005 -v /path/to/data:/app/data -e PASSWORD=flame_password pawelmalak/flame
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div></description></item><item><title>Self Hosting Gokapi</title><link>https://yuiofastora.github.io/p/self-hosting-gokapi/</link><pubDate>Thu, 26 Jan 2023 19:00:47 +0800</pubDate><guid>https://yuiofastora.github.io/p/self-hosting-gokapi/</guid><description>&lt;blockquote>
+&lt;p>Gokapi is a lightweight server to share files, which expire after a set amount of downloads or days.&lt;/p>
+&lt;p>&lt;a class="link" href="https://github.com/Forceu/gokapi" target="_blank" rel="noopener"
+>https://github.com/Forceu/gokapi&lt;/a>&lt;/p>
+&lt;/blockquote>
+&lt;h2 id="setup-with-docker">
+&lt;a href="#setup-with-docker">#&lt;/a>
+Setup with docker
+&lt;/h2>&lt;p>&lt;code>docker pull f0rc3/gokapi:latest&lt;/code>&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">docker run -d --name gokapi -v {host-gokapi-data}:/app/data -v {host-gokapi-config}:/app/config -p 53842:53842 f0rc3/gokapi:latest
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>Open http://localhost:53842/setup for initial setup&lt;/p>
+&lt;blockquote>
+&lt;p>Setup variables&lt;/p>
+&lt;p>&lt;a class="link" href="https://gokapi.readthedocs.io/en/latest/setup.html" target="_blank" rel="noopener"
+>https://gokapi.readthedocs.io/en/latest/setup.html&lt;/a>&lt;/p>
+&lt;/blockquote>
+&lt;p>yourdomain.com/admin for admin panel&lt;/p></description></item><item><title>Self Hosting Littlelink Custom</title><link>https://yuiofastora.github.io/p/self-hosting-littlelink-custom/</link><pubDate>Thu, 26 Jan 2023 19:00:47 +0800</pubDate><guid>https://yuiofastora.github.io/p/self-hosting-littlelink-custom/</guid><description>&lt;blockquote>
+&lt;p>LittleLink Custom is a modification of LittleLink, an open source project with the purpose of enabling people to host their own alternatives to services like Linktree and many.link.&lt;/p>
+&lt;p>&lt;a class="link" href="https://littlelink-custom.com/docker" target="_blank" rel="noopener"
+>https://littlelink-custom.com/docker&lt;/a>&lt;/p>
+&lt;/blockquote>
+&lt;h2 id="setup-with-docker">
+&lt;a href="#setup-with-docker">#&lt;/a>
+Setup with Docker
+&lt;/h2>&lt;p>&lt;code>docker pull julianprieber/littlelink-custom&lt;/code>&lt;/p>
+&lt;p>Create persistent storage for llc&lt;/p>
+&lt;p>&lt;code>docker volume create llc&lt;/code>&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;span class="lnt">11
+&lt;/span>&lt;span class="lnt">12
+&lt;/span>&lt;span class="lnt">13
+&lt;/span>&lt;span class="lnt">14
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">docker run --detach \
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> --name littlelink-custom \
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> --hostname littlelink-custom \
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> --env HTTP_SERVER_NAME=&amp;#34;www.example.xyz&amp;#34; \
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> --env HTTPS_SERVER_NAME=&amp;#34;www.example.xyz&amp;#34; \
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> --env SERVER_ADMIN=&amp;#34;admin@example.xyz&amp;#34; \
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> --env TZ=&amp;#34;Europe/Berlin&amp;#34; \
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> --env PHP_MEMORY_LIMIT=&amp;#34;512M&amp;#34; \
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> --env UPLOAD_MAX_FILESIZE=&amp;#34;16M&amp;#34; \
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> --publish 80:80 \
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> --publish 443:443 \
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> --restart unless-stopped \
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> --mount source=llc,target=/htdocs \
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> julianprieber/littlelink-custom
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>Login to the admin panel with default credentials&lt;/p>
+&lt;ul>
+&lt;li>&lt;strong>email:&lt;/strong> &lt;code>admin@admin.com&lt;/code>&lt;/li>
+&lt;li>&lt;strong>password:&lt;/strong> &lt;code>12345678&lt;/code>&lt;/li>
+&lt;/ul>
+&lt;p>Access user panel from mydomain.com/home&lt;/p>
+&lt;h2 id="reverse-proxy">
+&lt;a href="#reverse-proxy">#&lt;/a>
+Reverse Proxy
+&lt;/h2>&lt;p>Target URL should be https://localhost:port&lt;/p>
+&lt;p>Using port 443(HTTPS_SERVER) instead of 80&lt;/p></description></item><item><title>Self Hosting Pinry</title><link>https://yuiofastora.github.io/p/self-hosting-pinry/</link><pubDate>Thu, 26 Jan 2023 19:00:47 +0800</pubDate><guid>https://yuiofastora.github.io/p/self-hosting-pinry/</guid><description>&lt;blockquote>
+&lt;p>The open-source core of Pinry, a tiling image board system for people who want to save, tag, and share images, videos and webpages in an easy to skim through format.&lt;/p>
+&lt;p>&lt;a class="link" href="https://github.com/pinry/pinry" target="_blank" rel="noopener"
+>https://github.com/pinry/pinry&lt;/a>&lt;/p>
+&lt;/blockquote>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">docker pull getpinry/pinry
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;span class="lnt">5
+&lt;/span>&lt;span class="lnt">6
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-gdscript3" data-lang="gdscript3">&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># this should be an abs-path not relative path like &amp;#34;.&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="k">export&lt;/span> &lt;span class="n">DATA_PATH&lt;/span>&lt;span class="o">=/&lt;/span>&lt;span class="nb">abs&lt;/span>&lt;span class="o">/&lt;/span>&lt;span class="n">path&lt;/span>&lt;span class="o">/&lt;/span>&lt;span class="n">to&lt;/span>&lt;span class="o">/&lt;/span>&lt;span class="n">your&lt;/span>&lt;span class="o">/&lt;/span>&lt;span class="n">data&lt;/span>&lt;span class="o">/&lt;/span>&lt;span class="n">directory&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">sudo&lt;/span> &lt;span class="n">docker&lt;/span> &lt;span class="n">run&lt;/span> &lt;span class="o">-&lt;/span>&lt;span class="n">d&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="bp">true&lt;/span> &lt;span class="o">-&lt;/span>&lt;span class="n">p&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="mi">80&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="mi">80&lt;/span> \
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="o">-&lt;/span>&lt;span class="n">v&lt;/span>&lt;span class="o">=$&lt;/span>&lt;span class="p">{&lt;/span>&lt;span class="n">DATA_PATH&lt;/span>&lt;span class="p">}:&lt;/span>&lt;span class="o">/&lt;/span>&lt;span class="n">data&lt;/span> \
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">getpinry&lt;/span>&lt;span class="o">/&lt;/span>&lt;span class="n">pinry&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>Create superuser&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">docker exec -it clever_hermann python manage.py createsuperuser --settings=pinry.settings.docker
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div></description></item></channel></rss>

@@ -1,0 +1,2131 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Game on Yui's Blog</title><link>https://yuiofastora.github.io/tags/game/</link><description>Recent content in Game on Yui's Blog</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Thu, 26 Jan 2023 18:55:00 +0800</lastBuildDate><atom:link href="https://yuiofastora.github.io/tags/game/index.xml" rel="self" type="application/rss+xml"/><item><title>Insurgency Sandstorm 开服指南</title><link>https://yuiofastora.github.io/p/insurgency-sandstorm-%E5%BC%80%E6%9C%8D%E6%8C%87%E5%8D%97/</link><pubDate>Thu, 26 Jan 2023 18:55:00 +0800</pubDate><guid>https://yuiofastora.github.io/p/insurgency-sandstorm-%E5%BC%80%E6%9C%8D%E6%8C%87%E5%8D%97/</guid><description>&lt;blockquote>
+&lt;p>本文是对&lt;a class="link" href="https://insurgencysandstorm.mod.io/guides/server-admin-guide" target="_blank" rel="noopener"
+>官方开服指南&lt;/a>的汉化,同时有所增删&lt;/p>
+&lt;p>配置文件参考:
+&lt;a class="link" href="https://github.com/JonathanChuyan/sandstorm-server-config" target="_blank" rel="noopener"
+>https://github.com/JonathanChuyan/sandstorm-server-config&lt;/a>
+&lt;a class="link" href="https://github.com/zDestinate/INS_Sandstorm" target="_blank" rel="noopener"
+>https://github.com/zDestinate/INS_Sandstorm&lt;/a>
+&lt;a class="link" href="https://www.bilibili.com/video/BV1A44y1C7it/" target="_blank" rel="noopener"
+>视频教程&lt;/a>&lt;/p>
+&lt;iframe src="//player.bilibili.com/player.html?aid=975109598&amp;bvid=BV1A44y1C7it&amp;cid=396238073&amp;page=1" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"> &lt;/iframe>
+最后更新日期 2022-10-26
+&lt;/blockquote>
+&lt;h2 id="前置需求windows-">
+&lt;a href="#%e5%89%8d%e7%bd%ae%e9%9c%80%e6%b1%82windows-">#&lt;/a>
+前置需求(Windows )
+&lt;/h2>&lt;p>开始服务器安装前，先确保你已安装以下前置&lt;/p>
+&lt;p>&lt;a class="link" href="https://www.microsoft.com/en-us/download/details.aspx?id=53587" target="_blank" rel="noopener"
+>Visual C++ 2015 运行库&lt;/a>&lt;/p>
+&lt;p>&lt;a class="link" href="https://aka.ms/vs/15/release/vc_redist.x64.exe" target="_blank" rel="noopener"
+>Visual C++ 2017运行库&lt;/a>&lt;/p>
+&lt;h2 id="steamcmd">
+&lt;a href="#steamcmd">#&lt;/a>
+SteamCMD
+&lt;/h2>&lt;h3 id="命令行界面">
+&lt;a href="#%e5%91%bd%e4%bb%a4%e8%a1%8c%e7%95%8c%e9%9d%a2">#&lt;/a>
+命令行界面
+&lt;/h3>&lt;p>使用该命令行工具安装升级服务器文件&lt;/p>
+&lt;p>查看V社官方下载安装教程:&lt;/p>
+&lt;ul>
+&lt;li>&lt;a class="link" href="https://developer.valvesoftware.com/wiki/SteamCMD:zh-cn#Windows" target="_blank" rel="noopener"
+>&lt;strong>Windows&lt;/strong>&lt;/a>&lt;/li>
+&lt;li>&lt;a class="link" href="https://developer.valvesoftware.com/wiki/SteamCMD:zh-cn#Linux" target="_blank" rel="noopener"
+>&lt;strong>Linux&lt;/strong>&lt;/a>&lt;/li>
+&lt;/ul>
+&lt;p>如果你使用的是windows,将下载的steamcmd压缩包文件解压到合适的路径,安装过程中会经常需要回到此路径进行操作&lt;/p>
+&lt;p>大多数SteamCMD命令都需要知道应用程序ID,沙暴服务器端的应用ID是581330(注意，服务器端应用ID和玩家游戏客户端的ID是不同的，这里需要的是服务器端)&lt;/p>
+&lt;p>接下来安装沙暴服务器端:&lt;/p>
+&lt;ol>
+&lt;li>启动SteamCMD，初次启动需要点时间下载更新&lt;/li>
+&lt;li>在SteamCMD命令行窗口中输入&lt;code>login anonymous&lt;/code>并回车，这样可以无用户匿名登录下载许多游戏服务器端&lt;/li>
+&lt;li>输入&lt;code>app_update 581330 validate&lt;/code>并回车，将会开始下载安装沙暴服务器端(以后如果游戏有了更新，同样使用该命令更新服务器端)&lt;/li>
+&lt;li>安装完成后输入&lt;code>quit&lt;/code>回车退出SteamCMD&lt;/li>
+&lt;/ol>
+&lt;p>安装完后的文件位置在&lt;strong>SteamCMD安装位置/steamapps/common&lt;/strong>内，具体参考自己SteamCMD的安装路径&lt;/p>
+&lt;h3 id="图形化界面windows">
+&lt;a href="#%e5%9b%be%e5%bd%a2%e5%8c%96%e7%95%8c%e9%9d%a2windows">#&lt;/a>
+图形化界面（Windows）
+&lt;/h3>&lt;p>如果不想用命令行，也可以使用开源GUI应用下载安装沙暴服务器文件&lt;/p>
+&lt;p>&lt;a class="link" href="https://github.com/DioJoestar/SteamCMD-GUI" target="_blank" rel="noopener"
+>https://github.com/DioJoestar/SteamCMD-GUI&lt;/a>&lt;/p>
+&lt;h2 id="启动服务器">
+&lt;a href="#%e5%90%af%e5%8a%a8%e6%9c%8d%e5%8a%a1%e5%99%a8">#&lt;/a>
+启动服务器
+&lt;/h2>&lt;p>编写一个启动脚本,&lt;/p>
+&lt;h3 id="windows">
+&lt;a href="#windows">#&lt;/a>
+Windows
+&lt;/h3>&lt;ol>
+&lt;li>在沙暴服务器安装路径sandstorm_server(之前提到的steamapps/common里)创建一个文本文档
+其实在哪编写都无所谓，只要你能在正确的路径调用启动,为了方便这里直接在安装路径里创建了&lt;/li>
+&lt;li>编写启动命令(具体怎么写见下方）,直接把下方的命令复制进去就行，什么也不需要改，现在我们只需要初次启动一下服务器来生成基本的游戏文件,后面再去修改启动脚本即可&lt;/li>
+&lt;li>快捷键大法CTRL + Shift + S保存文件，另存为start.bat, 注意是 &lt;code>.bat后缀文件&lt;/code>&lt;/li>
+&lt;/ol>
+&lt;h3 id="linux">
+&lt;a href="#linux">#&lt;/a>
+Linux
+&lt;/h3>&lt;ol>
+&lt;li>cd 到安装目录(steamapps/common/sandstorm_server内)&lt;/li>
+&lt;li>编写并创建start.sh文件 保存并&lt;code>chmod +x start.sh&lt;/code> 给个执行权限(具体怎么写见下方,直接把下方的命令复制进去就行，什么也不需要改，现在我们只需要初次启动一下服务器来生成基本的游戏文件,后面再去修改启动脚本即可)&lt;/li>
+&lt;/ol>
+&lt;table>
+&lt;thead>
+&lt;tr>
+&lt;th>平台&lt;/th>
+&lt;th>命令&lt;/th>
+&lt;/tr>
+&lt;/thead>
+&lt;tbody>
+&lt;tr>
+&lt;td>Windows&lt;/td>
+&lt;td>InsurgencyServer.exe Oilfield?Scenario=Scenario_Refinery_Push_Security?MaxPlayers=28 -Port=27102 -QueryPort=27131 -log -hostname=&amp;ldquo;My Server&amp;rdquo;&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>Linux&lt;/td>
+&lt;td>Insurgency/Binaries/Linux/InsurgencyServer-Linux-Shipping Oilfield?Scenario=Scenario_Refinery_Push_Security?MaxPlayers=28 -Port=27102 -QueryPort=27131 -log -hostname=&amp;ldquo;My Server&amp;rdquo;&lt;/td>
+&lt;/tr>
+&lt;/tbody>
+&lt;/table>
+&lt;p>运行脚本,启动一下游戏,看到命令行显示地图已经加载后就可以直接关掉了,接下来我们开始修改启动脚本&lt;/p>
+&lt;h2 id="修改启动脚本">
+&lt;a href="#%e4%bf%ae%e6%94%b9%e5%90%af%e5%8a%a8%e8%84%9a%e6%9c%ac">#&lt;/a>
+修改启动脚本
+&lt;/h2>&lt;p>对于启动脚本命令，大致格式如下&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">可执行程序位置 空格 服务器启动后的初始地图场景?其他Travel参数?其他Travel参数 空格 -其他命令行参数 空格 -其他命令行参数
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>首先是Travel参数(NWI给的名字就叫这玩意),每个参数间无空格分隔，而是使用?分隔, 上面的Maxplayer最大玩家数, 游戏端口号, Query端口号都是travel参数&lt;/p>
+&lt;p>然后是命令行参数,每个参数以 - 开头并用空格分隔, 比如上面的-log(启动日志), -hostname（服务器房间名）&lt;/p>
+&lt;p>对应到前面的命令就是&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">服务器应用程序位置 炼油厂地图?炼油厂地图模式?最大玩家数=28 -游戏端口号=27102 -Query端口号=27131 -启用日志 -服务器房间名=&amp;#34;我的沙暴服务器&amp;#34;
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>首先我们可以更改服务器房间名,玩家在浏览社区服务器的时候，你的房间会以该名称显示,比如这里我们叫 游骑兵#精英特训; 最大玩家数设为8，游戏端口号和Query端口保持官方默认&lt;/p>
+&lt;p>启动脚本(Linux)则应为&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">Insurgency/Binaries/Linux/InsurgencyServer-Linux-Shipping Oilfield?Scenario=Scenario_Refinery_Push_Security?MaxPlayers=8 -Port=27102 -QueryPort=27131 -log -hostname=&amp;#34;游骑兵#精英特训&amp;#34;
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;h3 id="命令行参数">
+&lt;a href="#%e5%91%bd%e4%bb%a4%e8%a1%8c%e5%8f%82%e6%95%b0">#&lt;/a>
+命令行参数
+&lt;/h3>&lt;table>
+&lt;thead>
+&lt;tr>
+&lt;th>参数&lt;/th>
+&lt;th>描述&lt;/th>
+&lt;/tr>
+&lt;/thead>
+&lt;tbody>
+&lt;tr>
+&lt;td>-log&lt;/td>
+&lt;td>启用日志窗口&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>-hostname=&amp;ldquo;我的服务器&amp;rdquo;&lt;/td>
+&lt;td>设置服务器房间名是&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>-EnableCheats&lt;/td>
+&lt;td>允许作弊以供测试&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>-Port=端口号&lt;/td>
+&lt;td>玩家加入游戏所使用的端口&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>-QueryPort=端口号&lt;/td>
+&lt;td>Steam查询服务器所使用的端口,以让服务器能正常出现在游戏的社区服务器列表中&lt;/td>
+&lt;/tr>
+&lt;/tbody>
+&lt;/table>
+&lt;h3 id="travel参数">
+&lt;a href="#travel%e5%8f%82%e6%95%b0">#&lt;/a>
+Travel参数
+&lt;/h3>&lt;p>跟在地图场景代码后,以?分隔&lt;/p>
+&lt;table>
+&lt;thead>
+&lt;tr>
+&lt;th>参数&lt;/th>
+&lt;th>描述&lt;/th>
+&lt;/tr>
+&lt;/thead>
+&lt;tbody>
+&lt;tr>
+&lt;td>password&lt;/td>
+&lt;td>给服务器上锁，需要密码才能加入&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>MaxPlayers&lt;/td>
+&lt;td>服务器最大玩家数&lt;/td>
+&lt;/tr>
+&lt;/tbody>
+&lt;/table>
+&lt;h2 id="端口与防火墙放行">
+&lt;a href="#%e7%ab%af%e5%8f%a3%e4%b8%8e%e9%98%b2%e7%81%ab%e5%a2%99%e6%94%be%e8%a1%8c">#&lt;/a>
+端口与防火墙放行
+&lt;/h2>&lt;p>至少需要两个端口, 玩家加入端口,查询端口,如果使用rcon,则还需要rcon端口(这个在配置文件里指定,后面会讲)&lt;/p>
+&lt;p>官方默认的是27102, 27131,27105,可以自行调整&lt;/p>
+&lt;p>这里笔者就全部按官方默认了,&lt;/p>
+&lt;p>如果使用的是云主机，请到对应平台商提供的管理面板新建防火墙放行规则&lt;/p>
+&lt;p>首先是玩家加入端口,需要放行TCP, UDP（TCP,UDP都必须放行）; Query端口需要放行TCP , UDP (好像只放行UDP也可以) RCON端口只需要放行UDP&lt;/p>
+&lt;h2 id="添加管理员名单">
+&lt;a href="#%e6%b7%bb%e5%8a%a0%e7%ae%a1%e7%90%86%e5%91%98%e5%90%8d%e5%8d%95">#&lt;/a>
+添加管理员名单
+&lt;/h2>&lt;p>可以添加指定steam玩家作为管理员,管理员在加入游戏后按下管理员面板键(自行到游戏内按键绑定里查找)即可进行踢人,封禁,换图等操作&lt;/p>
+&lt;p>找到沙暴服务器安装目录(steamapps/common/sandstorm_server),&lt;/p>
+&lt;h3 id="windows-1">
+&lt;a href="#windows-1">#&lt;/a>
+Windows
+&lt;/h3>&lt;ol>
+&lt;li>进入Insurgency文件夹,新建Config文件夹然后进入&lt;/li>
+&lt;li>在Config文件夹内新建Server文件夹并进入&lt;/li>
+&lt;li>创建Admins.txt，将玩家的steam 64 ID写入，每一行一个steam 64 ID
+完整路径样例: steamapps\common\sandstorm_server\Insurgency\Config\Server\Admins.txt&lt;/li>
+&lt;/ol>
+&lt;h3 id="linux-1">
+&lt;a href="#linux-1">#&lt;/a>
+Linux
+&lt;/h3>&lt;ol>
+&lt;li>进入Insurgency目录, 新建目录 &lt;code>mkdir -p Config/Server&lt;/code>&lt;/li>
+&lt;li>&lt;code>cd Config/Server&lt;/code>&lt;/li>
+&lt;li>创建Admins.txt，将玩家的steam 64 ID写入，每一行一个steam 64 ID
+完整路径样例 steamapps/common/sandstorm_server/Insurgency/Config/Server/Admins.txt&lt;/li>
+&lt;/ol>
+&lt;p>如果你有多个Admins名单，可以使用在启动脚本中加入 参数-AdminList选择要使用哪一个, 比如要使用&lt;/p>
+&lt;p>steamapps/common/sandstorm_server/Insurgency/Config/Server/Admins2.txt，则应在启动脚本中加入 &lt;code>-AdminList=Admins2&lt;/code>,不指定-AdminList参数则默认读取Admins.txt&lt;/p>
+&lt;p>steam 64 ID可以通过该&lt;a class="link" href="https://steamid.io/" target="_blank" rel="noopener"
+>网站&lt;/a>查询到&lt;/p>
+&lt;h2 id="添加服务器公告">
+&lt;a href="#%e6%b7%bb%e5%8a%a0%e6%9c%8d%e5%8a%a1%e5%99%a8%e5%85%ac%e5%91%8a">#&lt;/a>
+添加服务器公告
+&lt;/h2>&lt;p>服务器可以在玩家加载游戏的时候显示编辑好的公告内容(Message of the Day)。将写好的公告直接放入Motd.txt内,该文件默认存放路径为(没有就新建) Insurgency/Config/Server/Motd.txt (与前文的Admins.txt在同一路径)。&lt;/p>
+&lt;p>如果你有多个Motd文件，在启动脚本里使用&lt;code>-motd&lt;/code>指定要使用哪一个, 如-motd=MyOtherMOTD.txt&lt;/p>
+&lt;h2 id="远程控制rcon">
+&lt;a href="#%e8%bf%9c%e7%a8%8b%e6%8e%a7%e5%88%b6rcon">#&lt;/a>
+远程控制(Rcon)
+&lt;/h2>&lt;p>服务器管理员可以通过Rcon远程管理服务器而无需加入游戏。&lt;/p>
+&lt;p>要启用rcon，需要在启动脚本中加入参数: &lt;code>-Rcon -RconPassword=rcon密码 -RconListenPort=27015&lt;/code> ;也可以在Game.ini中配置(后文会讲)&lt;/p>
+&lt;p>官方给出的Rcon默认监听端口号为27015（可以自行调整 ），注意将端口号进行防火墙放行，放行协议为UDP&lt;/p>
+&lt;h3 id="rcon-命令">
+&lt;a href="#rcon-%e5%91%bd%e4%bb%a4">#&lt;/a>
+Rcon 命令
+&lt;/h3>&lt;p>输入&lt;code>help&lt;/code>可以获取所有命令及其用法和描述&lt;/p>
+&lt;p>必要参数用“&amp;lt;”和“&amp;gt;”括起来，而可选参数用“[”和“]”括起来。 “net ID”通常是指用户的 Steam ID。&lt;/p>
+&lt;table>
+&lt;thead>
+&lt;tr>
+&lt;th>&lt;strong>命令&lt;/strong>&lt;/th>
+&lt;th>参数&lt;/th>
+&lt;th>功能&lt;/th>
+&lt;/tr>
+&lt;/thead>
+&lt;tbody>
+&lt;tr>
+&lt;td>ban&lt;/td>
+&lt;td>&amp;lt;id/netid/名字&amp;gt; [时长分钟] [原因]&lt;/td>
+&lt;td>封禁玩家&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>banid&lt;/td>
+&lt;td>[时长分钟] [原因]&lt;/td>
+&lt;td>以steam ID封禁玩家，不需要玩家正在服务器游玩&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>gamemodeproperty&lt;/td>
+&lt;td>[new value]&lt;/td>
+&lt;td>获取或设置地图模式属性&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>help&lt;/td>
+&lt;td>&lt;/td>
+&lt;td>显示所有可用命令&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>kick&lt;/td>
+&lt;td>&amp;lt;id/netid/name&amp;gt; [原因]&lt;/td>
+&lt;td>将玩家踢出服务器&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>listban&lt;/td>
+&lt;td>&lt;/td>
+&lt;td>显示服务器已封禁的所有玩家&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>listgamemodeproperties&lt;/td>
+&lt;td>[property filter]&lt;/td>
+&lt;td>显示目前可用的游戏模式属性&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>listplayers&lt;/td>
+&lt;td>&lt;/td>
+&lt;td>显示目前正在服务器游玩的玩家&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>maps&lt;/td>
+&lt;td>[level filter]&lt;/td>
+&lt;td>显示可用的地图&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>permaban&lt;/td>
+&lt;td>&amp;lt;id/netid/name&amp;gt; [原因]&lt;/td>
+&lt;td>永久封禁玩家&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>restartround&lt;/td>
+&lt;td>[0 = 不换边, 1 = 换边]&lt;/td>
+&lt;td>重新开始当前回合&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>say&lt;/td>
+&lt;td>&lt;/td>
+&lt;td>像所有玩家发送一条消息，玩家将在左上角看到一条带[Admin]前缀的消息&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>scenarios&lt;/td>
+&lt;td>[level filter]&lt;/td>
+&lt;td>显示所有可用地图场景&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>travel&lt;/td>
+&lt;td>&amp;lt;目标地图的完整代码&amp;gt;&lt;/td>
+&lt;td>将游戏地图场景立刻改为其他地图&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>travelscenario&lt;/td>
+&lt;td>&amp;lt;场景代码&amp;gt;&lt;/td>
+&lt;td>更改到指定场景.&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>unban&lt;/td>
+&lt;td>&lt;/td>
+&lt;td>为用户解封&lt;/td>
+&lt;/tr>
+&lt;/tbody>
+&lt;/table>
+&lt;p>示例&lt;code>travel Tell?Scenario=Scenario_Tell_Checkpoint?Lighting=Day&lt;/code>&lt;/p>
+&lt;h2 id="启用经验获取">
+&lt;a href="#%e5%90%af%e7%94%a8%e7%bb%8f%e9%aa%8c%e8%8e%b7%e5%8f%96">#&lt;/a>
+启用经验获取
+&lt;/h2>&lt;p>服务器默认是没有经验获取的，需要使用绑定Steam生成的Token才行&lt;/p>
+&lt;p>进入该网站&lt;a class="link" href="https://gamestats.sandstorm.game/" target="_blank" rel="noopener"
+>GameStats Token Generator&lt;/a> ,点击Connect using steam进行授权&lt;/p>
+&lt;p>点击Generate Token生成GameStats token&lt;/p>
+&lt;p>然后便可看到类似这样的一行&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">-GameStatsToken=14172XXXXXXXXXXXXX
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>直接将其作为参数加入到启动脚本中即可&lt;/p>
+&lt;p>一个token可以给多个服务器使用&lt;/p>
+&lt;h2 id="地图轮换池">
+&lt;a href="#%e5%9c%b0%e5%9b%be%e8%bd%ae%e6%8d%a2%e6%b1%a0">#&lt;/a>
+地图轮换池
+&lt;/h2>&lt;p>默认情况下，服务器会轮换所有可用的PVP对抗地图&lt;/p>
+&lt;p>你可以通过MapCycle.txt来指定服务器的地图轮换, 该文件存放在Insurgency/Config/Server/MapCycle.txt(没有就新建,和前文的Admins.txt 在同一路径下),每一行一个地图&lt;/p>
+&lt;p>如果你有多个地图池, 在启动脚本中使用-MapCycle=MyOtherMapCycle指定&lt;/p>
+&lt;p>MapCycle文件中最简单的格式就是直接将地图场景代码写入，每一行一个,如：&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;span class="lnt">5
+&lt;/span>&lt;span class="lnt">6
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-plain" data-lang="plain">&lt;span class="line">&lt;span class="cl">Scenario_Crossing_Skirmish
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Scenario_Hideout_Skirmish
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Scenario_Precinct_Skirmish
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Scenario_Refinery_Skirmish
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Scenario_Farmhouse_Skirmish
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Scenario_Summit_Skirmish
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>如果你想指定一些特殊模式，比如硬核Checkpoint，则需要添加Mode参数，格式如下&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">(Scenario=&amp;#34;Scenario_Town_Checkpoint_Security&amp;#34;,Mode=&amp;#34;CheckpointHardcore&amp;#34;)
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;h2 id="所有地图场景代码14张图">
+&lt;a href="#%e6%89%80%e6%9c%89%e5%9c%b0%e5%9b%be%e5%9c%ba%e6%99%af%e4%bb%a3%e7%a0%8114%e5%bc%a0%e5%9b%be">#&lt;/a>
+所有地图场景代码(14张图)
+&lt;/h2>&lt;p>注意不是所有地图都有Outpost ,Push ,Survival等模式&lt;/p>
+&lt;h4 id="crossing-canyon">
+&lt;a href="#crossing-canyon">#&lt;/a>
+&lt;strong>Crossing (Canyon)&lt;/strong>
+&lt;/h4>&lt;table>
+&lt;thead>
+&lt;tr>
+&lt;th>&lt;strong>Scenario****Name&lt;/strong>&lt;/th>
+&lt;th>&lt;strong>Description&lt;/strong>&lt;/th>
+&lt;/tr>
+&lt;/thead>
+&lt;tbody>
+&lt;tr>
+&lt;td>Scenario_Crossing_Checkpoint_Insurgents&lt;/td>
+&lt;td>Checkpoint 叛军&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>Scenario_Crossing_Checkpoint_Security&lt;/td>
+&lt;td>Checkpoint 安全部队&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>Scenario_Crossing_Domination&lt;/td>
+&lt;td>Domination&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>Scenario_Crossing_Firefight_West&lt;/td>
+&lt;td>Firefight West&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>Scenario_Crossing_Frontline&lt;/td>
+&lt;td>Frontline&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>Scenario_Crossing_Push_Insurgents&lt;/td>
+&lt;td>Push 叛军&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>Scenario_Crossing_Push_Security&lt;/td>
+&lt;td>Push 安全部队&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>Scenario_Crossing_Skirmish&lt;/td>
+&lt;td>Skirmish&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>Scenario_Crossing_Team_Deathmatch&lt;/td>
+&lt;td>Team Deathmatch&lt;/td>
+&lt;/tr>
+&lt;/tbody>
+&lt;/table>
+&lt;h4 id="farmhouse">
+&lt;a href="#farmhouse">#&lt;/a>
+&lt;strong>Farmhouse&lt;/strong>
+&lt;/h4>&lt;table>
+&lt;thead>
+&lt;tr>
+&lt;th>&lt;strong>Scenario****Name&lt;/strong>&lt;/th>
+&lt;th>&lt;strong>Description&lt;/strong>&lt;/th>
+&lt;/tr>
+&lt;/thead>
+&lt;tbody>
+&lt;tr>
+&lt;td>Scenario_Farmhouse_Checkpoint_Insurgents&lt;/td>
+&lt;td>Checkpoint 叛军&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>Scenario_Farmhouse_Checkpoint_Security&lt;/td>
+&lt;td>Checkpoint 安全部队&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>Scenario_Farmhouse_Domination&lt;/td>
+&lt;td>Domination&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>Scenario_Farmhouse_Firefight_East&lt;/td>
+&lt;td>Firefight East&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>Scenario_Farmhouse_Firefight_West&lt;/td>
+&lt;td>Firefight West&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>Scenario_Farmhouse_Frontline&lt;/td>
+&lt;td>Frontline&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>Scenario_Farmhouse_Push_Insurgents&lt;/td>
+&lt;td>Push 叛军&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>Scenario_Farmhouse_Push_Security&lt;/td>
+&lt;td>Push 安全部队&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>Scenario_Farmhouse_Skirmish&lt;/td>
+&lt;td>Skirmish&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>Scenario_Farmhouse_Team_Deathmatch&lt;/td>
+&lt;td>Team Deathmatch&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>Scenario_Farmhouse_Survival&lt;/td>
+&lt;td>Survival&lt;/td>
+&lt;/tr>
+&lt;/tbody>
+&lt;/table>
+&lt;h4 id="hideout-town">
+&lt;a href="#hideout-town">#&lt;/a>
+&lt;strong>Hideout (Town)&lt;/strong>
+&lt;/h4>&lt;table>
+&lt;thead>
+&lt;tr>
+&lt;th>&lt;strong>Scenario****Name&lt;/strong>&lt;/th>
+&lt;th>&lt;strong>Description&lt;/strong>&lt;/th>
+&lt;/tr>
+&lt;/thead>
+&lt;tbody>
+&lt;tr>
+&lt;td>Scenario_Hideout_Checkpoint_Insurgents&lt;/td>
+&lt;td>Checkpoint Insurgents&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>Scenario_Hideout_Checkpoint_Security&lt;/td>
+&lt;td>Checkpoint Security&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>Scenario_Hideout_Domination&lt;/td>
+&lt;td>Domination&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>Scenario_Hideout_Firefight_East&lt;/td>
+&lt;td>Firefight East&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>Scenario_Hideout_Firefight_West&lt;/td>
+&lt;td>Firefight West&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>Scenario_Hideout_Frontline&lt;/td>
+&lt;td>Frontline&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>Scenario_Hideout_Push_Insurgents&lt;/td>
+&lt;td>Push Insurgents&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>Scenario_Hideout_Push_Security&lt;/td>
+&lt;td>Push Security&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>Scenario_Hideout_Skirmish&lt;/td>
+&lt;td>Skirmish&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>Scenario_Hideout_Team_Deathmatch&lt;/td>
+&lt;td>Team Deathmatch&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>Scenario_Hideout_Survival&lt;/td>
+&lt;td>Survival&lt;/td>
+&lt;/tr>
+&lt;/tbody>
+&lt;/table>
+&lt;h4 id="hillside-sinjar">
+&lt;a href="#hillside-sinjar">#&lt;/a>
+&lt;strong>Hillside (Sinjar)&lt;/strong>
+&lt;/h4>&lt;table>
+&lt;thead>
+&lt;tr>
+&lt;th>&lt;strong>Scenario****Name&lt;/strong>&lt;/th>
+&lt;th>&lt;strong>Description&lt;/strong>&lt;/th>
+&lt;/tr>
+&lt;/thead>
+&lt;tbody>
+&lt;tr>
+&lt;td>Scenario_Hillside_Checkpoint_Insurgents&lt;/td>
+&lt;td>Checkpoint Insurgents&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>Scenario_Hillside_Checkpoint_Security&lt;/td>
+&lt;td>Checkpoint Security&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>Scenario_Hillside_Domination&lt;/td>
+&lt;td>Domination&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>Scenario_Hillside_Firefight_East&lt;/td>
+&lt;td>Firefight East&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>Scenario_Hillside_Firefight_West&lt;/td>
+&lt;td>Firefight West&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>Scenario_Hillside_Frontline&lt;/td>
+&lt;td>Frontline&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>Scenario_Hillside_Push_Insurgents&lt;/td>
+&lt;td>Push Insurgents&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>Scenario_Hillside_Push_Security&lt;/td>
+&lt;td>Push Security (INS2014 layout)&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>Scenario_Hillside_Skirmish&lt;/td>
+&lt;td>Skirmish&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>Scenario_Hillside_Team_Deathmatch&lt;/td>
+&lt;td>Team Deathmatch&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>Scenario_Hillside_Survival&lt;/td>
+&lt;td>Survival&lt;/td>
+&lt;/tr>
+&lt;/tbody>
+&lt;/table>
+&lt;h4 id="ministry">
+&lt;a href="#ministry">#&lt;/a>
+&lt;strong>Ministry&lt;/strong>
+&lt;/h4>&lt;table>
+&lt;thead>
+&lt;tr>
+&lt;th>&lt;strong>Scenario****Name&lt;/strong>&lt;/th>
+&lt;th>&lt;strong>Description&lt;/strong>&lt;/th>
+&lt;/tr>
+&lt;/thead>
+&lt;tbody>
+&lt;tr>
+&lt;td>Scenario_Ministry_Checkpoint_Insurgents&lt;/td>
+&lt;td>Checkpoint Insurgents&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>Scenario_Ministry_Checkpoint_Security&lt;/td>
+&lt;td>Checkpoint Security&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>Scenario_Ministry_Domination&lt;/td>
+&lt;td>Domination&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>Scenario_Ministry_Firefight_A&lt;/td>
+&lt;td>Firefight&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>Scenario_Ministry_Skirmish&lt;/td>
+&lt;td>Skirmish&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>Scenario_Ministry_Team_Deathmatch&lt;/td>
+&lt;td>Team Deathmatch&lt;/td>
+&lt;/tr>
+&lt;/tbody>
+&lt;/table>
+&lt;h4 id="outskirts-compound">
+&lt;a href="#outskirts-compound">#&lt;/a>
+&lt;strong>Outskirts (Compound)&lt;/strong>
+&lt;/h4>&lt;table>
+&lt;thead>
+&lt;tr>
+&lt;th>&lt;strong>Scenario****Name&lt;/strong>&lt;/th>
+&lt;th>&lt;strong>Description&lt;/strong>&lt;/th>
+&lt;/tr>
+&lt;/thead>
+&lt;tbody>
+&lt;tr>
+&lt;td>Scenario_Outskirts_Checkpoint_Insurgents&lt;/td>
+&lt;td>Checkpoint Insurgents&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>Scenario_Outskirts_Checkpoint_Security&lt;/td>
+&lt;td>Checkpoint Security&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>Scenario_Outskirts_Firefight_East&lt;/td>
+&lt;td>Firefight East&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>Scenario_Outskirts_Firefight_West&lt;/td>
+&lt;td>Firefight West&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>Scenario_Outskirts_Frontline&lt;/td>
+&lt;td>Frontline&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>Scenario_Outskirts_Push_Insurgents&lt;/td>
+&lt;td>Push Insurgents&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>Scenario_Outskirts_Push_Security&lt;/td>
+&lt;td>Push Security&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>Scenario_Outskirts_Skirmish&lt;/td>
+&lt;td>Skirmish&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>Scenario_Outskirts_Team_Deathmatch&lt;/td>
+&lt;td>Team Deathmatch&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>Scenario_Outskirts_Survival&lt;/td>
+&lt;td>Survival&lt;/td>
+&lt;/tr>
+&lt;/tbody>
+&lt;/table>
+&lt;h4 id="precinct">
+&lt;a href="#precinct">#&lt;/a>
+&lt;strong>Precinct&lt;/strong>
+&lt;/h4>&lt;table>
+&lt;thead>
+&lt;tr>
+&lt;th>&lt;strong>Scenario****Name&lt;/strong>&lt;/th>
+&lt;th>&lt;strong>Description&lt;/strong>&lt;/th>
+&lt;/tr>
+&lt;/thead>
+&lt;tbody>
+&lt;tr>
+&lt;td>Scenario_Precinct_Checkpoint_Insurgents&lt;/td>
+&lt;td>Checkpoint Insurgents&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>Scenario_Precinct_Checkpoint_Security&lt;/td>
+&lt;td>Checkpoint Security&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>Scenario_Precinct_Firefight_East&lt;/td>
+&lt;td>Firefight East&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>Scenario_Precinct_Firefight_West&lt;/td>
+&lt;td>Firefight West&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>Scenario_Precinct_Frontline&lt;/td>
+&lt;td>Frontline&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>Scenario_Precinct_Push_Insurgents&lt;/td>
+&lt;td>Push Insurgents&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>Scenario_Precinct_Push_Security&lt;/td>
+&lt;td>Push Security&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>Scenario_Precinct_Skirmish&lt;/td>
+&lt;td>Skirmish&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>Scenario_Precinct_Team_Deathmatch&lt;/td>
+&lt;td>Team Deathmatch&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>Scenario_Precinct_Survival&lt;/td>
+&lt;td>Survival&lt;/td>
+&lt;/tr>
+&lt;/tbody>
+&lt;/table>
+&lt;h4 id="refinery-oilfield">
+&lt;a href="#refinery-oilfield">#&lt;/a>
+&lt;strong>Refinery (Oilfield)&lt;/strong>
+&lt;/h4>&lt;table>
+&lt;thead>
+&lt;tr>
+&lt;th>&lt;strong>Scenario****Name&lt;/strong>&lt;/th>
+&lt;th>&lt;strong>Description&lt;/strong>&lt;/th>
+&lt;/tr>
+&lt;/thead>
+&lt;tbody>
+&lt;tr>
+&lt;td>Scenario_Refinery_Checkpoint_Insurgents&lt;/td>
+&lt;td>Checkpoint Insurgents&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>Scenario_Refinery_Checkpoint_Security&lt;/td>
+&lt;td>Checkpoint Security&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>Scenario_Refinery_Firefight_West&lt;/td>
+&lt;td>Firefight West&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>Scenario_Refinery_Frontline&lt;/td>
+&lt;td>Frontline&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>Scenario_Refinery_Push_Insurgents&lt;/td>
+&lt;td>Push Insurgents&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>Scenario_Refinery_Push_Security&lt;/td>
+&lt;td>Push Security&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>Scenario_Refinery_Skirmish&lt;/td>
+&lt;td>Skirmish&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>Scenario_Refinery_Team_Deathmatch&lt;/td>
+&lt;td>Team Deathmatch&lt;/td>
+&lt;/tr>
+&lt;/tbody>
+&lt;/table>
+&lt;h4 id="summit-mountain">
+&lt;a href="#summit-mountain">#&lt;/a>
+&lt;strong>Summit (Mountain)&lt;/strong>
+&lt;/h4>&lt;table>
+&lt;thead>
+&lt;tr>
+&lt;th>&lt;strong>Scenario****Name&lt;/strong>&lt;/th>
+&lt;th>&lt;strong>Description&lt;/strong>&lt;/th>
+&lt;/tr>
+&lt;/thead>
+&lt;tbody>
+&lt;tr>
+&lt;td>Scenario_Summit_Checkpoint_Insurgents&lt;/td>
+&lt;td>Checkpoint Insurgents&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>Scenario_Summit_Checkpoint_Security&lt;/td>
+&lt;td>Checkpoint Security&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>Scenario_Summit_Firefight_East&lt;/td>
+&lt;td>Firefight East&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>Scenario_Summit_Firefight_West&lt;/td>
+&lt;td>Firefight West&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>Scenario_Summit_Frontline&lt;/td>
+&lt;td>Frontline&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>Scenario_Summit_Push_Insurgents&lt;/td>
+&lt;td>Push Insurgents&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>Scenario_Summit_Push_Security&lt;/td>
+&lt;td>Push Security&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>Scenario_Summit_Skirmish&lt;/td>
+&lt;td>Skirmish&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>Scenario_Summit_Team_Deathmatch&lt;/td>
+&lt;td>Team Deathmatch&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>Scenario_Summit_Survival&lt;/td>
+&lt;td>Survival&lt;/td>
+&lt;/tr>
+&lt;/tbody>
+&lt;/table>
+&lt;h4 id="power-plant-powerplant">
+&lt;a href="#power-plant-powerplant">#&lt;/a>
+&lt;strong>Power Plant (PowerPlant)&lt;/strong>
+&lt;/h4>&lt;table>
+&lt;thead>
+&lt;tr>
+&lt;th>&lt;strong>Scenario****Name&lt;/strong>&lt;/th>
+&lt;th>&lt;strong>Description&lt;/strong>&lt;/th>
+&lt;/tr>
+&lt;/thead>
+&lt;tbody>
+&lt;tr>
+&lt;td>Scenario_PowerPlant_Checkpoint_Insurgents&lt;/td>
+&lt;td>Checkpoint Insurgents&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>Scenario_PowerPlant_Checkpoint_Security&lt;/td>
+&lt;td>Checkpoint Security&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>Scenario_PowerPlant_Domination&lt;/td>
+&lt;td>Domination&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>Scenario_PowerPlant_Firefight_East&lt;/td>
+&lt;td>Firefight East&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>Scenario_PowerPlant_Firefight_West&lt;/td>
+&lt;td>Firefight West&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>Scenario_PowerPlant_Push_Insurgents&lt;/td>
+&lt;td>Push Insurgents&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>Scenario_PowerPlant_Push_Security&lt;/td>
+&lt;td>Push Security&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>Scenario_PowerPlant_Survival&lt;/td>
+&lt;td>Survival&lt;/td>
+&lt;/tr>
+&lt;/tbody>
+&lt;/table>
+&lt;h4 id="tideway-buhriz">
+&lt;a href="#tideway-buhriz">#&lt;/a>
+&lt;strong>Tideway (Buhriz)&lt;/strong>
+&lt;/h4>&lt;table>
+&lt;thead>
+&lt;tr>
+&lt;th>&lt;strong>Scenario****Name&lt;/strong>&lt;/th>
+&lt;th>Description&lt;/th>
+&lt;/tr>
+&lt;/thead>
+&lt;tbody>
+&lt;tr>
+&lt;td>Scenario_Tideway_Checkpoint_Insurgents&lt;/td>
+&lt;td>Checkpoint Insurgents&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>Scenario_Tideway_Checkpoint_Security&lt;/td>
+&lt;td>Checkpoint Security&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>Scenario_Tideway_Domination&lt;/td>
+&lt;td>Domination&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>Scenario_Tideway_Firefight_West&lt;/td>
+&lt;td>Firefight West&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>Scenario_Tideway_Frontline&lt;/td>
+&lt;td>Frontline&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>Scenario_Tideway_Push_Insurgents&lt;/td>
+&lt;td>Push Insurgents&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>Scenario_Tideway_Push_Security&lt;/td>
+&lt;td>Push Security&lt;/td>
+&lt;/tr>
+&lt;/tbody>
+&lt;/table>
+&lt;h4 id="bab">
+&lt;a href="#bab">#&lt;/a>
+&lt;strong>Bab&lt;/strong>
+&lt;/h4>&lt;table>
+&lt;thead>
+&lt;tr>
+&lt;th>&lt;strong>Scenario****Name&lt;/strong>&lt;/th>
+&lt;th>&lt;strong>Des&lt;/strong>cription&lt;/th>
+&lt;/tr>
+&lt;/thead>
+&lt;tbody>
+&lt;tr>
+&lt;td>Scenario_Bab_Checkpoint_Insurgents&lt;/td>
+&lt;td>Checkpoint Insurgents&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>Scenario_Bab_Checkpoint_Security&lt;/td>
+&lt;td>Checkpoint Security&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>Scenario_Bab_Domination&lt;/td>
+&lt;td>Domination&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>Scenario_Bab_Firefight_East&lt;/td>
+&lt;td>Firefight East&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>Scenario_Bab_Outpost&lt;/td>
+&lt;td>Outpost&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>Scenario_Bab_Push_Insurgents&lt;/td>
+&lt;td>Push Insurgents&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>Scenario_Bab_Push_Security&lt;/td>
+&lt;td>Push Security&lt;/td>
+&lt;/tr>
+&lt;/tbody>
+&lt;/table>
+&lt;h4 id="citadel">
+&lt;a href="#citadel">#&lt;/a>
+&lt;strong>Citadel&lt;/strong>
+&lt;/h4>&lt;table>
+&lt;thead>
+&lt;tr>
+&lt;th>&lt;strong>Scenario****Name&lt;/strong>&lt;/th>
+&lt;th>Description&lt;/th>
+&lt;/tr>
+&lt;/thead>
+&lt;tbody>
+&lt;tr>
+&lt;td>Scenario_Citadel_Checkpoint_Insurgents&lt;/td>
+&lt;td>Checkpoint Insurgents&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>Scenario_Citadel_Checkpoint_Security&lt;/td>
+&lt;td>Checkpoint Security&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>Scenario_Citadel_Domination&lt;/td>
+&lt;td>Domination&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>Scenario_Citadel_Firefight_East&lt;/td>
+&lt;td>Firefight East&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>Scenario_Citadel_Outpost&lt;/td>
+&lt;td>Outpost&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>Scenario_Citadel_Push_Insurgents&lt;/td>
+&lt;td>Push Insurgents&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>Scenario_Citadel_Push_Security&lt;/td>
+&lt;td>Push Security&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>Scenario_Citadel_Survival&lt;/td>
+&lt;td>Survival&lt;/td>
+&lt;/tr>
+&lt;/tbody>
+&lt;/table>
+&lt;p>高城的地图模式列表不知道为什么官方从来没有在开服指南里写出过,这里笔者也没有去一一测试，就只给出笔者所玩过的模式&lt;/p>
+&lt;h4 id="tell">
+&lt;a href="#tell">#&lt;/a>
+Tell
+&lt;/h4>&lt;table>
+&lt;thead>
+&lt;tr>
+&lt;th>&lt;strong>Scenario****Name&lt;/strong>&lt;/th>
+&lt;th>Description&lt;/th>
+&lt;/tr>
+&lt;/thead>
+&lt;tbody>
+&lt;tr>
+&lt;td>Scenario_Tell_Checkpoint_Insurgents&lt;/td>
+&lt;td>Checkpoint Insurgents&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>Scenario_Tell_Checkpoint_Security&lt;/td>
+&lt;td>Checkpoint Security&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>Scenario_Tell_Outpost&lt;/td>
+&lt;td>Outpost&lt;/td>
+&lt;/tr>
+&lt;/tbody>
+&lt;/table>
+&lt;p>如果你想指定地图是白天还是黑夜, 格式如下(不加此参数,默认为白天),&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">(Scenario=&amp;#34;Scenario_Town_Checkpoint_Security&amp;#34;,Lighting=&amp;#34;Night&amp;#34;)
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>Lighting参数值为Day或Night&lt;/p>
+&lt;p>如果你想指定服务器启动地图的模式,在启动脚本中其后加上 `?Lighting=Night&lt;/p>
+&lt;h2 id="mod">
+&lt;a href="#mod">#&lt;/a>
+Mod
+&lt;/h2>&lt;p>沙暴的Mod社区托管在Mod.io，想要为服务器加mod需要Mod.io的token&lt;/p>
+&lt;p>先注册Mod.io的账户&lt;/p>
+&lt;p>点击头像进入用户中心,选择API access&lt;/p>
+&lt;p>在OAuth 2 management的 generate access token下给其命名,然后给Read读取权限(Write写入权限没必要)，点击Create token生成&lt;/p>
+&lt;p>点击Copy Token进行复制&lt;/p>
+&lt;p>编辑&lt;/p>
+&lt;p>steamapps/common/sandstorm_server/Insurgency/Saved/Config/LinuxServer/Engine.ini&lt;/p>
+&lt;p>如果你是Windows服务器，启动后没有自动生成Insurgency\Saved\Config\WindowsServer\Engine.ini，请自行创建相应文件夹和文件&lt;/p>
+&lt;p>（Windows服务器就是steamapps/common/sandstorm_server/Insurgency/Saved/Config/WindowsServer/Engine.ini）&lt;/p>
+&lt;p>加入一下代码&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-plain" data-lang="plain">&lt;span class="line">&lt;span class="cl">[/Script/ModKit.ModIOClient]
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">bHasUserAcceptedTerms=True
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">AccessToken=Token复制到这里
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>然后保存更改&lt;/p>
+&lt;p>在启动脚本中加入 &lt;code>-Mods&lt;/code>参数启用mod&lt;/p>
+&lt;p>要指定服务器使用哪些mod,在Insurgency/Config/Server/Mods.txt内写入Mod ID (ID 去 mod.io的页面找),每一行一个&lt;/p>
+&lt;p>若有多个Mod列表，在启动脚本中加入&lt;code>-ModList=MyCustomModList.txt&lt;/code>进行指定&lt;/p>
+&lt;p>在启动脚本中指定要使用的mod: &lt;code>-CmdModList=&amp;quot;mod ID1,mod ID2,mod ID3&amp;quot;&lt;/code>&lt;/p>
+&lt;p>加入 &lt;code>ModDownloadTravelTo=&lt;/code>参数指定Mod下载好后要加载的地图(必要) , 这是服务器下载完Mod启动时真正会加载的地图,格式如&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-plain" data-lang="plain">&lt;span class="line">&lt;span class="cl">Canyon?Scenario=Scenario_Crossing_Checkpoint_Security?Port=7777?QueryPort=27015?MaxPlayers=8 -log -hostname=&amp;#34;&amp;#34; -Mods -ModDownloadTravelTo=Canyon?Scenario=Scenario_Crossing_Checkpoint_Security
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;h2 id="mutators">
+&lt;a href="#mutators">#&lt;/a>
+Mutators
+&lt;/h2>&lt;p>官方提供了一些整活模式(一些是以前的模式，但是由于玩的人不多就删除了,可通过mutators调出来)，命名为Mutators（突变体的意思，官方mutator这名字选的怪怪的，就不直译了）; 同时一些mod启用也需要指定mutators参数，对应代码看mod介绍页面&lt;/p>
+&lt;p>可以在启动脚本中加入&lt;code>-mutators=mutator代码名1,mutator代码名2&lt;/code>来指定&lt;/p>
+&lt;table>
+&lt;thead>
+&lt;tr>
+&lt;th>代码名&lt;/th>
+&lt;th>&lt;strong>Mutator 名字&lt;/strong>&lt;/th>
+&lt;th>&lt;strong>描述&lt;/strong>&lt;/th>
+&lt;/tr>
+&lt;/thead>
+&lt;tbody>
+&lt;tr>
+&lt;td>AllYouCanEat&lt;/td>
+&lt;td>All You Can Eat&lt;/td>
+&lt;td>以100补给点开始游戏&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>AntiMaterielRiflesOnly&lt;/td>
+&lt;td>Anti-Materiel Only&lt;/td>
+&lt;td>只允许使用反器材步枪&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>BoltActionsOnly&lt;/td>
+&lt;td>Bolt-Actions Only&lt;/td>
+&lt;td>只允许使用栓动式步枪&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>Broke&lt;/td>
+&lt;td>Broke&lt;/td>
+&lt;td>以0补给点开始游戏&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>BudgetAntiquing&lt;/td>
+&lt;td>Budget Antiquing&lt;/td>
+&lt;td>仅限于旧的和廉价的武器&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>BulletSponge&lt;/td>
+&lt;td>Bullet Sponge&lt;/td>
+&lt;td>增加生命值&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>Competitive&lt;/td>
+&lt;td>Competitive&lt;/td>
+&lt;td>装备更贵，每一回合时间更短，占点更快&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>CompetitiveLoadouts&lt;/td>
+&lt;td>Competitive Loadouts&lt;/td>
+&lt;td>玩家装备变成PvP的装备枪械&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>FastMovement&lt;/td>
+&lt;td>Fast Movement&lt;/td>
+&lt;td>行动更快&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>Frenzy&lt;/td>
+&lt;td>Frenzy&lt;/td>
+&lt;td>敌人只会用近战，但是有特殊敌人（比如自爆哥）&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>FullyLoaded&lt;/td>
+&lt;td>Fully Loaded&lt;/td>
+&lt;td>仅有武器大师一个职业，能够使用所有武器装备（望远镜有bug,叫不出火力支援）&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>Guerrillas&lt;/td>
+&lt;td>Guerrillas&lt;/td>
+&lt;td>以5补给点开始游戏&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>Gunslingers&lt;/td>
+&lt;td>Gunslingers&lt;/td>
+&lt;td>敌人使用左轮&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>Hardcore&lt;/td>
+&lt;td>Hardcore&lt;/td>
+&lt;td>硬核模式，移动更慢，占点更慢&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>HeadshotOnly&lt;/td>
+&lt;td>Headshots Only&lt;/td>
+&lt;td>只有打头才造成伤害&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>HotPotato&lt;/td>
+&lt;td>Hot Potato&lt;/td>
+&lt;td>敌人死亡时会掉落手雷&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>LockedAim&lt;/td>
+&lt;td>Locked Aim&lt;/td>
+&lt;td>武器总是对准屏幕中央&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>MakarovsOnly&lt;/td>
+&lt;td>Makarovs Only&lt;/td>
+&lt;td>只能使用马卡洛夫手枪&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>NoAim&lt;/td>
+&lt;td>No Aim Down Sights&lt;/td>
+&lt;td>不允许开镜&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>NoDrops&lt;/td>
+&lt;td>No Drops&lt;/td>
+&lt;td>敌人不掉落武器&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>PistolsOnly&lt;/td>
+&lt;td>Pistols Only&lt;/td>
+&lt;td>仅能使用手枪&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>Poor&lt;/td>
+&lt;td>Poor&lt;/td>
+&lt;td>以有限的少量补给点数开始游戏&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>ShotgunsOnly&lt;/td>
+&lt;td>Shotguns Only&lt;/td>
+&lt;td>仅能使用霰弹枪&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>SlowCaptureTimes&lt;/td>
+&lt;td>Slow Capture Times&lt;/td>
+&lt;td>占点需要更长时间&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>SlowMovement&lt;/td>
+&lt;td>Slow Movement&lt;/td>
+&lt;td>移动变慢&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>SoldierOfFortune&lt;/td>
+&lt;td>Soldier of Fortune&lt;/td>
+&lt;td>随着分数增加获取补给点数&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>SpecialOperations&lt;/td>
+&lt;td>Special Operations&lt;/td>
+&lt;td>以30补给点开始游戏&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>Strapped&lt;/td>
+&lt;td>Strapped&lt;/td>
+&lt;td>以1补给点开始游戏&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>Ultralethal&lt;/td>
+&lt;td>Ultralethal&lt;/td>
+&lt;td>所有人一枪即死&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>Vampirism&lt;/td>
+&lt;td>Vampirism&lt;/td>
+&lt;td>吸血,获得与对敌人造成的伤害同等的血量&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>Warlords&lt;/td>
+&lt;td>Warlords&lt;/td>
+&lt;td>以10补给点开始游戏&lt;/td>
+&lt;/tr>
+&lt;/tbody>
+&lt;/table>
+&lt;h2 id="游戏配置">
+&lt;a href="#%e6%b8%b8%e6%88%8f%e9%85%8d%e7%bd%ae">#&lt;/a>
+游戏配置
+&lt;/h2>&lt;p>游戏大部分配置都在 steamapps\common\sandstorm_server\Insurgency\Saved\Config\LinuxServer\Game.ini （steamapps\common\sandstorm_server\Insurgency\Saved\Config\WindowsServer\Game.ini）内&lt;/p>
+&lt;p>如果你是Windows服务器，启动后没有自动生成Insurgency\Saved\Config\WindowsServer\Game.ini，请自行创建相应文件夹和文件&lt;/p>
+&lt;p>每部分都有其对应的值&lt;/p>
+&lt;p>时长单位一般都为秒&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-plain" data-lang="plain">&lt;span class="line">&lt;span class="cl">[/Script/Insurgency.INSGameMode]
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>该部分为游戏的通用配置&lt;/p>
+&lt;p>对应的属性和值如下&lt;/p>
+&lt;table>
+&lt;thead>
+&lt;tr>
+&lt;th>&lt;strong>变量&lt;/strong>&lt;/th>
+&lt;th>&lt;strong>默认值&lt;/strong>&lt;/th>
+&lt;th>&lt;strong>描述&lt;/strong>&lt;/th>
+&lt;/tr>
+&lt;/thead>
+&lt;tbody>
+&lt;tr>
+&lt;td>bKillFeed&lt;/td>
+&lt;td>False&lt;/td>
+&lt;td>启用右上角击杀反馈&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>bKillFeedSpectator&lt;/td>
+&lt;td>True&lt;/td>
+&lt;td>对观战者和回放启用击杀反馈&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>bKillerInfo&lt;/td>
+&lt;td>True&lt;/td>
+&lt;td>对被击杀者显示击杀者信息&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>bKillerInfoRevealDistance&lt;/td>
+&lt;td>False&lt;/td>
+&lt;td>显示被击杀距离&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>TeamKillLimit&lt;/td>
+&lt;td>3&lt;/td>
+&lt;td>最大TK次数，TK队友超过此限制次数将被踢出&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>TeamKillGrace&lt;/td>
+&lt;td>0.2&lt;/td>
+&lt;td>TK宽限计时器（不明）&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>TeamKillReduceTime&lt;/td>
+&lt;td>90&lt;/td>
+&lt;td>TK计数每多少秒减少1；比如如果玩家TK了两次，90秒内未再TK队友，TK计数会降1&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>bDeadSay&lt;/td>
+&lt;td>False&lt;/td>
+&lt;td>允许存活玩家看到死亡玩家的信息&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>bDeadSayTeam&lt;/td>
+&lt;td>True&lt;/td>
+&lt;td>允许存活玩家看到死亡玩家的信息(队内信息)&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>bVoiceAllowDeadChat&lt;/td>
+&lt;td>False&lt;/td>
+&lt;td>允许存活玩家听到死亡玩家的语音&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>bVoiceEnemyHearsLocal&lt;/td>
+&lt;td>True&lt;/td>
+&lt;td>附近的敌人能听到语音&lt;/td>
+&lt;/tr>
+&lt;/tbody>
+&lt;/table>
+&lt;p>多人PVP 模式配置&lt;/p>
+&lt;h4 id="scriptinsurgencyinsmultiplayermode">
+&lt;a href="#scriptinsurgencyinsmultiplayermode">#&lt;/a>
+&lt;strong>[/Script/Insurgency.INSMultiplayerMode]&lt;/strong>
+&lt;/h4>&lt;table>
+&lt;thead>
+&lt;tr>
+&lt;th>变量&lt;/th>
+&lt;th>&lt;strong>默认值&lt;/strong>&lt;/th>
+&lt;th>&lt;strong>描述&lt;/strong>&lt;/th>
+&lt;/tr>
+&lt;/thead>
+&lt;tbody>
+&lt;tr>
+&lt;td>bKillFeedGameStartingIntermissionTime&lt;/td>
+&lt;td>5&lt;/td>
+&lt;td>在开始游戏前的准备时间等待额外玩家的额外时长&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>WinTime&lt;/td>
+&lt;td>5&lt;/td>
+&lt;td>进入回合结算前的静止时长&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>PostRoundTime&lt;/td>
+&lt;td>15&lt;/td>
+&lt;td>回合结算信息的时长&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>PostGameTime&lt;/td>
+&lt;td>15&lt;/td>
+&lt;td>游戏结束结算信息的时长&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>bAutoAssignTeams&lt;/td>
+&lt;td>True&lt;/td>
+&lt;td>自动分配队伍&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>bAllowFriendlyFire&lt;/td>
+&lt;td>True&lt;/td>
+&lt;td>启用友伤&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>FriendlyFireModifier&lt;/td>
+&lt;td>0.2&lt;/td>
+&lt;td>友军伤害比例&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>FriendlyFireReflect&lt;/td>
+&lt;td>0&lt;/td>
+&lt;td>友伤反弹比例&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>bAutoBalanceTeams&lt;/td>
+&lt;td>True&lt;/td>
+&lt;td>启用队伍自动平衡&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>AutoBalanceDelay&lt;/td>
+&lt;td>10&lt;/td>
+&lt;td>检测队伍平衡的间隔时长&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>bMapVoting&lt;/td>
+&lt;td>True&lt;/td>
+&lt;td>启用下一局地图投票&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>bUseMapCycle&lt;/td>
+&lt;td>True&lt;/td>
+&lt;td>启用地图轮换池(MapCycle)，如果为False，则无限循环当前地图&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>bVoiceIntermissionAllowAll&lt;/td>
+&lt;td>True&lt;/td>
+&lt;td>允许各回合的间隔时间里两队玩家听到对方语音(欢乐嘲讽)&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>IdleLimit&lt;/td>
+&lt;td>150&lt;/td>
+&lt;td>玩家挂机被踢出的时长限制&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>IdleLimitLowReinforcements&lt;/td>
+&lt;td>90&lt;/td>
+&lt;td>低波数增援情况下，玩家挂机时长限制&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>IdleCheckFrequency&lt;/td>
+&lt;td>30&lt;/td>
+&lt;td>每多长时间检查挂机玩家&lt;/td>
+&lt;/tr>
+&lt;/tbody>
+&lt;/table>
+&lt;p>例&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;span class="lnt">5
+&lt;/span>&lt;span class="lnt">6
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-plain" data-lang="plain">&lt;span class="line">&lt;span class="cl">[/Script/Insurgency.INSGameMode]
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">bKillFeed=True
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">bKillerInfoRevealDistance=True
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">[/Script/Insurgency.INSMultiplayerMode]
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">bAllowFriendlyFire=False
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>各游戏模式的配置&lt;/p>
+&lt;p>每个模式对应的部分如下&lt;/p>
+&lt;ul>
+&lt;li>&lt;strong>Push&lt;/strong>: &lt;code>[/Script/Insurgency.INSPushGameMode]&lt;/code>&lt;/li>
+&lt;li>&lt;strong>Frontline&lt;/strong>: &lt;code>[/Script/Insurgency.INSFrontlineGameMode]&lt;/code>&lt;/li>
+&lt;li>&lt;strong>Skirmish&lt;/strong>: &lt;code>[/Script/Insurgency.INSSkirmishGameMode]&lt;/code>&lt;/li>
+&lt;li>&lt;strong>Survival&lt;/strong>: &lt;code>[/Script/Insurgency.INSSurvivalGameMode]&lt;/code>&lt;/li>
+&lt;li>&lt;strong>Firefight&lt;/strong>: &lt;code>[/Script/Insurgency.INSFirefightGameMode]&lt;/code>&lt;/li>
+&lt;li>&lt;strong>Checkpoint&lt;/strong>: &lt;code>[/Script/Insurgency.INSCheckpointGameMode]&lt;/code>&lt;/li>
+&lt;li>&lt;strong>Outpost&lt;/strong>: &lt;code>[/Script/Insurgency.INSOutpostGameMode]&lt;/code>&lt;/li>
+&lt;li>&lt;strong>Team Deathmatch:&lt;/strong>&lt;code>[/Script/Insurgency.INSTeamDeathmatchGameMode]&lt;/code>&lt;/li>
+&lt;/ul>
+&lt;p>以下General 部分的设置放置在合适的位置可以通用于全局&lt;/p>
+&lt;h4 id="general-scriptinsurgencyinsgamemode">
+&lt;a href="#general-scriptinsurgencyinsgamemode">#&lt;/a>
+&lt;strong>General ([/Script/Insurgency.INSGameMode])&lt;/strong>
+&lt;/h4>&lt;table>
+&lt;thead>
+&lt;tr>
+&lt;th>&lt;strong>Variable&lt;/strong>&lt;/th>
+&lt;th>&lt;strong>Default&lt;/strong>&lt;/th>
+&lt;th>&lt;strong>Description&lt;/strong>&lt;/th>
+&lt;/tr>
+&lt;/thead>
+&lt;tbody>
+&lt;tr>
+&lt;td>ObjectiveCaptureTime&lt;/td>
+&lt;td>Varies&lt;/td>
+&lt;td>占领敌对点位的时长&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>ObjectiveResetTime&lt;/td>
+&lt;td>-1&lt;/td>
+&lt;td>没人在点时，占点进度多久开始倒退 负数禁用&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>ObjectiveSpeedup&lt;/td>
+&lt;td>0.25&lt;/td>
+&lt;td>每多一个人可以增加的占点速度倍数&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>ObjectiveMaxSpeedupPlayers&lt;/td>
+&lt;td>4&lt;/td>
+&lt;td>最多多少人能加速占点(超过此人数，占点速度不再提升)&lt;/td>
+&lt;/tr>
+&lt;/tbody>
+&lt;/table>
+&lt;h4 id="general-scriptinsurgencyinsmultiplayermode">
+&lt;a href="#general-scriptinsurgencyinsmultiplayermode">#&lt;/a>
+&lt;strong>General ([/Script/Insurgency.INSMultiplayerMode])&lt;/strong>
+&lt;/h4>&lt;table>
+&lt;thead>
+&lt;tr>
+&lt;th>&lt;strong>Variable&lt;/strong>&lt;/th>
+&lt;th>&lt;strong>Default&lt;/strong>&lt;/th>
+&lt;th>&lt;strong>Description&lt;/strong>&lt;/th>
+&lt;/tr>
+&lt;/thead>
+&lt;tbody>
+&lt;tr>
+&lt;td>MinimumPlayers&lt;/td>
+&lt;td>1&lt;/td>
+&lt;td>每队需要多少玩家才能开始游戏&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>RoundLimit&lt;/td>
+&lt;td>Varies&lt;/td>
+&lt;td>最大回合数&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>WinLimit&lt;/td>
+&lt;td>Varies&lt;/td>
+&lt;td>需要赢多少回合算本局游戏胜利&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>GameTimeLimit&lt;/td>
+&lt;td>-1&lt;/td>
+&lt;td>一场游戏最多持续多长 负数禁用&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>PreRoundLimit&lt;/td>
+&lt;td>10&lt;/td>
+&lt;td>游戏开局时的静止时长&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>RoundTime&lt;/td>
+&lt;td>Varies&lt;/td>
+&lt;td>回合时长&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>OverTime&lt;/td>
+&lt;td>60&lt;/td>
+&lt;td>超过回合时长时，若点内还在争夺的加时时长&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>TeamSwitchTime&lt;/td>
+&lt;td>10&lt;/td>
+&lt;td>换队时长&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>SwitchTeamsEveryRound&lt;/td>
+&lt;td>Varies&lt;/td>
+&lt;td>换边频率, 0 从不，1 每一回合换一次边， 2 每两回合换一次边，以此类推&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>bAllowPlayerTeamSelect&lt;/td>
+&lt;td>True&lt;/td>
+&lt;td>允许玩家换边&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>bBots&lt;/td>
+&lt;td>False&lt;/td>
+&lt;td>启用AI队友&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>BotQuots&lt;/td>
+&lt;td>Varies&lt;/td>
+&lt;td>AI队友填补到每边多少人数&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>InitialSupply&lt;/td>
+&lt;td>15&lt;/td>
+&lt;td>起始补给点数&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>MaximumSupply&lt;/td>
+&lt;td>15&lt;/td>
+&lt;td>最大可获取补给点数&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>bSupplyGainEnabled&lt;/td>
+&lt;td>False&lt;/td>
+&lt;td>启用补给点数获取(启用后通过设置SupplyGainFrequency,可以让玩家每获得一定分数就获得1补给点)&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>bAwardSupplyInstantly&lt;/td>
+&lt;td>False&lt;/td>
+&lt;td>补给无冷却&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>SupplyGainFrequency&lt;/td>
+&lt;td>150&lt;/td>
+&lt;td>每多少分获得1补给点&lt;/td>
+&lt;/tr>
+&lt;/tbody>
+&lt;/table>
+&lt;h4 id="push-scriptinsurgencyinspushgamemode">
+&lt;a href="#push-scriptinsurgencyinspushgamemode">#&lt;/a>
+&lt;strong>Push [/Script/Insurgency.INSPushGameMode]&lt;/strong>
+&lt;/h4>&lt;table>
+&lt;thead>
+&lt;tr>
+&lt;th>&lt;strong>Variable&lt;/strong>&lt;/th>
+&lt;th>&lt;strong>Default&lt;/strong>&lt;/th>
+&lt;th>&lt;strong>Description&lt;/strong>&lt;/th>
+&lt;/tr>
+&lt;/thead>
+&lt;tbody>
+&lt;tr>
+&lt;td>RoundTimeExtension&lt;/td>
+&lt;td>300&lt;/td>
+&lt;td>每占领一个点，回合时间延长多久&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>AttackerWavesPerObjective&lt;/td>
+&lt;td>5&lt;/td>
+&lt;td>进攻方每占领一个点，获得多少波增援&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>AttackerWaveDPR&lt;/td>
+&lt;td>0.25&lt;/td>
+&lt;td>进攻方死亡人数达到百分多少消耗一波增援&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>AttackerWaveTimer&lt;/td>
+&lt;td>20&lt;/td>
+&lt;td>进攻方波数增援冷却时长(每多久一波增援)&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>DefenderWavesPerObjective&lt;/td>
+&lt;td>5&lt;/td>
+&lt;td>防守方每占领一个点，获得多少波增援（这里官方貌似写错了，写的进攻方）&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>DefenderWaveDPR&lt;/td>
+&lt;td>0.25&lt;/td>
+&lt;td>防守方死亡人数达到百分多少消耗一波增援&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>DefenderWaveTimer&lt;/td>
+&lt;td>35&lt;/td>
+&lt;td>防守方波数增援冷却时长(每多久一波增援)&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>LastStandSetupDelay&lt;/td>
+&lt;td>10&lt;/td>
+&lt;td>延迟最后一个防守方重生区被禁用&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>AdvanceAttackerSpawnsDelay&lt;/td>
+&lt;td>30&lt;/td>
+&lt;td>延迟进攻方重生&lt;/td>
+&lt;/tr>
+&lt;/tbody>
+&lt;/table>
+&lt;h4 id="frontline-scriptinsurgencyinsfrontlinegamemode">
+&lt;a href="#frontline-scriptinsurgencyinsfrontlinegamemode">#&lt;/a>
+&lt;strong>Frontline [/Script/Insurgency.INSFrontlineGameMode]&lt;/strong>
+&lt;/h4>&lt;table>
+&lt;thead>
+&lt;tr>
+&lt;th>&lt;strong>Variable&lt;/strong>&lt;/th>
+&lt;th>&lt;strong>Default&lt;/strong>&lt;/th>
+&lt;th>&lt;strong>Description&lt;/strong>&lt;/th>
+&lt;/tr>
+&lt;/thead>
+&lt;tbody>
+&lt;tr>
+&lt;td>StartingWaves&lt;/td>
+&lt;td>15&lt;/td>
+&lt;td>起始增援波数&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>CapturingBonusWave&lt;/td>
+&lt;td>2&lt;/td>
+&lt;td>每占一个点获得多少增援&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>RegressSpawnsTimer&lt;/td>
+&lt;td>10&lt;/td>
+&lt;td>失去点以后给玩家的撤退时间&lt;/td>
+&lt;/tr>
+&lt;/tbody>
+&lt;/table>
+&lt;h4 id="skirmish-scriptinsurgencyinsskirmishgamemode">
+&lt;a href="#skirmish-scriptinsurgencyinsskirmishgamemode">#&lt;/a>
+&lt;strong>Skirmish [/Script/Insurgency.INSSkirmishGameMode]&lt;/strong>
+&lt;/h4>&lt;table>
+&lt;thead>
+&lt;tr>
+&lt;th>&lt;strong>Variable&lt;/strong>&lt;/th>
+&lt;th>&lt;strong>Default&lt;/strong>&lt;/th>
+&lt;th>&lt;strong>Description&lt;/strong>&lt;/th>
+&lt;/tr>
+&lt;/thead>
+&lt;tbody>
+&lt;tr>
+&lt;td>DefaultReinforcementWaves&lt;/td>
+&lt;td>5&lt;/td>
+&lt;td>起始波数&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>CaptureBonusWaves&lt;/td>
+&lt;td>1&lt;/td>
+&lt;td>在己方弹药库完好的情况下占点获得的奖励波数&lt;/td>
+&lt;/tr>
+&lt;/tbody>
+&lt;/table>
+&lt;h4 id="survival-scriptinsurgencyinssurvivalgamemode">
+&lt;a href="#survival-scriptinsurgencyinssurvivalgamemode">#&lt;/a>
+&lt;strong>Survival [/Script/Insurgency.INSSurvivalGameMode]&lt;/strong>
+&lt;/h4>&lt;table>
+&lt;thead>
+&lt;tr>
+&lt;th>&lt;strong>Variable&lt;/strong>&lt;/th>
+&lt;th>&lt;strong>Default&lt;/strong>&lt;/th>
+&lt;th>&lt;strong>Description&lt;/strong>&lt;/th>
+&lt;/tr>
+&lt;/thead>
+&lt;tbody>
+&lt;tr>
+&lt;td>RoundTimeExtension&lt;/td>
+&lt;td>300&lt;/td>
+&lt;td>占了一个点后 回合延长多久&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>NumWaves&lt;/td>
+&lt;td>7&lt;/td>
+&lt;td>多少次成功占点回合结束（包括撤离）；有的地图游玩时实际值可能会与设置不符&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>bEnableExtractionObjective&lt;/td>
+&lt;td>True&lt;/td>
+&lt;td>是否启用撤离点&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>ExtractionObjectiveHoldTime&lt;/td>
+&lt;td>150&lt;/td>
+&lt;td>撤离成功需要守点多久&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>ExtractionSpawnStopTime&lt;/td>
+&lt;td>0&lt;/td>
+&lt;td>撤离守点时，还剩多少时间就停止生成AI&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>BotDPRRespawnFinal&lt;/td>
+&lt;td>0.1&lt;/td>
+&lt;td>最后一个点时 AI死亡比例达到多少就重生&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>BotDPRRespawnFirst&lt;/td>
+&lt;td>0.3&lt;/td>
+&lt;td>第一个点时 AI 死亡比例达到多少就重生&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>MinimumBotsPerCompletedObjective&lt;/td>
+&lt;td>0.5&lt;/td>
+&lt;td>反击时AI重生延迟，以最小玩家数计算，每完成一个点加多少AI（倍数）&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;code>MaximumBotsPerCompletedObjective&lt;/code>&lt;/td>
+&lt;td>1.0&lt;/td>
+&lt;td>以最大玩家数计算，每完成一个点加多少AI&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;code>bResetLoadoutOnNewRound&lt;/code>&lt;/td>
+&lt;td>False&lt;/td>
+&lt;td>失败后玩家装备是否重置&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;code>ObjectiveDefendDistance&lt;/code>&lt;/td>
+&lt;td>2000&lt;/td>
+&lt;td>AI应该离目标多近，然后才开始保护目标而不是四处游荡&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;code>BotMinimumSpawnRange&lt;/code>&lt;/td>
+&lt;td>3000&lt;/td>
+&lt;td>AI在生成时必须离所有玩家的最小距离&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;code>BotMaximumSpawnRange&lt;/code>&lt;/td>
+&lt;td>5000&lt;/td>
+&lt;td>AI重生时离玩家的最大距离不能大于BotRespawnDistance&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;code>BotRespawnDistance&lt;/code>&lt;/td>
+&lt;td>10000&lt;/td>
+&lt;td>离玩家多远时 AI重生在附近的玩家周 ，不能小于BotMaximumSpawnRange&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;code>BotSpawnDelay&lt;/code>&lt;/td>
+&lt;td>10&lt;/td>
+&lt;td>敌人在游戏开始多久后才出现&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;code>BotRespawnDelay&lt;/code>&lt;/td>
+&lt;td>1&lt;/td>
+&lt;td>敌人重生延迟&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;code>BotRepositionDelay&lt;/code>&lt;/td>
+&lt;td>1&lt;/td>
+&lt;td>敌人位置重置时间&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;code>bUseSpecialWaves&lt;/code>&lt;/td>
+&lt;td>True&lt;/td>
+&lt;td>是否使用特殊敌人波数&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;code>SpecialWaveFrequency&lt;/code>&lt;/td>
+&lt;td>2&lt;/td>
+&lt;td>如果特殊敌人启用，每多少波出现一次&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;code>SurvivalWaveConfigAssetPath&lt;/code>&lt;/td>
+&lt;td>/Game/Game/Data/Gamemodes/SurvivalWaveConfig_Default.SurvivalWaveConfig_Default&lt;/td>
+&lt;td>敌人配置路径&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;code>SurvivalNightTimeWaveConfigAssetPath&lt;/code>&lt;/td>
+&lt;td>/Game/Game/Data/Gamemodes/SurvivalWaveConfig_Night.SurvivalWaveConfig_Night&lt;/td>
+&lt;td>夜间地图敌人配置路径&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;/td>
+&lt;td>&lt;/td>
+&lt;td>&lt;/td>
+&lt;/tr>
+&lt;/tbody>
+&lt;/table>
+&lt;p>PVE通用设置&lt;/p>
+&lt;h4 id="general-coop-scriptinsurgencyinscoopmode">
+&lt;a href="#general-coop-scriptinsurgencyinscoopmode">#&lt;/a>
+&lt;strong>General Coop [/Script/Insurgency.INSCoopMode]&lt;/strong>
+&lt;/h4>&lt;table>
+&lt;thead>
+&lt;tr>
+&lt;th>&lt;strong>Variable&lt;/strong>&lt;/th>
+&lt;th>&lt;strong>Default&lt;/strong>&lt;/th>
+&lt;th>&lt;strong>Description&lt;/strong>&lt;/th>
+&lt;/tr>
+&lt;/thead>
+&lt;tbody>
+&lt;tr>
+&lt;td>AIDifficulty&lt;/td>
+&lt;td>0.5&lt;/td>
+&lt;td>AI 难度&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>bUseVehicleInsertion&lt;/td>
+&lt;td>True&lt;/td>
+&lt;td>允许使用皮卡车&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>FriendlyBotQuota&lt;/td>
+&lt;td>4&lt;/td>
+&lt;td>右方AI填补数量&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>MinimumEnemies&lt;/td>
+&lt;td>6&lt;/td>
+&lt;td>最小敌人数量&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>MaximumEnemies&lt;/td>
+&lt;td>12&lt;/td>
+&lt;td>最大敌人数量&lt;/td>
+&lt;/tr>
+&lt;/tbody>
+&lt;/table>
+&lt;h4 id="checkpoint-scriptinsurgencyinscheckpointgamemode">
+&lt;a href="#checkpoint-scriptinsurgencyinscheckpointgamemode">#&lt;/a>
+&lt;strong>Checkpoint [/Script/Insurgency.INSCheckpointGameMode]&lt;/strong>
+&lt;/h4>&lt;table>
+&lt;thead>
+&lt;tr>
+&lt;th>&lt;strong>Variable&lt;/strong>&lt;/th>
+&lt;th>&lt;strong>Default&lt;/strong>&lt;/th>
+&lt;th>&lt;strong>Description&lt;/strong>&lt;/th>
+&lt;/tr>
+&lt;/thead>
+&lt;tbody>
+&lt;tr>
+&lt;td>DefendTimer&lt;/td>
+&lt;td>90&lt;/td>
+&lt;td>占点后AI发起反击时，玩家需要守点的时长&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>DefendTimerFinal&lt;/td>
+&lt;td>180&lt;/td>
+&lt;td>最后一个点占领后延长的守点时间&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>RetreatTimer&lt;/td>
+&lt;td>10&lt;/td>
+&lt;td>强迫Ai在失去点后撤退的时长&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>RespawnDPR&lt;/td>
+&lt;td>0.1&lt;/td>
+&lt;td>死亡玩家比例达到多少时 才复活AI&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>RespawnDelay&lt;/td>
+&lt;td>20&lt;/td>
+&lt;td>AI重生延迟&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>PostCaptureRushTimer&lt;/td>
+&lt;td>30&lt;/td>
+&lt;td>点被炸掉后AI rush该点的时间&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>CounterAttackRespawnDPR&lt;/td>
+&lt;td>0.2&lt;/td>
+&lt;td>反击时 玩家死亡比例达到多少才进行AI重生&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>CounterAttackRespawnDelay&lt;/td>
+&lt;td>20&lt;/td>
+&lt;td>反击时AI重生延迟&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>ObjectiveTotalEnemyRespawnMultiplierMin&lt;/td>
+&lt;td>1&lt;/td>
+&lt;td>按最小玩家数重生AI的倍数&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>ObjectiveTotalEnemyRespawnMultiplierMax&lt;/td>
+&lt;td>1&lt;/td>
+&lt;td>按最大玩家数重生AI的倍数&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>FinalCacheBotQuotaMultiplier&lt;/td>
+&lt;td>1.5&lt;/td>
+&lt;td>若最后一个点为弹药库 增加AI数量的倍数&lt;/td>
+&lt;/tr>
+&lt;/tbody>
+&lt;/table>
+&lt;p>&lt;strong>部分mutator配置相关&lt;/strong>&lt;/p>
+&lt;h4 id="headshots-only">
+&lt;a href="#headshots-only">#&lt;/a>
+Headshots Only
+&lt;/h4>&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">[/Script/Insurgency.Mutator_HeadshotOnly]
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;table>
+&lt;thead>
+&lt;tr>
+&lt;th>&lt;strong>INI Entry&lt;/strong>&lt;/th>
+&lt;th>&lt;strong>Default&lt;/strong>&lt;/th>
+&lt;th>&lt;strong>在启动脚本中加入参数&lt;/strong>&lt;/th>
+&lt;th>&lt;strong>Description&lt;/strong>&lt;/th>
+&lt;/tr>
+&lt;/thead>
+&lt;tbody>
+&lt;tr>
+&lt;td>bCheckMeleeDamage&lt;/td>
+&lt;td>false&lt;/td>
+&lt;td>无&lt;/td>
+&lt;td>近战爆头是否算入&lt;/td>
+&lt;/tr>
+&lt;/tbody>
+&lt;/table>
+&lt;h4 id="hot-potato">
+&lt;a href="#hot-potato">#&lt;/a>
+Hot Potato
+&lt;/h4>&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">[/Script/Insurgency.Mutator_HotPotato]
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;table>
+&lt;thead>
+&lt;tr>
+&lt;th>&lt;strong>INI Entry&lt;/strong>&lt;/th>
+&lt;th>&lt;strong>Default&lt;/strong>&lt;/th>
+&lt;th>在启动脚本中加入参数&lt;/th>
+&lt;th>&lt;strong>Description&lt;/strong>&lt;/th>
+&lt;/tr>
+&lt;/thead>
+&lt;tbody>
+&lt;tr>
+&lt;td>GrenadeClass&lt;/td>
+&lt;td>/Game/Game/Actors/Projectiles/BP_Projectile_M67.BP_Projectile_M67_C&lt;/td>
+&lt;td>无&lt;/td>
+&lt;td>死亡时掉落的手雷种类&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>ThrowbackWeaponClass&lt;/td>
+&lt;td>/Game/Game/Actors/Weapons/Grenade/BP_Grenade_M67.BP_Grenade_M67_C&lt;/td>
+&lt;td>无&lt;/td>
+&lt;td>扔回掉落的手雷时变成哪种手雷&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>bIgnoreHeadshots&lt;/td>
+&lt;td>false&lt;/td>
+&lt;td>?HotPotato_bIgnoreHeadshots=&lt;/td>
+&lt;td>如果被爆头则不掉落手雷&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>bBotsOnly&lt;/td>
+&lt;td>false&lt;/td>
+&lt;td>?HotPotato_bBotsOnly=&lt;/td>
+&lt;td>只有AI掉落手雷&lt;/td>
+&lt;/tr>
+&lt;/tbody>
+&lt;/table>
+&lt;h4 id="vampirism">
+&lt;a href="#vampirism">#&lt;/a>
+Vampirism
+&lt;/h4>&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">[/Script/Insurgency.Mutator_Vampirism]
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;table>
+&lt;thead>
+&lt;tr>
+&lt;th>&lt;strong>INI Entry&lt;/strong>&lt;/th>
+&lt;th>&lt;strong>Default&lt;/strong>&lt;/th>
+&lt;th>&lt;strong>Travel URL Parameter&lt;/strong>&lt;/th>
+&lt;th>&lt;strong>Description&lt;/strong>&lt;/th>
+&lt;/tr>
+&lt;/thead>
+&lt;tbody>
+&lt;tr>
+&lt;td>bCountFriendlyFire&lt;/td>
+&lt;td>false&lt;/td>
+&lt;td>Vampirism_bCountFriendlyFire&lt;/td>
+&lt;td>把友伤算入吸血&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>MaxHealth&lt;/td>
+&lt;td>1000&lt;/td>
+&lt;td>Vampirism_MaxHealth&lt;/td>
+&lt;td>攻击其他玩家最大能获取的血量&lt;/td>
+&lt;/tr>
+&lt;/tbody>
+&lt;/table>
+&lt;h4 id="rcon配置">
+&lt;a href="#rcon%e9%85%8d%e7%bd%ae">#&lt;/a>
+Rcon配置
+&lt;/h4>&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-plain" data-lang="plain">&lt;span class="line">&lt;span class="cl">[Rcon]
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">bEnabled=True //True启用
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Password=密码
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">ListenPort=27015 //端口号
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;table>
+&lt;thead>
+&lt;tr>
+&lt;th>&lt;strong>Settings&lt;/strong>&lt;/th>
+&lt;th>&lt;strong>Default&lt;/strong>&lt;/th>
+&lt;th>&lt;strong>Description&lt;/strong>&lt;/th>
+&lt;/tr>
+&lt;/thead>
+&lt;tbody>
+&lt;tr>
+&lt;td>bAllowConsoleCommands&lt;/td>
+&lt;td>True&lt;/td>
+&lt;td>启用控制台命令,启用后，任何未知的 rcon 命令将被解释为控制台命令。&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>bUseBroadcastAddress&lt;/td>
+&lt;td>True&lt;/td>
+&lt;td>如果启用，则 rcon将监听所有可用的网络设备。&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>IncorrectPasswordBanTime&lt;/td>
+&lt;td>30&lt;/td>
+&lt;td>如果客户端已达到最大尝试次数，则禁止客户端尝试连接到 rcon 的时间（以分钟为单位）。&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>ListenAddressOverride&lt;/td>
+&lt;td>0.0.0.0&lt;/td>
+&lt;td>如果 bUseBroadcastAddress 为 False，则这是 rcon 绑定到的网络 IP。&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>MaxPasswordAttempts&lt;/td>
+&lt;td>3&lt;/td>
+&lt;td>密码最大失败次数，超过此次数将被Ban&lt;/td>
+&lt;/tr>
+&lt;/tbody>
+&lt;/table>
+&lt;h4 id="投票">
+&lt;a href="#%e6%8a%95%e7%a5%a8">#&lt;/a>
+投票
+&lt;/h4>&lt;p>如果要启用玩家投票（目前只有踢人，不能像叛乱2那样游戏中投票换图），加入&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-plain" data-lang="plain">&lt;span class="line">&lt;span class="cl">[/Script/Insurgency.TeamInfo]
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">bVotingEnabled=True
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">TeamVoteIssues=/Script/Insurgency.VoteIssueKick
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>投票有关配置&lt;/p>
+&lt;h4 id="scriptinsurgencyvoteissuekick">
+&lt;a href="#scriptinsurgencyvoteissuekick">#&lt;/a>
+[/Script/Insurgency.VoteIssueKick]
+&lt;/h4></description></item></channel></rss>

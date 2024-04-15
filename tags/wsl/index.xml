@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Wsl on Yui's Blog</title><link>https://yuiofastora.github.io/tags/wsl/</link><description>Recent content in Wsl on Yui's Blog</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Thu, 26 Jan 2023 19:00:47 +0800</lastBuildDate><atom:link href="https://yuiofastora.github.io/tags/wsl/index.xml" rel="self" type="application/rss+xml"/><item><title>WSL2 Setup</title><link>https://yuiofastora.github.io/p/wsl2-setup/</link><pubDate>Thu, 26 Jan 2023 19:00:47 +0800</pubDate><guid>https://yuiofastora.github.io/p/wsl2-setup/</guid><description>&lt;h2 id="update-windows-11">
+&lt;a href="#update-windows-11">#&lt;/a>
+Update windows 11
+&lt;/h2>&lt;h2 id="update-gpu-driver">
+&lt;a href="#update-gpu-driver">#&lt;/a>
+Update GPU Driver
+&lt;/h2>&lt;h2 id="fresh-install">
+&lt;a href="#fresh-install">#&lt;/a>
+Fresh Install
+&lt;/h2>&lt;p>Run powershell as Administrator&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-powershell" data-lang="powershell">&lt;span class="line">&lt;span class="cl">&lt;span class="n">wsl&lt;/span> &lt;span class="p">-&lt;/span>&lt;span class="n">-install&lt;/span> &lt;span class="n">-d&lt;/span> &lt;span class="n">Ubuntu&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>Get other distros from MS store&lt;/p>
+&lt;h2 id="install-apps">
+&lt;a href="#install-apps">#&lt;/a>
+Install apps
+&lt;/h2>&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;span class="lnt">5
+&lt;/span>&lt;span class="lnt">6
+&lt;/span>&lt;span class="lnt">7
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">sudo apt install gedit -y
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">sudo apt install gimp -y
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"># File Browser
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">sudo apt install nautilus -y
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">sudo apt install x11-apps -y
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>To install the Google Chrome for Linux:&lt;/p>
+&lt;ol>
+&lt;li>Change directories into the temp folder: &lt;code>cd /tmp&lt;/code>&lt;/li>
+&lt;li>Use wget to download it: &lt;code>sudo wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb&lt;/code>&lt;/li>
+&lt;li>Get the current stable version: &lt;code>sudo dpkg -i google-chrome-stable_current_amd64.deb&lt;/code>&lt;/li>
+&lt;li>Fix the package: &lt;code>sudo apt install --fix-broken -y&lt;/code>&lt;/li>
+&lt;li>Configure the package: &lt;code>sudo dpkg -i google-chrome-stable_current_amd64.deb&lt;/code>&lt;/li>
+&lt;/ol>
+&lt;p>To launch, enter: &lt;code>google-chrome&lt;/code>&lt;/p>
+&lt;h2 id="set-proxy">
+&lt;a href="#set-proxy">#&lt;/a>
+Set Proxy
+&lt;/h2>&lt;p>Use &lt;a class="link" href="https://www.telerik.com/fiddler/fiddler-classic" target="_blank" rel="noopener"
+>Fiddler Classic&lt;/a> winconfig to remove Appcontainer network traffic block&lt;/p>
+&lt;p>Check IP Address with:&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">cat /etc/resolv.conf
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>run proxy software on windows (set &amp;lsquo;Allow LAN&amp;rsquo;)&lt;/p>
+&lt;p>&lt;a class="link" href="https://help.ubuntu.com/community/AptGet/Howto#Setting_up_apt-get_to_use_a_http-proxy" target="_blank" rel="noopener"
+>https://help.ubuntu.com/community/AptGet/Howto#Setting_up_apt-get_to_use_a_http-proxy&lt;/a>&lt;/p>
+&lt;p>execute in WSL&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">&lt;span class="nb">export&lt;/span> &lt;span class="nv">http_proxy&lt;/span>&lt;span class="o">=&lt;/span>http://IPaddress:proxyport
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>or use proxychains&lt;/p>
+&lt;h2 id="beautify-windows-terminal">
+&lt;a href="#beautify-windows-terminal">#&lt;/a>
+Beautify Windows Terminal
+&lt;/h2>&lt;p>&lt;a class="link" href="https://youtu.be/VT2L1SXFq9U" target="_blank" rel="noopener"
+>https://youtu.be/VT2L1SXFq9U&lt;/a>&lt;/p>
+&lt;h2 id="fix-process-exited-with-code-4294967295">
+&lt;a href="#fix-process-exited-with-code-4294967295">#&lt;/a>
+Fix [process exited with code 4294967295]
+&lt;/h2>&lt;p>Network issues (VPN)&lt;/p>
+&lt;p>run command to reset windows network&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-powershell" data-lang="powershell">&lt;span class="line">&lt;span class="cl">&lt;span class="n">netsh&lt;/span> &lt;span class="n">winsock&lt;/span> &lt;span class="n">reset&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>Restart windows&lt;/p>
+&lt;h2 id="fix-display-not-open--gui-not-workinghttpsgithubcommicrosoftwslissues4106issuecomment-876470388">
+&lt;a href="#fix-display-not-open--gui-not-workinghttpsgithubcommicrosoftwslissues4106issuecomment-876470388">#&lt;/a>
+&lt;a class="link" href="https://github.com/microsoft/WSL/issues/4106#issuecomment-876470388" target="_blank" rel="noopener"
+>Fix Display not open / GUI not working&lt;/a>
+&lt;/h2>&lt;h3 id="setting-the-display-variable-for-wsl2">
+&lt;a href="#setting-the-display-variable-for-wsl2">#&lt;/a>
+Setting the DISPLAY variable for WSL2
+&lt;/h3>&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">&lt;span class="nb">export&lt;/span> &lt;span class="nv">DISPLAY&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="k">$(&lt;/span>route.exe print &lt;span class="p">|&lt;/span> grep 0.0.0.0 &lt;span class="p">|&lt;/span> head -1 &lt;span class="p">|&lt;/span> awk &lt;span class="s1">&amp;#39;{print $4}&amp;#39;&lt;/span>&lt;span class="k">)&lt;/span>:0.0
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>also put in &lt;code>~/.bashrc&lt;/code>&lt;/p>
+&lt;h3 id="install-vcxsrvhttpssourceforgenetprojectsvcxsrv-on-windows">
+&lt;a href="#install-vcxsrvhttpssourceforgenetprojectsvcxsrv-on-windows">#&lt;/a>
+Install &lt;a class="link" href="https://sourceforge.net/projects/vcxsrv/" target="_blank" rel="noopener"
+>vcxsrv&lt;/a> on Windows
+&lt;/h3>&lt;h3 id="start-xlaunch-on-windows">
+&lt;a href="#start-xlaunch-on-windows">#&lt;/a>
+Start XLaunch on Windows
+&lt;/h3>&lt;p>find shortcut, right lick and select properties&lt;/p>
+&lt;p>Append &lt;code>-ac&lt;/code> after target path&lt;/p>
+&lt;p>launch via edited shortcut&lt;/p>
+&lt;ul>
+&lt;li>Select Multiple Windows (default)&lt;/li>
+&lt;li>Select Start no client (default)&lt;/li>
+&lt;li>&lt;strong>Check✅ Disable access control&lt;/strong>&lt;/li>
+&lt;li>&lt;strong>Uncheck ☐ Native opengl&lt;/strong>&lt;/li>
+&lt;li>Save configuration on startup folder, location &lt;code>C:\Users\&amp;quot;YOUR_USERNAME&amp;quot;\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Startup&lt;/code>&lt;/li>
+&lt;/ul>
+&lt;p>All set&lt;/p>
+&lt;p>Launch GUI apps on WSL.&lt;/p></description></item></channel></rss>

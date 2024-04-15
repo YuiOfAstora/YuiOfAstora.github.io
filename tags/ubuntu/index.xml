@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Ubuntu on Yui's Blog</title><link>https://yuiofastora.github.io/tags/ubuntu/</link><description>Recent content in Ubuntu on Yui's Blog</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Thu, 26 Jan 2023 18:52:00 +0800</lastBuildDate><atom:link href="https://yuiofastora.github.io/tags/ubuntu/index.xml" rel="self" type="application/rss+xml"/><item><title>Install ZSH</title><link>https://yuiofastora.github.io/p/install-zsh/</link><pubDate>Thu, 26 Jan 2023 18:52:00 +0800</pubDate><guid>https://yuiofastora.github.io/p/install-zsh/</guid><description>&lt;p>Install ZSH and customzie theme&lt;/p>
+&lt;p>Tested env: Kubuntu 20.04&lt;/p>
+&lt;h2 id="install-zsh">
+&lt;a href="#install-zsh">#&lt;/a>
+Install ZSH
+&lt;/h2>&lt;p>&lt;code>$ sudo apt-get install zsh&lt;/code>&lt;/p>
+&lt;p>change default shell to zsh&lt;/p>
+&lt;p>&lt;code>$ chsh -s $(which zsh)&lt;/code>&lt;/p>
+&lt;p>log out the current user and log back in to take effect&lt;/p>
+&lt;h2 id="install-oh-my-zsh">
+&lt;a href="#install-oh-my-zsh">#&lt;/a>
+Install oh-my-zsh
+&lt;/h2>&lt;p>&lt;code>$ wget https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh&lt;/code>&lt;/p>
+&lt;p>&lt;code>sh install.sh&lt;/code>&lt;/p>
+&lt;h2 id="install-powerlevel10k-theme">
+&lt;a href="#install-powerlevel10k-theme">#&lt;/a>
+Install powerlevel10k theme
+&lt;/h2>&lt;p>Install Meslo Nerd Font&lt;/p>
+&lt;p>Clone file from github and add to zshrc&lt;/p>
+&lt;p>&lt;code>$ git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k&lt;/code>&lt;/p>
+&lt;p>Set &lt;code>ZSH_THEME=&amp;quot;powerlevel10k/powerlevel10k&amp;quot;&lt;/code> in &lt;code>~/.zshrc&lt;/code>.&lt;/p>
+&lt;p>&lt;code>$ source .zshrc&lt;/code>&lt;/p>
+&lt;h2 id="plugins-for-oh-my-zsh">
+&lt;a href="#plugins-for-oh-my-zsh">#&lt;/a>
+Plugins for oh-my-zsh
+&lt;/h2>&lt;p>&lt;code>extract&lt;/code> Uncompress tool&lt;/p>
+&lt;p>&lt;code>z&lt;/code> jump to frequently used directories&lt;/p>
+&lt;p>&lt;code>colored-man-pages&lt;/code> Colorful man pages&lt;/p>
+&lt;p>&lt;code>sudo&lt;/code> Press ESC twice to add sudo for last command&lt;/p>
+&lt;p>&lt;code>zsh-syntax-highlighting&lt;/code>&lt;/p>
+&lt;p>&lt;code>git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting&lt;/code>&lt;/p>
+&lt;p>Set &lt;code>plugins=(zsh-syntax-highlighting)&lt;/code> in &lt;code>~/.zshrc&lt;/code>&lt;/p>
+&lt;p>&lt;code>zsh-autosuggestions&lt;/code>&lt;/p>
+&lt;p>&lt;code>git clone https://github.com/zsh-users/zsh-autosuggestions.git $ZSH_CUSTOM/plugins/zsh-autosuggestions&lt;/code>&lt;/p>
+&lt;p>Set &lt;code>plugins=(zsh-autosuggestions)&lt;/code> in &lt;code>~/.zshrc&lt;/code>&lt;/p></description></item><item><title>Delete apt GPG key</title><link>https://yuiofastora.github.io/p/delete-apt-gpg-key/</link><pubDate>Thu, 26 Jan 2023 18:50:00 +0800</pubDate><guid>https://yuiofastora.github.io/p/delete-apt-gpg-key/</guid><description>&lt;p>Delete GPG keys with &lt;code>apt-key&lt;/code>&lt;/p>
+&lt;p>Tested env: Ubuntu 20.04&lt;/p>
+&lt;h2 id="list-all-gpg-keys">
+&lt;a href="#list-all-gpg-keys">#&lt;/a>
+List all GPG keys
+&lt;/h2>&lt;p>&lt;code>$ sudo apt-key list&lt;/code>&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;span class="lnt">11
+&lt;/span>&lt;span class="lnt">12
+&lt;/span>&lt;span class="lnt">13
+&lt;/span>&lt;span class="lnt">14
+&lt;/span>&lt;span class="lnt">15
+&lt;/span>&lt;span class="lnt">16
+&lt;/span>&lt;span class="lnt">17
+&lt;/span>&lt;span class="lnt">18
+&lt;/span>&lt;span class="lnt">19
+&lt;/span>&lt;span class="lnt">20
+&lt;/span>&lt;span class="lnt">21
+&lt;/span>&lt;span class="lnt">22
+&lt;/span>&lt;span class="lnt">23
+&lt;/span>&lt;span class="lnt">24
+&lt;/span>&lt;span class="lnt">25
+&lt;/span>&lt;span class="lnt">26
+&lt;/span>&lt;span class="lnt">27
+&lt;/span>&lt;span class="lnt">28
+&lt;/span>&lt;span class="lnt">29
+&lt;/span>&lt;span class="lnt">30
+&lt;/span>&lt;span class="lnt">31
+&lt;/span>&lt;span class="lnt">32
+&lt;/span>&lt;span class="lnt">33
+&lt;/span>&lt;span class="lnt">34
+&lt;/span>&lt;span class="lnt">35
+&lt;/span>&lt;span class="lnt">36
+&lt;/span>&lt;span class="lnt">37
+&lt;/span>&lt;span class="lnt">38
+&lt;/span>&lt;span class="lnt">39
+&lt;/span>&lt;span class="lnt">40
+&lt;/span>&lt;span class="lnt">41
+&lt;/span>&lt;span class="lnt">42
+&lt;/span>&lt;span class="lnt">43
+&lt;/span>&lt;span class="lnt">44
+&lt;/span>&lt;span class="lnt">45
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">yui@yui-kubuntu:~$ sudo apt-key list
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Warning: apt-key is deprecated. Manage keyring files in trusted.gpg.d instead (see apt-key(8)).
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">/etc/apt/trusted.gpg
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">--------------------
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">pub rsa2048 2016-09-25 [SC]
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> 4AC4 41BE 68B4 ADAB 7439 FBF9 BA30 0B77 55AF CFAE
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">uid [ unknown] Abner Lee &amp;lt;abner@typora.io&amp;gt;
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">/etc/apt/trusted.gpg.d/danielrichter2007-ubuntu-grub-customizer.gpg
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">-------------------------------------------------------------------
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">pub rsa1024 2010-10-08 [SC]
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> 59DA D276 B942 642B 1BBD 0EAC A8AA 1FAA 3F05 5C03
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">uid [ unknown] Launchpad PPA for Daniel Richter
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">/etc/apt/trusted.gpg.d/google-chrome.gpg
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">----------------------------------------
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">pub rsa4096 2016-04-12 [SC]
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> EB4C 1BFD 4F04 2F6D DDCC EC91 7721 F63B D38B 4796
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">uid [ unknown] Google Inc. (Linux Packages Signing Authority) &amp;lt;linux-packages-keymaster@google.com&amp;gt;
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">sub rsa4096 2021-10-26 [S] [expires: 2024-10-25]
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">/etc/apt/trusted.gpg.d/microsoft.gpg
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">------------------------------------
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">pub rsa2048 2015-10-28 [SC]
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> BC52 8686 B50D 79E3 39D3 721C EB3E 94AD BE12 29CF
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">uid [ unknown] Microsoft (Release signing) &amp;lt;gpgsecurity@microsoft.com&amp;gt;
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">/etc/apt/trusted.gpg.d/steam.gpg
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">--------------------------------
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">pub rsa2048 2012-12-07 [SC]
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> BA18 16EF 8E75 005F CF5E 27A1 F24A EA9F B054 98B7
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">uid [ unknown] Valve Corporation &amp;lt;linux@steampowered.com&amp;gt;
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">sub rsa2048 2012-12-07 [E]
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">/etc/apt/trusted.gpg.d/ubuntu-keyring-2012-cdimage.gpg
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">------------------------------------------------------
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">pub rsa4096 2012-05-11 [SC]
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> 8439 38DF 228D 22F7 B374 2BC0 D94A A3F0 EFE2 1092
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">uid [ unknown] Ubuntu CD Image Automatic Signing Key (2012) &amp;lt;cdimage@ubuntu.com&amp;gt;
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">/etc/apt/trusted.gpg.d/ubuntu-keyring-2018-archive.gpg
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">------------------------------------------------------
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">pub rsa4096 2018-09-17 [SC]
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> F6EC B376 2474 EDA9 D21B 7022 8719 20D1 991B C93C
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">uid [ unknown] Ubuntu Archive Automatic Signing Key (2018) &amp;lt;ftpmaster@ubuntu.com&amp;gt;
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;h2 id="delete-entry">
+&lt;a href="#delete-entry">#&lt;/a>
+Delete entry
+&lt;/h2>&lt;p>Delete entry in /etc/apt/sources.list.d/&lt;/p>
+&lt;h2 id="delete-keys">
+&lt;a href="#delete-keys">#&lt;/a>
+Delete keys
+&lt;/h2>&lt;p>remove typora.io&lt;/p>
+&lt;p>&lt;code>$ sudo apt-key del &amp;quot;4AC4 41BE 68B4 ADAB 7439 FBF9 BA30 0B77 55AF CFAE&amp;quot;&lt;/code>&lt;/p>
+&lt;p>or use the last 8 chars&lt;/p>
+&lt;p>&lt;code>$ sudo apt-key del 55AFCFAE&lt;/code>&lt;/p>
+&lt;p>&lt;code>$ sudo apt update&lt;/code>&lt;/p></description></item></channel></rss>
